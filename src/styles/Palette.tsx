@@ -14,7 +14,7 @@ export const Palette = {
     },
     Sub: "#fdf738",
 
-    White: "#FFFFFF",
+    Gray0: "#FFFFFF",
     Gray2: "#E0E0E0",
     Gray3: "#BDBDBD",
     Gray4: "#9E9E9E",
