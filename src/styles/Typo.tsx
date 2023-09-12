@@ -1,60 +1,70 @@
 //추상화를 위해 compount componet 패턴 사용
 
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 const Typo = () => {
-    return <></>;
+  return <></>;
 };
 
-const Heading1 = styled.text`
-    font-family: PretendardBold;
-    font-size: 24px;
-    line-height: 150%;
+const Heading1 = styled.text<{ color?: string }>`
+  font-family: PretendardBold;
+  font-size: 24px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Heading2 = styled.text`
-    font-family: PretendardBold;
-    font-size: 19px;
-    line-height: 150%;
+const Heading2 = styled.text<{ color?: string }>`
+  font-family: PretendardBold;
+  font-size: 19px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Heading3 = styled.text`
-    font-family: PretendardMedium;
-    font-size: 18px;
-    line-height: 150%;
+const Heading3 = styled.text<{ color?: string }>`
+  font-family: PretendardMedium;
+  font-size: 18px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Heading4 = styled.text`
-    font-family: PretendardRegular;
-    font-size: 18px;
-    line-height: 150%;
+const Heading4 = styled.text<{ color?: string }>`
+  font-family: PretendardRegular;
+  font-size: 18px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Body1 = styled.text`
-    font-family: PretendardMedium;
-    font-size: 16px;
-    line-height: 150%;
+const Body1 = styled.text<{ color?: string }>`
+  font-family: PretendardMedium;
+  font-size: 16px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Body2 = styled.text`
-    font-family: PretendardRegular;
-    font-size: 16px;
-    line-height: 150%;
+const Body2 = styled.text<{ color?: string }>`
+  font-family: PretendardRegular;
+  font-size: 16px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Body3 = styled.text`
-    font-family: PretendardMedium;
-    font-size: 14px;
-    line-height: 150%;
+const Body3 = styled.text<{ color?: string }>`
+  font-family: PretendardMedium;
+  font-size: 14px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const Body4 = styled.text`
-    font-family: PretendardRegular;
-    font-size: 14px;
-    line-height: 150%;
+const Body4 = styled.text<{ color?: string }>`
+  font-family: PretendardRegular;
+  font-size: 14px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const small1 = styled.text`
-    font-family: PretendardMedium;
-    font-size: 12px;
-    line-height: 150%;
+const Small1 = styled.text<{ color?: string }>`
+  font-family: PretendardMedium;
+  font-size: 12px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
-const small2 = styled.text`
-    font-family: PretendardRegular;
-    font-size: 12px;
-    line-height: 150%;
+const Small2 = styled.text<{ color?: string }>`
+  font-family: PretendardRegular;
+  font-size: 12px;
+  line-height: 150%;
+  color: ${({ color }) => color};
 `;
 
 Typo.h1 = Heading1;
@@ -65,6 +75,7 @@ Typo.b1 = Body1;
 Typo.b2 = Body2;
 Typo.b3 = Body3;
 Typo.b4 = Body4;
-Typo.s1 = small1;
-Typo.s2 = small2;
+Typo.s1 = Small1;
+Typo.s2 = Small2;
+
 export default Typo;
