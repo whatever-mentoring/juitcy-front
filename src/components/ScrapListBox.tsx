@@ -7,7 +7,7 @@ export const ScrapListBox = () => {
   return (
     <Contanier>
       <TextContainer>
-        <Category>일상</Category>
+        <Category>인간관계</Category>
         <Typo.b1>글 제목입니다</Typo.b1>
         <Typo.b3 color={Palette.Gray4}>
           글 내용입니다 글 내용입니다 글 내용입니다 글 내용입니다 글 내용입니다

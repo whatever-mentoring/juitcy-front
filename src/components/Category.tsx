@@ -13,7 +13,7 @@ export const Category = ({ children }: { children: React.ReactNode }) => {
 
 const Container = styled.div<{ role?: string }>`
   display: flex;
-  width: 35px;
+  width: fit-content;
   height: 19px;
   padding: 10px 7px;
   justify-content: center;
