@@ -1,17 +1,11 @@
+import { rgba } from "polished";
+
+let userType = 1; //1이 시니어라 가정
+const main: string = userType == 1 ? "#3F6EFF" : "#FF8267";
+
 export const Palette = {
     Grey: "#e7e7e7",
-    Juni: {
-        main: "#FF8267",
-        category: "#FFEFEC",
-        ans1: "#FFAD9B",
-        ans2: "#FF9984",
-    },
-    Cyni: {
-        main: "#3F6EFF",
-        category: "#E7EDFF",
-        ans1: "#9CB4FF",
-        ans2: "#7294FF",
-    },
+    Main: main,
     Sub: "#fdf738",
 
     Gray0: "#FFFFFF",
@@ -21,4 +15,8 @@ export const Palette = {
     Gray5: "#616161",
     Gray6: "#212121",
     Black: "#000000",
+
+    Main80: rgba(main, 0.8),
+    Main50: rgba(main, 0.5),
+    Main15: rgba(main, 0.15),
 };
