@@ -27,7 +27,7 @@ const Contanier = styled.div`
   height: 79px;
   padding: 14px;
   border-radius: 5px;
-  background: #fff;
+  background: ${Palette.White};
   box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.1);
 `;
 const TextContainer = styled.div`
