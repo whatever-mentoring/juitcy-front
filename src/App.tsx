@@ -1,10 +1,11 @@
 import DesignTest from "DesignTest";
+import { CommentListBox } from "components/CommentListBox";
 import React from "react";
 
 function App() {
     return (
         <div>
-            <DesignTest />
+            <CommentListBox/>
         </div>
     );
 }
