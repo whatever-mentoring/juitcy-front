@@ -45,6 +45,7 @@
         ]
     },
     "devDependencies": {
-        "react-app-alias": "^2.2.2"
+        "react-app-alias": "^2.2.2",
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
     }
 }
