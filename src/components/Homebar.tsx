@@ -4,9 +4,11 @@ import answerOn from "@assets/icons/answer-on.png";
 import askOff from "@assets/icons/ask-off.png";
 import askOn from "@assets/icons/ask-on.png";
 import juicygeulOff from "@assets/icons/juicygeul-off.png";
-import juicygeulOn from "@assets/icons/juicygeul-on.png";
+import juicygeulOnJuni from "@assets/icons/juicygeul-on-juni.png";
+import juicygeulOnCyni from "@assets/icons/juicygeul-on-cyni.png";
 import mypageOff from "@assets/icons/mypage-off.png";
-import mypageOn from "@assets/icons/mypage-on.png";
+import mypageOnJuni from "@assets/icons/mypage-on-juni.png";
+import mypageOnCyni from "@assets/icons/mypage-on-cyni.png";
 import Typo from "styles/Typo";
 import { useState } from "react";
 
@@ -66,12 +68,26 @@ const Homebar = () => {
         <Container>
             {renderAnswerOrAsk()}
             <Menu onClick={onClickJuicy}>
-                <Icon src={`${isJuicyOn ? juicygeulOn : juicygeulOff}`} />
+                <Icon
+                    src={`${
+                        isJuicyOn
+                            ? userType == 1
+                                ? juicygeulOnCyni
+                                : juicygeulOnJuni
+                            : juicygeulOff
+                    }`}
+                />
                 <Typo.homebar isOn={isJuicyOn}>주씨글</Typo.homebar>
             </Menu>
             <Menu onClick={onClickMpg}>
                 <Icon
-                    src={`${isMpgOn ? mypageOn : mypageOff}`}
+                    src={`${
+                        isMpgOn
+                            ? userType == 1
+                                ? mypageOnCyni
+                                : mypageOnJuni
+                            : mypageOff
+                    }`}
                     style={{ width: "36px", height: "36px" }}
                 />
                 <Typo.homebar isOn={isMpgOn}>마이페이지</Typo.homebar>
