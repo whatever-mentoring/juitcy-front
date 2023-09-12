@@ -14,83 +14,62 @@ import { useState } from "react";
 
 const Homebar = () => {
     let userType = 2; //임시 변수
-    const [isAnsOn, setIsAnsOn] = useState<boolean>(false);
-    const [isAskOn, setIsAskOn] = useState<boolean>(false);
-    const [isJuicyOn, setIsJuicyOn] = useState<boolean>(false);
-    const [isMpgOn, setIsMpgOn] = useState<boolean>(false);
+    const [icons, setIcons] = useState({
+        isAnsOn: false,
+        isAskOn: false,
+        isJuicyOn: false,
+        isMpgOn: false,
+    });
 
-    const onClickAns = () => {
-        setIsAnsOn(true);
-        setIsAskOn(false);
-        setIsJuicyOn(false);
-        setIsMpgOn(false);
-    };
-    const onClickAsk = () => {
-        setIsAnsOn(false);
-        setIsAskOn(true);
-        setIsJuicyOn(false);
-        setIsMpgOn(false);
-    };
-    const onClickJuicy = () => {
-        setIsAnsOn(false);
-        setIsAskOn(false);
-        setIsJuicyOn(true);
-        setIsMpgOn(false);
-    };
-    const onClickMpg = () => {
-        setIsAnsOn(false);
-        setIsAskOn(false);
-        setIsJuicyOn(false);
-        setIsMpgOn(true);
-    };
-    const renderAnswerOrAsk = () => {
-        const result = [];
-        result.push(
-            userType == 1 ? (
-                // 답변하기
-                <Menu onClick={onClickAns}>
-                    <Icon src={`${isAnsOn ? answerOn : answerOff}`} />
-                    <Typo.homebar isOn={isAnsOn}>답변하기</Typo.homebar>
-                </Menu>
-            ) : (
-                //질문하기
-                <Menu onClick={onClickAsk}>
-                    <Icon src={`${isAskOn ? askOn : askOff}`} />
-                    <Typo.homebar isOn={isAskOn}>질문하기</Typo.homebar>
-                </Menu>
-            )
-        );
-
-        return result;
+    const handleClick = (iconName: string) => {
+        setIcons((prevState) => ({
+            ...prevState,
+            isAnsOn: iconName === "ans",
+            isAskOn: iconName === "ask",
+            isJuicyOn: iconName === "juicy",
+            isMpgOn: iconName === "mpg",
+        }));
     };
 
     return (
         <Container>
-            {renderAnswerOrAsk()}
-            <Menu onClick={onClickJuicy}>
+            {userType == 1 ? (
+                <Menu onClick={() => handleClick("ans")}>
+                    <Icon src={`${icons.isAnsOn ? answerOn : answerOff}`} />
+                    <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
+                </Menu>
+            ) : (
+                <Menu onClick={() => handleClick("ask")}>
+                    <Icon src={`${icons.isAskOn ? askOn : askOff}`} />
+                    <Typo.homebar isOn={icons.isAskOn}>질문하기</Typo.homebar>
+                </Menu>
+            )}
+
+            <Menu onClick={() => handleClick("juicy")}>
                 <Icon
                     src={`${
-                        isJuicyOn
-                            ? userType == 1
+                        icons.isJuicyOn
+                            ? userType === 1
                                 ? juicygeulOnCyni
                                 : juicygeulOnJuni
                             : juicygeulOff
                     }`}
                 />
-                <Typo.homebar isOn={isJuicyOn}>주씨글</Typo.homebar>
+                <Typo.homebar isOn={icons.isJuicyOn}>주씨글</Typo.homebar>
             </Menu>
-            <Menu onClick={onClickMpg}>
+
+            <Menu onClick={() => handleClick("mpg")}>
                 <Icon
                     src={`${
-                        isMpgOn
-                            ? userType == 1
+                        icons.isMpgOn
+                            ? userType === 1
                                 ? mypageOnCyni
                                 : mypageOnJuni
                             : mypageOff
                     }`}
                     style={{ width: "36px", height: "36px" }}
                 />
-                <Typo.homebar isOn={isMpgOn}>마이페이지</Typo.homebar>
+                <Typo.homebar isOn={icons.isMpgOn}>마이페이지</Typo.homebar>
             </Menu>
         </Container>
     );
