@@ -31,7 +31,7 @@ export const ScrapListBox = () => {
 
 const Contanier = styled.div`
   width: 100%;
-  height: 143px;
+  height: fit-content;
   padding: 14px 15px;
   border-radius: 5px;
   background: ${Palette.White};

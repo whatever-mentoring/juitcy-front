@@ -6,7 +6,14 @@ import React from 'react';
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 30,
+      }}
+    >
       <CommentListBox />
       <ScrapListBox />
       <MyQnaListBox />
