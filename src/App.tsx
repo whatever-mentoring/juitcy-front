@@ -2,6 +2,7 @@ import DesignTest from 'DesignTest';
 import { CommentListBox } from 'components/CommentListBox';
 import { MyQnaListBox } from 'components/MyQnaListBox';
 import { ScrapListBox } from 'components/ScrapListBox';
+import { Waitingtab } from 'components/WaitingTab';
 import React from 'react';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         gap: 30,
       }}
     >
+      <Waitingtab />
       <CommentListBox />
       <ScrapListBox />
       <MyQnaListBox />
