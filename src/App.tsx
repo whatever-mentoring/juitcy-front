@@ -1,12 +1,7 @@
-import DesignTest from "DesignTest";
 import React from "react";
 
 function App() {
-    return (
-        <div>
-            <DesignTest />
-        </div>
-    );
+    return <div></div>;
 }
 
 export default App;
