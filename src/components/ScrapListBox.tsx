@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { Category } from './Category';
+import { CategoryLabel } from './CategoryLabel';
 
 export const ScrapListBox = () => {
   return (
     <Contanier>
       <TextContainer>
-        <Category>인간관계</Category>
+        <CategoryLabel>인간관계</CategoryLabel>
         <Typo.b1>글 제목입니다</Typo.b1>
         <Typo.b3 color={Palette.Gray4}>
           글 내용입니다 글 내용입니다 글 내용입니다 글 내용입니다 글 내용입니다

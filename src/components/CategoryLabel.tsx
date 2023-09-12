@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
-export const Category = ({ children }: { children: React.ReactNode }) => {
+export const CategoryLabel = ({ children }: { children: React.ReactNode }) => {
   let role = 'juni';
   return (
     <Container role={role}>

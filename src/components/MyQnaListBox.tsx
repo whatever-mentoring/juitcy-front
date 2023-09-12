@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { Category } from './Category';
+import { CategoryLabel } from './CategoryLabel';
 
 export const MyQnaListBox = () => {
   let ansCount = 3;
@@ -17,7 +17,7 @@ export const MyQnaListBox = () => {
         </Row>
         <Row justifyContent="space-between">
           <Row gap={10}>
-            <Category>일상</Category>
+            <CategoryLabel>일상</CategoryLabel>
             <Typo.b4 color={Palette.Gray4}>2023.09.09</Typo.b4>
           </Row>
           {role === 'juni' ? (
