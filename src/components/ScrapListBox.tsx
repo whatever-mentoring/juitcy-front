@@ -3,7 +3,7 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { Category } from './Category';
 
-export const PostListBox = () => {
+export const ScrapListBox = () => {
   return (
     <Contanier>
       <TextContainer>

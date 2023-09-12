@@ -1,13 +1,13 @@
 import DesignTest from 'DesignTest';
 import { CommentListBox } from 'components/CommentListBox';
-import { PostListBox } from 'components/PostListBox';
+import { ScrapListBox } from 'components/ScrapListBox';
 import React from 'react';
 
 function App() {
   return (
     <div>
       <CommentListBox />
-      <PostListBox />
+      <ScrapListBox />
     </div>
   );
 }
