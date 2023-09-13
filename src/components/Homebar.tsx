@@ -67,7 +67,6 @@ const Homebar = () => {
                 : mypageOnJuni
               : mypageOff
           }`}
-          style={{ width: '36px', height: '36px' }}
         />
         <Typo.homebar isOn={icons.isMpgOn}>마이페이지</Typo.homebar>
       </Menu>
@@ -78,7 +77,7 @@ const Homebar = () => {
 export default Homebar;
 
 const Container = styled.div`
-  width: 390px;
+  width: 100%;
   height: 96px;
 
   display: flex;
@@ -99,7 +98,4 @@ const Menu = styled.div`
 
   cursor: pointer;
 `;
-const Icon = styled.img`
-  width: 40px;
-  height: 40px;
-`;
+const Icon = styled.img``;
