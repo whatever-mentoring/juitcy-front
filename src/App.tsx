@@ -1,24 +1,21 @@
-import { CommentListBox } from 'components/Mypage/CommentListBox';
-import { MyQnaListBox } from 'components/Mypage/MyQnaListBox';
-import { ScrapListBox } from 'components/Mypage/ScrapListBox';
-import { Waitingtab } from 'components/Mypage/WaitingTab';
-import React from 'react';
+import { Mypage } from 'pages/Mypage';
+import { MyComment } from 'pages/Mypage/MyComment';
+import { MyQna } from 'pages/Mypage/MyQna';
+import { MyScrap } from 'pages/Mypage/MyScrap';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div
-      style={{
-        padding: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 30,
-      }}
-    >
-      <Waitingtab />
-      <CommentListBox />
-      <ScrapListBox />
-      <MyQnaListBox />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Mypage />} />
+          <Route path="/myQna" element={<MyQna />} />
+          <Route path="/myComment" element={<MyComment />} />
+          <Route path="/myScrap" element={<MyScrap />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
