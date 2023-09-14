@@ -1,6 +1,7 @@
 //추상화를 위해 compount componet 패턴 사용
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
+import { Palette } from 'styles/Palette';
 
 const Typo = () => {
   return <></>;
@@ -66,6 +67,15 @@ const Small2 = styled.text<{ color?: string }>`
   line-height: 150%;
   color: ${({ color }) => color};
 `;
+interface HomebarProps {
+  isOn: boolean;
+}
+const Homebar = styled.text<HomebarProps>`
+  font-family: PretendardBold;
+  font-size: 10px;
+  line-height: 150%;
+  color: ${(props) => (props.isOn ? Palette.Black : Palette.Gray4)};
+`;
 
 Typo.h1 = Heading1;
 Typo.h2 = Heading2;
@@ -77,5 +87,5 @@ Typo.b3 = Body3;
 Typo.b4 = Body4;
 Typo.s1 = Small1;
 Typo.s2 = Small2;
-
+Typo.homebar = Homebar;
 export default Typo;

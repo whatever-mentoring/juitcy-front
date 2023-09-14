@@ -1,4 +1,3 @@
-import DesignTest from 'DesignTest';
 import { CommentListBox } from 'components/Mypage/CommentListBox';
 import { MyQnaListBox } from 'components/Mypage/MyQnaListBox';
 import { ScrapListBox } from 'components/Mypage/ScrapListBox';
