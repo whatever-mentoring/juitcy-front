@@ -16,11 +16,12 @@ export const Row = styled.div<{
 export const MyPageBoxContainer = styled.div<{
   height?: string;
   padding?: string;
+  borderRadius?: number;
 }>`
   display: flex;
   width: 100%;
   height: ${({ height }) => (height ? height : 'fit-content')};
-  border-radius: 5px;
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 5)}px;
   padding: ${({ padding }) => (padding ? padding : 0)};
   background: ${Palette.White};
   box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.1);
