@@ -3,9 +3,8 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
 export const CategoryLabel = ({ children }: { children: React.ReactNode }) => {
-  let role = 'juni';
   return (
-    <Container role={role}>
+    <Container>
       <Typo.s2>{children}</Typo.s2>
     </Container>
   );
@@ -19,6 +18,5 @@ const Container = styled.div<{ role?: string }>`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background: ${(props) =>
-    props.role == 'juni' ? Palette.Juni.category : Palette.Cyni.category};
+  background: ${Palette.Main15};
 `;

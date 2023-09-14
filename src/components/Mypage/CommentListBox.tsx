@@ -3,10 +3,10 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
 export const CommentListBox = () => {
-  let role = 'juni';
+  let userType = 1;
   let icon = 'juni_commentSubIcon';
-  if (role == 'juni') icon = 'juni_commentSubIcon';
-  else if (role == 'cyni') icon = 'cyni_commentSubIcon';
+  if (userType == 0) icon = 'juni_commentSubIcon';
+  else if (userType == 1) icon = 'cyni_commentSubIcon';
 
   return (
     <Contanier>
