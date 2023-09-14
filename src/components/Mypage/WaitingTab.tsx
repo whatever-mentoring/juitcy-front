@@ -19,7 +19,7 @@ export const Waitingtab = () => {
 
   return (
     <Container>
-      {tabs.map((tab, index) => (
+      {tabs.map((tab: tabInterface, index: number) => (
         <SubContainer
           key={index}
           onClick={() => setClickNum(index)}
@@ -46,7 +46,6 @@ const SubContainer = styled.div<{ borderHeight?: number }>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  border-bottom: ${Palette.Black} 3px solid;
   border-bottom: ${({ borderHeight }) =>
     borderHeight ? `${Palette.Black} ${borderHeight}px solid` : 0};
 `;

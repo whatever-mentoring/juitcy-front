@@ -16,12 +16,12 @@ export const MyQnaListBox = () => {
           <Typo.b3>{userType === 0 ? 'Q.' : 'A.'}</Typo.b3>
           <Typo.b4>내 질문입니다.</Typo.b4>
         </Row>
-        <Row justifyContent="space-between">
-          <Row gap={10}>
+        <Row justifyContent="space-between" alignItems="center">
+          <Row gap={10} alignItems="center">
             <CategoryLabel>일상</CategoryLabel>
-            <Typo.b4 color={Palette.Gray4}>2023.09.09</Typo.b4>
+            <Typo.s2 color={Palette.Gray4}>2023.09.09</Typo.s2>
           </Row>
-          <Typo.b3 color={Palette.Main}>D-6</Typo.b3>
+          <Typo.s1 color={Palette.Main}>D-6</Typo.s1>
         </Row>
       </SubContainer>
     </MyPageBoxContainer>
