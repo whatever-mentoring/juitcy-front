@@ -2,13 +2,14 @@ import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { CategoryLabel } from './CategoryLabel';
+import { MyPageBoxContainer, Row } from 'assets/common';
 
 export const MyQnaListBox = () => {
   let ansCount = 2;
   let userType = 1; // userType 임시변수
 
   return (
-    <Container>
+    <MyPageBoxContainer height="72px">
       <CountStick ansCount={ansCount} userType={userType} />
       <SubContainer>
         <Row gap={3}>
@@ -23,18 +24,10 @@ export const MyQnaListBox = () => {
           <Typo.b3 color={Palette.Main}>D-6</Typo.b3>
         </Row>
       </SubContainer>
-    </Container>
+    </MyPageBoxContainer>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  height: 72px;
-  border-radius: 5px;
-  background: ${Palette.White};
-  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.1);
-`;
 const CountStick = styled.div<{ ansCount?: number; userType?: number }>`
   width: 7px;
   height: 100%;
@@ -57,11 +50,4 @@ const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-`;
-const Row = styled.div<{ gap?: number; justifyContent?: string }>`
-  display: flex;
-  gap: ${({ gap }) => (gap ? gap : 0)}px;
-  align-items: center;
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'initial'};
 `;
