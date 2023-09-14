@@ -1,8 +1,8 @@
 import DesignTest from 'DesignTest';
-import { CommentListBox } from 'components/CommentListBox';
-import { MyQnaListBox } from 'components/MyQnaListBox';
-import { ScrapListBox } from 'components/ScrapListBox';
-import { Waitingtab } from 'components/WaitingTab';
+import { CommentListBox } from 'components/Mypage/CommentListBox';
+import { MyQnaListBox } from 'components/Mypage/MyQnaListBox';
+import { ScrapListBox } from 'components/Mypage/ScrapListBox';
+import { Waitingtab } from 'components/Mypage/WaitingTab';
 import React from 'react';
 
 function App() {
