@@ -31,6 +31,12 @@ const Heading4 = styled.text<{ color?: string }>`
   line-height: 150%;
   color: ${({ color }) => color};
 `;
+const Heading5 = styled.text<{ color?: string }>`
+  font-family: PretendardBold;
+  font-size: 16px;
+  line-height: 150%;
+  color: ${({ color }) => color};
+`;
 const Body1 = styled.text<{ color?: string }>`
   font-family: PretendardMedium;
   font-size: 16px;
@@ -81,6 +87,7 @@ Typo.h1 = Heading1;
 Typo.h2 = Heading2;
 Typo.h3 = Heading3;
 Typo.h4 = Heading4;
+Typo.h5 = Heading5;
 Typo.b1 = Body1;
 Typo.b2 = Body2;
 Typo.b3 = Body3;
