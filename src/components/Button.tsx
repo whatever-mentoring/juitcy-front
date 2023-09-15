@@ -12,18 +12,18 @@ export const LongBtn = ({ children }: { children: string }) => {
 
 export const ShortBtn = ({ children }: { children: string }) => {
   return (
-    <Container width={279}>
+    <Container>
       <Typo.b4 color={Palette.White}>{children}</Typo.b4>
     </Container>
   );
 };
 
-const Container = styled.button<{ width: number }>`
-  width: ${(width) => width + 'px'};
+const Container = styled.button<{ width?: number }>`
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 50px;
 
   border: none;
   border-radius: 10px;
-
   background: ${Palette.Main};
+  cursor: pointer;
 `;
