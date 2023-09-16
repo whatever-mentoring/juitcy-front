@@ -12,7 +12,7 @@ export const EntireContainer = styled.div`
   .mypage-qna-list {
     display: flex;
     flex-direction: column;
-    padding: 30px 0px 5px 0px;
+    padding: 25px 0px 5px 0px;
     gap: 15px;
   }
 `;
