@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { CategoryLabel } from './CategoryLabel';
 import { MyPageBoxContainer, Row } from 'assets/common';
+import { CategoryLabel } from 'components/CategoryLabel';
 
 interface qnaBoxInterface {
   children: string;

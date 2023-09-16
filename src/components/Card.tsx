@@ -6,7 +6,7 @@ import questionDetail from '@assets/icons/question-detail.svg';
 import Typo from 'styles/Typo';
 import { Column, Row } from 'assets/common';
 import { ShortBtn } from './Button';
-import { CategoryLabel } from 'components/Mypage/CategoryLabel';
+import { CategoryLabel } from 'components/CategoryLabel';
 
 // Card components
 export const AnsButtonCard = () => {

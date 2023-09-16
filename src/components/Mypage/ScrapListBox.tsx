@@ -1,7 +1,7 @@
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { CategoryLabel } from './CategoryLabel';
 import { MyPageBoxContainer, Row, TextContainer } from 'assets/common';
+import { CategoryLabel } from 'components/CategoryLabel';
 
 export const ScrapListBox = () => {
   return (
