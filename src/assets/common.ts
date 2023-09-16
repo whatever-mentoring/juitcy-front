@@ -1,6 +1,10 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 
+export const EntireContainer = styled.div`
+  padding: 25px 30px;
+`;
+
 export const Row = styled.div<{
   gap?: number;
   justifyContent?: string;
