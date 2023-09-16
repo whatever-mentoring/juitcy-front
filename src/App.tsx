@@ -3,6 +3,8 @@ import { MyComment } from 'pages/Mypage/MyComment';
 import { MyQna } from 'pages/Mypage/MyQna';
 import { MyScrap } from 'pages/Mypage/MyScrap';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { styled } from 'styled-components';
+import { Palette } from 'styles/Palette';
 
 function App() {
   return (

@@ -2,15 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 import PretendardBold from '../assets/fonts/Pretendard-Bold.woff2';
 import PretendardMedium from '../assets/fonts/Pretendard-Medium.woff2';
 import PretendardRegular from '../assets/fonts/Pretendard-Regular.woff2';
-import { Palette } from './Palette';
 
 export const GlobalStyle = createGlobalStyle`
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    background: ${Palette.Gray05};
-
 
     @font-face {
         font-family: 'PretendardBold';

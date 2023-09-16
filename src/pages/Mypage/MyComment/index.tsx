@@ -25,31 +25,6 @@ const fakeData = [
     content: '파무애ㅑ풰배ㅑㅜㅍㅇ.댓글입니다댓글입니다.',
     date: '2023.09.05',
   },
-  {
-    title: '글 제목',
-    content: '아푸매야ㅜ패먕.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    title: '글 제목',
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    title: '글 제목',
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    title: '글 제목',
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    title: '글 제목',
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
 ];
 
 export const MyComment = () => {
@@ -65,7 +40,7 @@ export const MyComment = () => {
         </Row>
         <div className="mypage-list-container">
           {fakeData.map((data: any, index: number) => (
-            <CommentListBox date={data.date} title={data.title}>
+            <CommentListBox date={data.date} title={data.title} key={index}>
               {data.content}
             </CommentListBox>
           ))}
