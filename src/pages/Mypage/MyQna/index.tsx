@@ -104,7 +104,7 @@ export const MyQna = () => {
         ) : (
           <></>
         )}
-        <div className="mypage-qna-list">
+        <div className="mypage-list-container">
           {fakeData.map((data: any, index: number) => (
             <MyQnaListBox
               count={data.count}

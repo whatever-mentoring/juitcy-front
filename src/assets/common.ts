@@ -9,7 +9,7 @@ export const EntireContainer = styled.div`
   .mypage-submenu-container {
     padding: 40px 0px;
   }
-  .mypage-qna-list {
+  .mypage-list-container {
     display: flex;
     flex-direction: column;
     padding: 25px 0px 5px 0px;
