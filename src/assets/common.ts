@@ -3,6 +3,12 @@ import { Palette } from 'styles/Palette';
 
 export const EntireContainer = styled.div`
   padding: 25px 30px;
+  height: 100%;
+  background: ${Palette.Gray05};
+
+  .mypage-submenu-container {
+    padding: 40px 0;
+  }
 `;
 
 export const Row = styled.div<{

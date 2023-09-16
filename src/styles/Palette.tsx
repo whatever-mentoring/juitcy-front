@@ -1,6 +1,6 @@
 import { rgba } from 'polished';
 
-let userType = 1; //1이 시니어라 가정
+let userType = 0; //1이 시니어라 가정
 const main: string = userType == 1 ? '#3F6EFF' : '#FF8267';
 
 export const Palette = {

@@ -6,16 +6,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Mypage />} />
-          <Route path="/myQna" element={<MyQna />} />
-          <Route path="/myComment" element={<MyComment />} />
-          <Route path="/myScrap" element={<MyScrap />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Mypage />} />
+        <Route path="/myQna" element={<MyQna />} />
+        <Route path="/myComment" element={<MyComment />} />
+        <Route path="/myScrap" element={<MyScrap />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
