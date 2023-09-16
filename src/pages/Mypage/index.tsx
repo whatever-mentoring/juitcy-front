@@ -26,7 +26,7 @@ export const Mypage = () => {
         MY
       </Header>
       <EntireContainer>
-        <Row justifyContent="space-between">
+        <Row justifyContent="space-between" alignItems="center">
           <Column>
             <Typo.h4>안녕하세요</Typo.h4>
             <UnderLine>

@@ -7,7 +7,13 @@ export const EntireContainer = styled.div`
   background: ${Palette.Gray05};
 
   .mypage-submenu-container {
-    padding: 40px 0;
+    padding: 40px 0px;
+  }
+  .mypage-qna-list {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px 5px 0px;
+    gap: 15px;
   }
 `;
 
