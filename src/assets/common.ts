@@ -12,6 +12,18 @@ export const Row = styled.div<{
   justify-content: ${({ justifyContent }) =>
     justifyContent ? justifyContent : 'initial'};
 `;
+export const Column = styled.div<{
+  gap?: number;
+  justifyContent?: string;
+  alignItems?: string;
+}>`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ gap }) => (gap ? gap : 0)}px;
+  align-items: ${({ alignItems }) => (alignItems ? alignItems : 'initial')};
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : 'initial'};
+`;
 
 export const MyPageBoxContainer = styled.div<{
   height?: string;
