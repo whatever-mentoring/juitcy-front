@@ -30,7 +30,7 @@ export const Header = ({
 };
 
 const Container = styled(Row)<{ borderBottom?: boolean; background?: string }>`
-  width: 390px;
+  width: 100%;
   height: 60px;
   align-items: center;
   justify-content: space-between;
