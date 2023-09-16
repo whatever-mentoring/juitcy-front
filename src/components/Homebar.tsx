@@ -86,6 +86,7 @@ const Container = styled.div`
   align-items: center;
 
   padding: 0px 52px;
+  box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1);
 `;
 const Menu = styled.div`
   height: 55px;
