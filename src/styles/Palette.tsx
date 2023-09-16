@@ -9,6 +9,8 @@ export const Palette = {
   Sub: '#fdf738',
 
   White: '#FFFFFF',
+  Gray05: '#FBFBFD',
+  Gray1: '#F2F2F2',
   Gray2: '#E0E0E0',
   Gray3: '#BDBDBD',
   Gray4: '#9E9E9E',
@@ -19,4 +21,5 @@ export const Palette = {
   Main80: rgba(main, 0.8),
   Main50: rgba(main, 0.5),
   Main15: rgba(main, 0.15),
+  Main05: rgba(main, 0.05),
 };
