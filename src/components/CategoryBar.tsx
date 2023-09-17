@@ -46,4 +46,5 @@ export default CategoryBar;
 const Container = styled(Column)`
   width: 100%;
   gap: 6px;
+  padding: 10px 30px;
 `;
