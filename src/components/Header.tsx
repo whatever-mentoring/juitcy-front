@@ -1,4 +1,4 @@
-import { Row } from 'assets/common';
+import { Row, StyledLink } from 'assets/common';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -24,7 +24,9 @@ export const Header = ({
     <Container borderBottom={borderBottom} background={background}>
       <img src={btn === 'back' && back}></img>
       <Typo.h2 color={color}>{children}</Typo.h2>
-      <img src={btn === 'search' && search}></img>
+      <StyledLink to="/search">
+        <img src={btn === 'search' && search}></img>
+      </StyledLink>
     </Container>
   );
 };
