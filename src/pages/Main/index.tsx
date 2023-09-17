@@ -1,32 +1,31 @@
-import { Column, Row } from 'assets/common';
+import { Column, EntireContainer, Row } from 'assets/common';
 import CategoryBar from 'components/CategoryBar';
 import { Header } from 'components/Header';
 import Homebar from 'components/Homebar';
 import styled from 'styled-components';
 import CardSlider from '../../components/Main/CardSlider';
 import { Palette } from 'styles/Palette';
+import CallToAction from 'components/Main/CallToAction';
 
 const Main = () => {
   return (
     <Column>
-      <Header btn={'search'}>쥬시글</Header>
-      <Container color={Palette.Gray05}>
+      <Header btn={'search'} borderBottom={false}>
+        쥬시글
+      </Header>
+      <Column gap={11}>
         <CategoryBar />
-        <Column gap={20}>
+        <CallToAction />
+      </Column>
+      <EntireContainer>
+        <Column gap={26}>
           <CardSlider />
           <CardSlider />
         </Column>
-      </Container>
+      </EntireContainer>
       <Homebar />
     </Column>
   );
 };
 
 export default Main;
-
-const Container = styled(Column)<{ color?: string }>`
-  width: 100%;
-  padding: 24px 30px;
-  gap: 20px;
-  background: ${({ color }) => (color ? color : Palette.White)};
-`;
