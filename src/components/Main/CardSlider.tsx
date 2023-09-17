@@ -47,6 +47,7 @@ export default CardSlider;
 
 const Wrapper = styled(Column)`
   height: 100%;
+  gap: 36px;
 `;
 const StyledSlider = styled(Slider)`
   .slick-list {
