@@ -23,7 +23,7 @@ export const CommentListBox = ({
       <TextContainer>
         <Typo.b4>{children}</Typo.b4>
         <Row gap={5}>
-          <img src={`img/${icon}.svg`} />
+          <img src={`/img/${icon}.svg`} />
           <Typo.b4 color={Palette.Gray4}>{title}</Typo.b4>
         </Row>
         <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>

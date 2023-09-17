@@ -28,11 +28,11 @@ export const ScrapListBox = ({
         <Typo.b3 color={Palette.Gray4}>{children}</Typo.b3>
         <Row gap={7}>
           <Row gap={4}>
-            <img src="img/comment.svg" />
+            <img src="/img/comment.svg" />
             <Typo.s2 color={Palette.Gray4}>{commentCount}</Typo.s2>
           </Row>
           <Row gap={4}>
-            <img src="img/scrap.svg" />
+            <img src="/img/scrap.svg" />
             <Typo.s2 color={Palette.Gray4}>{scrapCount}</Typo.s2>
           </Row>
           <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>

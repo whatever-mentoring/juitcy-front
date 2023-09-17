@@ -39,7 +39,10 @@ export const Mypage = () => {
         <div className="mypage-submenu-container">
           {myPageMemu.map((menu: mypageMenuInterface, index: number) => (
             <StyledLink to={menu.link} key={index} margin={menu.margin}>
-              <SubMenuBox count={5} icon={menu.icon}>
+              <SubMenuBox
+                count={index === 3 || index === 4 ? -1 : 5}
+                icon={menu.icon}
+              >
                 {menu.menu}
               </SubMenuBox>
             </StyledLink>
@@ -48,15 +51,18 @@ export const Mypage = () => {
 
         <Column gap={15}>
           <Row alignItems="center" gap={10}>
-            <StyledLink to="/">
+            <StyledLink to="/myPage/provision" state={{ page: '이용약관' }}>
               <Typo.b3 color={Palette.Gray4}>이용약관</Typo.b3>
             </StyledLink>
             <Circle />
-            <StyledLink to="/">
+            <StyledLink
+              to="/myPage/provision"
+              state={{ page: '개인정보처리방침' }}
+            >
               <Typo.b3 color={Palette.Gray4}>개인정보처리방침</Typo.b3>
             </StyledLink>
           </Row>
-          <StyledLink to="/">
+          <StyledLink to="">
             <Typo.b3 color={Palette.Gray4}>
               Copyright ⓒ Juitcy All rights reserved.
             </Typo.b3>
