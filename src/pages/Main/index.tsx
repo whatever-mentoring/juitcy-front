@@ -1,4 +1,4 @@
-import { Column, EntireContainer, Row } from 'assets/common';
+import { Column, EntireContainer, Row, StyledLink } from 'assets/common';
 import CategoryBar from 'components/CategoryBar';
 import { Header } from 'components/Header';
 import Homebar from 'components/Homebar';
@@ -19,7 +19,9 @@ const Main = () => {
       </Column>
       <EntireContainer>
         <Column gap={26}>
-          <CardSlider />
+          <StyledLink to="/post/1">
+            <CardSlider />
+          </StyledLink>
           <CardSlider />
         </Column>
       </EntireContainer>
