@@ -1,22 +1,19 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 
-export const Row = styled.div<{
+interface divProps {
   gap?: number;
   justifyContent?: string;
   alignItems?: string;
-}>`
+}
+export const Row = styled.div<divProps>`
   display: flex;
   gap: ${({ gap }) => (gap ? gap : 0)}px;
   align-items: ${({ alignItems }) => (alignItems ? alignItems : 'initial')};
   justify-content: ${({ justifyContent }) =>
     justifyContent ? justifyContent : 'initial'};
 `;
-export const Column = styled.div<{
-  gap?: number;
-  justifyContent?: string;
-  alignItems?: string;
-}>`
+export const Column = styled.div<divProps>`
   display: flex;
   flex-direction: column;
   gap: ${({ gap }) => (gap ? gap : 0)}px;
