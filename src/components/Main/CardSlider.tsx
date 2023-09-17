@@ -49,17 +49,10 @@ const Wrapper = styled(Column)`
   height: 100%;
 `;
 const StyledSlider = styled(Slider)`
-  // .slick-slide div {
-  //   width: 100%;
-  // }
-  // .slider-wrapper {
-  //   padding: 20px;
-  // }
-  // .slick-dots li.slick-active button:before {
-  //   color: ${Palette.Main};
-  // }
-  // .slick-dots li button:before {
-  //   color: ${Palette.Gray2};
-  //   opacity: 1;
-  // }
+  .slick-list {
+    margin: 0 -5px; //slider 내부 카드 컴포넌트 간 margin
+  }
+  .slick-slide > div {
+    padding: 7px 5px; //slider 자체의 padding
+  }
 `;
