@@ -42,7 +42,7 @@ const CommentInputBox = () => {
 export default CommentInputBox;
 
 const Container = styled(Row)`
-  width: 390px;
+  width: 100%;
   padding: 11px 30px 33px 30px;
   gap: 9px;
 
