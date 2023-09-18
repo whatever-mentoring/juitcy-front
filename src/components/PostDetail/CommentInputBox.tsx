@@ -4,13 +4,13 @@ import commentCyni from 'assets/icons/comment-cyni.svg';
 import commentJuni from 'assets/icons/comment-juni.svg';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { useState } from 'react';
-import { commentType } from 'pages/Main/PostDetail';
+import { useState, useEffect, useRef } from 'react';
 
 const CommentInputBox = () => {
   let userType = 1;
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState<string>('');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     setText(newText);
   };
@@ -21,12 +21,20 @@ const CommentInputBox = () => {
       date: '2023-09-18',
     };
   };
+  useEffect(() => {
+    if (textareaRef && textareaRef.current) {
+      textareaRef.current.style.height = '0px';
+      const scrollHeight = textareaRef.current.scrollHeight;
+      textareaRef.current.style.height = scrollHeight + 'px';
+    }
+  }, [text]);
 
   return (
     <Container>
       <img src={userType === 1 ? commentCyni : commentJuni}></img>
       <TextInputWrapper>
         <TextInput
+          ref={textareaRef}
           value={text}
           onChange={handleChange}
           placeholder={`익명의 ${
@@ -53,7 +61,7 @@ const Container = styled(Row)`
   bottom: 0;
 `;
 const TextInputWrapper = styled(Row)`
-  width: 286px;
+  width: 100%;
   height: 100%;
   padding: 5px 14px;
 
@@ -66,16 +74,16 @@ const TextInputWrapper = styled(Row)`
     border: 1px solid ${Palette.Main50};
     outline: none;
 `;
-const TextInput = styled.input`
+const TextInput = styled.textarea`
   width: 85%;
   border:none;
 
   font-family: PretendardRegular;
   font-size: 14px;
   line-height: 150%;
- 
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
+  
+  resize: none;
+  overflow-y:hidden;
 
   &:focus {
     outline: none;
