@@ -97,12 +97,10 @@ export const MyQna = () => {
           <Typo.b2>{text} &nbsp;</Typo.b2>
           <Typo.b2 color={Palette.Main}>12</Typo.b2>
         </Row>
-        {nowTab === 1 ? (
+        {nowTab === 1 && (
           <NoticeLabel margin="20px 0 0 0">
             3개의 답변이 등록되거나 3일이 지난 후, 자동으로 쥬시글에 등록됩니다.
           </NoticeLabel>
-        ) : (
-          <></>
         )}
         <div className="mypage-list-container">
           {fakeData.map((data: any, index: number) => (
