@@ -1,9 +1,16 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 
-export const EntireContainer = styled.div`
+export const EntireContainer = styled.div<{ homebar?: boolean }>`
   padding: 25px 30px;
   background: ${Palette.Gray05};
+  height: ${({ homebar }) =>
+    homebar ? 'calc(100vh - 156px)' : 'calc(100vh - 60px)'};
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   // 마이페이지
   .mypage-submenu-container {
