@@ -75,15 +75,15 @@ const fakeData = [
 
 export const MyQna = () => {
   let userType = 0; // 0은 주니어
-  let text = '답변완료된 질문 ';
+  let text = '쥬시 완료된 질문 ';
   const [nowTab, setNowTab] = useState(0); // index 가 0이면 완료 api 불러오기 , 1이면 대기 api 불러오기
 
   if (userType === 0) {
-    if (nowTab === 0) text = '답변 완료된 질문 ';
-    else text = '답변 대기 중인 질문 ';
+    if (nowTab === 0) text = '쥬시 완료된 질문 ';
+    else text = '쥬시 대기 중인 질문 ';
   } else if (userType === 1) {
-    if (nowTab === 0) text = '등록 완료된 답변 ';
-    else text = '등록 대기 중인 답변 ';
+    if (nowTab === 0) text = '쥬시 완료된 답변 ';
+    else text = '쥬시 대기 중인 답변 ';
   }
 
   return (
