@@ -1,27 +1,40 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { CategoryLabel } from './CategoryLabel';
 import { MyPageBoxContainer, Row } from 'assets/common';
+import { CategoryLabel } from 'components/CategoryLabel';
 
-export const MyQnaListBox = () => {
-  let ansCount = 2;
-  let userType = 1; // userType 임시변수
+interface qnaBoxInterface {
+  children: string;
+  count: number;
+  dDay: number;
+  category: string;
+  date: string;
+}
+
+export const MyQnaListBox = ({
+  children,
+  count,
+  dDay,
+  category,
+  date,
+}: qnaBoxInterface) => {
+  let userType = 0; // userType 임시변수
 
   return (
     <MyPageBoxContainer height="72px">
-      <CountStick ansCount={ansCount} userType={userType} />
+      <CountStick ansCount={count} userType={userType} />
       <SubContainer>
         <Row gap={3}>
           <Typo.b3>{userType === 0 ? 'Q.' : 'A.'}</Typo.b3>
-          <Typo.b4>내 질문입니다.</Typo.b4>
+          <Typo.b4>{children}</Typo.b4>
         </Row>
         <Row justifyContent="space-between" alignItems="center">
           <Row gap={10} alignItems="center">
-            <CategoryLabel>일상</CategoryLabel>
-            <Typo.s2 color={Palette.Gray4}>2023.09.09</Typo.s2>
+            <CategoryLabel>{category}</CategoryLabel>
+            {count === 3 && <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>}
           </Row>
-          <Typo.s1 color={Palette.Main}>D-6</Typo.s1>
+          {count !== 3 && <Typo.s1 color={Palette.Main}>D-{dDay}</Typo.s1>}
         </Row>
       </SubContainer>
     </MyPageBoxContainer>

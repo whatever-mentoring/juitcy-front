@@ -1,12 +1,12 @@
 import { rgba } from 'polished';
 
-let userType = 1; //1이 시니어라 가정
+let userType = 0; //1이 시니어라 가정
 const main: string = userType == 1 ? '#3F6EFF' : '#FF8267';
 
 export const Palette = {
   Grey: '#e7e7e7',
   Main: main,
-  Sub: { yellow: '#fdf738', blue: '#F7F6FA' },
+  Sub: { yellow: '#FDF7E8', blue: '#F7F6FA' },
 
   White: '#FFFFFF',
   Gray05: '#FBFBFD',
