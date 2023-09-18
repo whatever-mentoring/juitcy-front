@@ -7,7 +7,7 @@ import questionCyni from '@assets/icons/question-cyni.svg';
 import questionBlack from '@assets/icons/question-black.svg';
 import defaultTag from '@assets/icons/default-tag.svg';
 import Typo from 'styles/Typo';
-import { Column, Row } from 'assets/common';
+import { Column, Row, StyledLink } from 'assets/common';
 import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/CategoryLabel';
 
@@ -85,7 +85,9 @@ export const AnsButtonCard = () => {
         <Date>2023.09.11</Date>
       </Column>
 
-      <ShortBtn>답변하기</ShortBtn>
+      <StyledLink to="/answer/1">
+        <ShortBtn>답변하기</ShortBtn>
+      </StyledLink>
     </ABContainer>
   );
 };
