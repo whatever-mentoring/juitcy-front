@@ -5,8 +5,14 @@ export const EntireContainer = styled.div`
   padding: 25px 30px;
   background: ${Palette.Gray05};
 
+  // 마이페이지
   .mypage-submenu-container {
     padding: 40px 0px;
+  }
+  .mypage-submenu-subcontainer {
+    height: fit-content;
+    background: ${Palette.White};
+    border-radius: 10px;
   }
   .mypage-list-container {
     display: flex;

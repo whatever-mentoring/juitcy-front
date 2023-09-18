@@ -1,4 +1,3 @@
-import { FakeMainPage } from 'pages';
 import Main from 'pages/Main';
 import { Mypage } from 'pages/Mypage';
 import { MyComment } from 'pages/Mypage/MyComment';

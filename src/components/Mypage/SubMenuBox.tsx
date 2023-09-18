@@ -1,18 +1,23 @@
-import { MyPageBoxContainer, Row } from 'assets/common';
+import { Row } from 'assets/common';
+import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+
+interface submenuBoxInterface {
+  children: React.ReactNode;
+  count?: number;
+  icon: string;
+  borderRadius?: string;
+}
 
 export const SubMenuBox = ({
   children,
   count,
   icon,
-}: {
-  children: React.ReactNode;
-  count?: number;
-  icon: string;
-}) => {
+  borderRadius,
+}: submenuBoxInterface) => {
   return (
-    <MyPageBoxContainer borderRadius={10} height="75px" padding="25px 15px">
+    <Container borderRadius={borderRadius}>
       <Row
         alignItems="center"
         justifyContent="space-between"
@@ -35,6 +40,15 @@ export const SubMenuBox = ({
           <img src="/img/arrow.svg" />
         </Row>
       </Row>
-    </MyPageBoxContainer>
+    </Container>
   );
 };
+
+export const Container = styled.div<{ borderRadius?: string }>`
+  display: flex;
+  width: 100%;
+  height: 75px;
+  border-radius: 10px;
+  padding: 25px 15px;
+  background: ${Palette.White};
+`;

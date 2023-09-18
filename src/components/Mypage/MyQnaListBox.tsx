@@ -34,7 +34,11 @@ export const MyQnaListBox = ({
             <CategoryLabel>{category}</CategoryLabel>
             <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>
           </Row>
-          <Typo.s1 color={Palette.Main}>D-{dDay}</Typo.s1>
+          {count === 3 ? (
+            <></>
+          ) : (
+            <Typo.s1 color={Palette.Main}>D-{dDay}</Typo.s1>
+          )}
         </Row>
       </SubContainer>
     </MyPageBoxContainer>

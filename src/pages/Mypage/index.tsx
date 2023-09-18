@@ -16,6 +16,11 @@ export interface mypageMenuInterface {
 }
 
 export const Mypage = () => {
+  let userType = 0;
+  let icon = 'juniIcon';
+
+  userType === 0 ? (icon = 'juniIcon') : (icon = 'cyniIcon');
+
   return (
     <>
       <Header
@@ -34,19 +39,29 @@ export const Mypage = () => {
               <Typo.h4> &nbsp; 님</Typo.h4>
             </UnderLine>
           </Column>
-          <img src="/img/juniIcon.svg" />
+          <img src={`/img/${icon}.svg`} />
         </Row>
         <div className="mypage-submenu-container">
-          {myPageMemu.map((menu: mypageMenuInterface, index: number) => (
-            <StyledLink to={menu.link} key={index} margin={menu.margin}>
-              <SubMenuBox
-                count={index === 3 || index === 4 ? -1 : 5}
-                icon={menu.icon}
-              >
-                {menu.menu}
-              </SubMenuBox>
-            </StyledLink>
-          ))}
+          <div className="mypage-submenu-subcontainer">
+            {myPageMemu
+              .slice(0, 3)
+              .map((menu: mypageMenuInterface, index: number) => (
+                <StyledLink to={menu.link} key={index} margin={menu.margin}>
+                  <SubMenuBox count={5} icon={menu.icon}>
+                    {menu.menu}
+                  </SubMenuBox>
+                </StyledLink>
+              ))}
+          </div>
+          {myPageMemu
+            .slice(3, 5)
+            .map((menu: mypageMenuInterface, index: number) => (
+              <StyledLink to={menu.link} key={index} margin={menu.margin}>
+                <SubMenuBox count={-1} icon={menu.icon}>
+                  {menu.menu}
+                </SubMenuBox>
+              </StyledLink>
+            ))}
         </div>
 
         <Column gap={15}>
