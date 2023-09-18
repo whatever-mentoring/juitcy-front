@@ -30,14 +30,14 @@ const fakeData = [
     content: '결혼식 축의금 얼마할까요?',
   },
   {
-    count: 2,
+    count: 3,
     category: '일상',
     dDay: 2,
     date: '2023.09.09',
     content: '결혼식 축의금 얼마할까요?',
   },
   {
-    count: 2,
+    count: 3,
     category: '기타',
     dDay: 3,
     date: '2023.09.09',
@@ -51,7 +51,7 @@ const fakeData = [
     content: '결혼식 축의금 얼마할까요?',
   },
   {
-    count: 2,
+    count: 3,
     category: '일상',
     dDay: 1,
     date: '2023.09.09',
