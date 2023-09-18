@@ -9,7 +9,7 @@ import defaultTag from '@assets/icons/default-tag.svg';
 import Typo from 'styles/Typo';
 import { Column, Row } from 'assets/common';
 import { ShortBtn } from './Button';
-import { CategoryLabel } from 'components/Mypage/CategoryLabel';
+import { CategoryLabel } from 'components/CategoryLabel';
 
 /* Card components */
 

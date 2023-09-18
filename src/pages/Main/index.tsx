@@ -9,7 +9,9 @@ import { Palette } from 'styles/Palette';
 const Main = () => {
   return (
     <Column>
-      <Header btn={'search'}>쥬시글</Header>
+      <Header borderBottom={false} btn={'search'}>
+        쥬시글
+      </Header>
       <Container color={Palette.Gray05}>
         <CategoryBar />
         <Column gap={20}>
