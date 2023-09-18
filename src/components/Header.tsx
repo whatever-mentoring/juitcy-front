@@ -4,6 +4,7 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import search from '@assets/icons/search.svg';
 import back from '@assets/icons/back.svg';
+import { useNavigate } from 'react-router';
 
 interface headerProps {
   btn?: string;
@@ -20,9 +21,11 @@ export const Header = ({
   borderBottom,
   background,
 }: headerProps) => {
+  const navigate = useNavigate();
+
   return (
     <Container borderBottom={borderBottom} background={background}>
-      <img src={btn === 'back' && back}></img>
+      <img src={btn === 'back' && back} onClick={() => navigate(-1)}></img>
       <Typo.h2 color={color}>{children}</Typo.h2>
       <img src={btn === 'search' && search}></img>
     </Container>

@@ -32,7 +32,7 @@ export const MyQnaListBox = ({
         <Row justifyContent="space-between" alignItems="center">
           <Row gap={10} alignItems="center">
             <CategoryLabel>{category}</CategoryLabel>
-            <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>
+            {count === 3 && <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>}
           </Row>
           {count !== 3 && <Typo.s1 color={Palette.Main}>D-{dDay}</Typo.s1>}
         </Row>

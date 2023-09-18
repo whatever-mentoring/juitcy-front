@@ -10,11 +10,10 @@ interface tabInterface {
 
 export const Waitingtab = ({ setNowTab }: { setNowTab: any }) => {
   const [clickNum, setClickNum] = useState(0);
-  let role = 'juni';
 
   const tabs: tabInterface[] = [
-    { label: role === 'juni' ? '답변' : '쥬시', status: '완료' },
-    { label: role === 'juni' ? '답변' : '쥬시', status: '대기' },
+    { label: '쥬시', status: '완료' },
+    { label: '쥬시', status: '대기' },
   ];
 
   return (
