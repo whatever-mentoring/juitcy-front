@@ -32,7 +32,7 @@ export const Categories = () => {
     setCategories(updatedCategories);
   };
   return (
-    <Row gap={8}>
+    <CtgWrapper gap={8}>
       {categories.map((category) => (
         <Category
           key={category.id}
@@ -42,7 +42,7 @@ export const Categories = () => {
           onClick={handleClick}
         />
       ))}
-    </Row>
+    </CtgWrapper>
   );
 };
 
@@ -52,4 +52,8 @@ export const Container = styled(Column)`
   width: 100%;
   gap: 6px;
   padding: 10px 30px;
+`;
+const CtgWrapper = styled(Row)`
+  flex-wrap: wrap;
+  gap: 8px;
 `;
