@@ -1,4 +1,5 @@
 import { FakeMainPage } from 'pages';
+import Main from 'pages/Main';
 import { Mypage } from 'pages/Mypage';
 import { MyComment } from 'pages/Mypage/MyComment';
 import { MyQna } from 'pages/Mypage/MyQna';
@@ -10,12 +11,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<FakeMainPage />} />
         <Route path="/myPage" element={<Mypage />} />
         <Route path="/myPage/myQna" element={<MyQna />} />
         <Route path="/myPage/myComment" element={<MyComment />} />
         <Route path="/myPage/myScrap" element={<MyScrap />} />
         <Route path="/myPage/provision" element={<Provision />} />
+        <Route path="/" element={<Main />} />
       </Routes>
     </BrowserRouter>
   );

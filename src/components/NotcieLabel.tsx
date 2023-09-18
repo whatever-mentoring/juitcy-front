@@ -19,7 +19,7 @@ export const NoticeLabel = ({
 const Container = styled.div<{ margin?: string }>`
   width: 100%;
   padding: 8px 15px;
-  background: ${Palette.Sub};
+  background: ${Palette.Sub.yellow};
   border-radius: 5px;
   margin: ${({ margin }) => (margin ? margin : '0px')};
 `;
