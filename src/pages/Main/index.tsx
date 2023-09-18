@@ -13,10 +13,10 @@ const Main = () => {
       <Header borderBottom={false} btn={'search'}>
         쥬시글
       </Header>
-      <Container color={Palette.Gray05}>
+      <Column color={Palette.Gray05}>
         <CategoryBar />
         <CallToAction />
-      </Container>
+      </Column>
       <EntireContainer>
         <Column gap={26}>
           <StyledLink to="/post/1">
