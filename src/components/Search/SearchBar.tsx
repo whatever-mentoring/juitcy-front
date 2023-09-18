@@ -4,13 +4,44 @@ import back from 'assets/icons/back.svg';
 import searchButton from 'assets/icons/search-button.svg';
 import { Palette } from 'styles/Palette';
 
-const SearchBar = () => {
+interface searchBarProps {
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+  setIsSearched: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchBar = ({
+  text,
+  setText,
+  setIsSearched,
+  setSearchText,
+}: searchBarProps) => {
+  const toggleSearched = () => {
+    setIsSearched(true);
+    setSearchText(text);
+  };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      toggleSearched();
+    }
+  };
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newText = event.target.value;
+    setText(newText);
+  };
+
   return (
     <Container>
       <img src={back} />
       <SearchInputWrapper>
-        <SearchInput></SearchInput>
-        <SearchIcon src={searchButton} />
+        <SearchInput
+          type="text"
+          value={text}
+          onChange={handleTextChange}
+          onKeyUp={handleKeyPress}
+        ></SearchInput>
+        <SearchIcon src={searchButton} onClick={toggleSearched} />
       </SearchInputWrapper>
     </Container>
   );
@@ -50,4 +81,5 @@ const SearchInput = styled.input`
 const SearchIcon = styled.img`
   width: 18px;
   height: 18px;
+  cursor: pointer;
 `;

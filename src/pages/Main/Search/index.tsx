@@ -1,19 +1,27 @@
 import { Column, EntireContainer } from 'assets/common';
 import SearchBar from 'components/Search/SearchBar';
 import SearchResult from 'components/Search/SearchResult';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Search = () => {
+  const [isSearched, setIsSearched] = useState<boolean>(false);
+  const [text, setText] = useState<string>('');
+  const [searchText, setSearchText] = useState<string>('');
+
   return (
     <Column>
-      <SearchBar></SearchBar>
+      <SearchBar
+        text={text}
+        setText={setText}
+        setIsSearched={setIsSearched}
+        setSearchText={setSearchText}
+      ></SearchBar>
       <EntireContainer>
-        <SearchResult text={'취업'}></SearchResult>
+        {isSearched && <SearchResult text={searchText}></SearchResult>}
       </EntireContainer>
     </Column>
   );
 };
 
 export default Search;
-
-const Container = styled.div``;
