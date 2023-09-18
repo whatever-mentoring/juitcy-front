@@ -2,6 +2,7 @@ import { Column, EntireContainer } from 'assets/common';
 import WriteInputBox from 'components/Answer/WriteInputBox';
 import { QDetailCard } from 'components/Card';
 import { Header } from 'components/Header';
+import WriteConfirmBar from 'components/WriteConfirmBar';
 import { Palette } from 'styles/Palette';
 
 const WriteAnswer = () => {
@@ -16,6 +17,7 @@ const WriteAnswer = () => {
           <WriteInputBox />
         </Column>
       </EntireContainer>
+      <WriteConfirmBar userType={2} />
     </Column>
   );
 };
