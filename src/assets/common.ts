@@ -1,11 +1,40 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 
+export const EntireContainer = styled.div<{ homebar?: boolean }>`
+  padding: 25px 30px;
+  background: ${Palette.Gray05};
+  height: ${({ homebar }) =>
+    homebar ? 'calc(100vh - 156px)' : 'calc(100vh - 60px)'};
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // 마이페이지
+  .mypage-submenu-container {
+    padding: 40px 0px;
+  }
+  .mypage-submenu-subcontainer {
+    height: fit-content;
+    background: ${Palette.White};
+    border-radius: 10px;
+  }
+  .mypage-list-container {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0px 5px 0px;
+    gap: 15px;
+  }
+`;
+
 interface divProps {
   gap?: number;
   justifyContent?: string;
   alignItems?: string;
 }
+
 export const Row = styled.div<divProps>`
   display: flex;
   gap: ${({ gap }) => (gap ? gap : 0)}px;

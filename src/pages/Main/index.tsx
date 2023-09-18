@@ -10,13 +10,13 @@ import CallToAction from 'components/Main/CallToAction';
 const Main = () => {
   return (
     <Column>
-      <Header btn={'search'} borderBottom={false}>
+      <Header borderBottom={false} btn={'search'}>
         쥬시글
       </Header>
-      <Column gap={11}>
+      <Container color={Palette.Gray05}>
         <CategoryBar />
         <CallToAction />
-      </Column>
+      </Container>
       <EntireContainer>
         <Column gap={26}>
           <StyledLink to="/post/1">

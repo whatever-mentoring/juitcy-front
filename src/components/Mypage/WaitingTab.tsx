@@ -8,13 +8,12 @@ interface tabInterface {
   status: string;
 }
 
-export const Waitingtab = () => {
+export const Waitingtab = ({ setNowTab }: { setNowTab: any }) => {
   const [clickNum, setClickNum] = useState(0);
-  let role = 'juni';
 
   const tabs: tabInterface[] = [
-    { label: role === 'juni' ? '답변' : '주씨', status: '완료' },
-    { label: role === 'juni' ? '답변' : '주씨', status: '대기' },
+    { label: '쥬시', status: '완료' },
+    { label: '쥬시', status: '대기' },
   ];
 
   return (
@@ -22,10 +21,15 @@ export const Waitingtab = () => {
       {tabs.map((tab: tabInterface, index: number) => (
         <SubContainer
           key={index}
-          onClick={() => setClickNum(index)}
+          onClick={() => {
+            setClickNum(index);
+            setNowTab(index);
+          }}
           borderHeight={index === clickNum ? 3 : 0}
         >
-          <Typo.h4>{`${tab.label} ${tab.status}`}</Typo.h4>
+          <Typo.h4
+            color={index === clickNum ? Palette.Black : Palette.Gray4}
+          >{`${tab.label} ${tab.status}`}</Typo.h4>
         </SubContainer>
       ))}
     </Container>
@@ -39,7 +43,7 @@ const Container = styled.div`
   width: 100%;
   height: 41px;
   padding: 0 25px;
-  border-bottom: ${Palette.Gray3} 1px solid;
+  border-bottom: ${Palette.Gray2} 1px solid;
 `;
 const SubContainer = styled.div<{ borderHeight?: number }>`
   display: flex;

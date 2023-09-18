@@ -11,6 +11,7 @@ import mypageOnJuni from '@assets/icons/mypage-on-juni.svg';
 import mypageOnCyni from '@assets/icons/mypage-on-cyni.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Homebar = () => {
   let userType = 2; //임시 변수
@@ -34,18 +35,18 @@ const Homebar = () => {
   return (
     <Container>
       {userType == 1 ? (
-        <Menu onClick={() => handleClick('ans')}>
+        <Menu to="/" onClick={() => handleClick('ans')}>
           <Icon src={`${icons.isAnsOn ? answerOn : answerOff}`} />
           <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
         </Menu>
       ) : (
-        <Menu onClick={() => handleClick('ask')}>
+        <Menu to="/" onClick={() => handleClick('ask')}>
           <Icon src={`${icons.isAskOn ? askOn : askOff}`} />
           <Typo.homebar isOn={icons.isAskOn}>질문하기</Typo.homebar>
         </Menu>
       )}
 
-      <Menu onClick={() => handleClick('juicy')}>
+      <Menu to="/" onClick={() => handleClick('juicy')}>
         <Icon
           src={`${
             icons.isJuicyOn
@@ -58,7 +59,7 @@ const Homebar = () => {
         <Typo.homebar isOn={icons.isJuicyOn}>주씨글</Typo.homebar>
       </Menu>
 
-      <Menu onClick={() => handleClick('mpg')}>
+      <Menu to="/myPage" onClick={() => handleClick('mpg')}>
         <Icon
           src={`${
             icons.isMpgOn
@@ -86,8 +87,9 @@ const Container = styled.div`
   align-items: center;
 
   padding: 0px 52px;
+  box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1);
 `;
-const Menu = styled.div`
+const Menu = styled(Link)`
   height: 55px;
 
   display: flex;
