@@ -1,18 +1,16 @@
 import { Column, Row, StyledLink } from 'assets/common';
-import { CTABtn } from 'components/Button';
+import { CTABtn } from 'components/common/Button';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
 const CallToAction = () => {
   return (
-    <StyledLink to="/ask">
-      <Container>
-        <CTAText />
-        <CTABtn>질문하러 가기</CTABtn>
-        <Img src="img/smile-face.svg"></Img>
-      </Container>
-    </StyledLink>
+    <Container>
+      <CTAText />
+      <CTABtn to="/ask">질문하러 가기</CTABtn>
+      <Img src="img/smile-face.svg"></Img>
+    </Container>
   );
 };
 
