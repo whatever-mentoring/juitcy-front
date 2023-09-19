@@ -40,8 +40,8 @@ const Container = styled.div<containerProps>`
         color : ${Palette.Main};
     `
       : `
-        border : 0.75px solid ${Palette.Black};
+        border : 0.75px solid ${Palette.Gray3};
         background: ${Palette.White};
-        color : ${Palette.Black};
+        color : ${Palette.Gray3};
     `};
 `;
