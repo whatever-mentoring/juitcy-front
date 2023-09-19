@@ -3,11 +3,20 @@ import CategoryBar from 'components/Category/CategoryBar';
 import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
 import styled from 'styled-components';
-import CardSlider from '../../components/Main/CardSlider';
+import CardSlider from '../../components/common/CardSlider';
 import { Palette } from 'styles/Palette';
 import CallToAction from 'components/Main/CallToAction';
+import { QTitleCard, QContentCard, AnsCard } from 'components/common/Card';
 
 const Main = () => {
+  const cards = [
+    <QTitleCard></QTitleCard>,
+    <QContentCard></QContentCard>,
+    <AnsCard></AnsCard>,
+    <AnsCard></AnsCard>,
+    <AnsCard></AnsCard>,
+  ];
+
   return (
     <Column>
       <Header borderBottom={false} btn={'search'}>
@@ -20,9 +29,9 @@ const Main = () => {
       <EntireContainer>
         <Column gap={26}>
           <StyledLink to="/post/1">
-            <CardSlider />
+            <CardSlider cards={cards} />
           </StyledLink>
-          <CardSlider />
+          <CardSlider cards={cards} />
         </Column>
       </EntireContainer>
       <Homebar />

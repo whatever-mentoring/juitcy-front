@@ -5,10 +5,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { styled } from 'styled-components';
-import { Palette } from 'styles/Palette';
-import PageIndicator, { Dot } from './PageIndicator';
+import PageIndicator, { Dot } from '../Main/PageIndicator';
 
-const CardSlider = () => {
+const CardSlider = ({ cards }: { cards: React.ReactNode[] }) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const settings = {
     dots: false,
@@ -21,13 +20,6 @@ const CardSlider = () => {
       setCurrentSlide(current);
     },
   };
-  const cards = [
-    <QTitleCard></QTitleCard>,
-    <QContentCard></QContentCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-  ];
 
   return (
     <Wrapper>
