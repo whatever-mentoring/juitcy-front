@@ -35,12 +35,12 @@ const Homebar = () => {
   return (
     <Container>
       {userType == 1 ? (
-        <Menu to="/" onClick={() => handleClick('ans')}>
+        <Menu to="/answer" onClick={() => handleClick('ans')}>
           <Icon src={`${icons.isAnsOn ? answerOn : answerOff}`} />
           <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
         </Menu>
       ) : (
-        <Menu to="/" onClick={() => handleClick('ask')}>
+        <Menu to="/ask" onClick={() => handleClick('ask')}>
           <Icon src={`${icons.isAskOn ? askOn : askOff}`} />
           <Typo.homebar isOn={icons.isAskOn}>질문하기</Typo.homebar>
         </Menu>
@@ -98,6 +98,7 @@ const Menu = styled(Link)`
   align-items: center;
   gap: 3px;
 
+  text-decoration: none;
   cursor: pointer;
 `;
 const Icon = styled.img``;
