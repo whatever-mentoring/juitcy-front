@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import back from 'assets/icons/back.svg';
 import searchButton from 'assets/icons/search-button.svg';
 import { Palette } from 'styles/Palette';
+import { useNavigate } from 'react-router';
 
 interface searchBarProps {
   text: string;
@@ -17,6 +18,7 @@ const SearchBar = ({
   setIsSearched,
   setSearchText,
 }: searchBarProps) => {
+  const navigate = useNavigate();
   const toggleSearched = () => {
     setIsSearched(true);
     setSearchText(text);
@@ -33,7 +35,7 @@ const SearchBar = ({
 
   return (
     <Container>
-      <img src={back} />
+      <img src={back} onClick={() => navigate(-1)} />
       <SearchInputWrapper>
         <SearchInput
           type="text"

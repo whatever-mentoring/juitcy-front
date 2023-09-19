@@ -10,6 +10,8 @@ import { MyScrap } from 'pages/Mypage/MyScrap';
 import { Provision } from 'pages/Mypage/Provision';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WriteAnswer from 'pages/Answer/WriteAnswer';
+import Ask from 'pages/Ask';
+import WriteQuestion from 'pages/Ask/WriteQuestion';
 
 function App() {
   return (
@@ -23,6 +25,10 @@ function App() {
         {/* AnswerPage */}
         <Route path="/answer" element={<Answer />} />
         <Route path="/answer/:id" element={<WriteAnswer />} />
+
+        {/* AskPage */}
+        <Route path="/ask" element={<Ask />} />
+        <Route path="/ask/write" element={<WriteQuestion />} />
 
         {/* MyPage */}
         <Route path="/myPage" element={<Mypage />} />

@@ -1,7 +1,7 @@
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { MyPageBoxContainer, Row, TextContainer } from 'assets/common';
-import { CategoryLabel } from 'components/CategoryLabel';
+import { CategoryLabel } from 'components/Category/CategoryLabel';
 
 interface ScrapBoxInterface {
   children: string;

@@ -9,7 +9,7 @@ import defaultTag from '@assets/icons/default-tag.svg';
 import Typo from 'styles/Typo';
 import { Column, Row, StyledLink } from 'assets/common';
 import { ShortBtn } from './Button';
-import { CategoryLabel } from 'components/CategoryLabel';
+import { CategoryLabel } from 'components/Category/CategoryLabel';
 
 /* Card components */
 
@@ -85,9 +85,7 @@ export const AnsButtonCard = () => {
         <Date>2023.09.11</Date>
       </Column>
 
-      <StyledLink to="/answer/1">
-        <ShortBtn>답변하기</ShortBtn>
-      </StyledLink>
+      <ShortBtn to="/answer/1">답변하기</ShortBtn>
     </ABContainer>
   );
 };

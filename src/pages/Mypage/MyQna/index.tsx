@@ -1,8 +1,8 @@
 import { EntireContainer, Row } from 'assets/common';
-import { Header } from 'components/Header';
+import { Header } from 'components/common/Header';
 import { MyQnaListBox } from 'components/Mypage/MyQnaListBox';
 import { Waitingtab } from 'components/Mypage/WaitingTab';
-import { NoticeLabel } from 'components/NotcieLabel';
+import { NoticeLabel } from 'components/common/NotcieLabel';
 import { useState } from 'react';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
