@@ -47,12 +47,17 @@ export default CardSlider;
 
 const Wrapper = styled(Column)`
   height: 100%;
+  gap: 36px;
 `;
 const StyledSlider = styled(Slider)`
   .slick-list {
     margin: 0 -5px; //slider 내부 카드 컴포넌트 간 margin
   }
   .slick-slide > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     padding: 7px 5px; //slider 자체의 padding
   }
 `;
