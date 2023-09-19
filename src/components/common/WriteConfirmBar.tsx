@@ -10,14 +10,14 @@ const WriteConfirmBar = ({ userType }: { userType: number }) => {
   const onClickWrite = () => {
     const result = window.confirm('답변을 등록하겠습니까?');
     if (result) {
-      alert('답변이 등록되었습니다.');
+      userType === 1 ? navigate('/answer') : navigate('/ask');
     } else {
     }
   };
   const onClickCancle = () => {
     const result = window.confirm('작성을 취소하시겠습니까?');
     if (result) {
-      userType === 1 ? navigate('/answer') : navigate('/question');
+      userType === 1 ? navigate('/answer') : navigate('/ask');
     } else {
     }
   };

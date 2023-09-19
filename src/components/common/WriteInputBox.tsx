@@ -4,10 +4,14 @@ import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
-const WriteInputBox = () => {
+interface inputboxProps {
+  placeholder: string;
+  minHeight: number;
+}
+const WriteInputBox = ({ placeholder, minHeight }: inputboxProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState<string>('');
-  const [textareaHeight, setTextareaHeight] = useState('auto');
+
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     if (newText.length > 1000) {
@@ -25,21 +29,28 @@ const WriteInputBox = () => {
   }, [text]);
 
   return (
-    <Column gap={11}>
+    <Container>
       <Input
         ref={textareaRef}
         value={text}
         onChange={handleTextChange}
-        placeholder="시니어님의 경험을 바탕으로 답변을 작성해주세요."
+        placeholder={placeholder}
+        minHeight={minHeight}
       ></Input>
-      <Column alignItems="flex-end" gap={5}>
-        <Typo.b3 color={Palette.Main}>{text.length} / 1000자</Typo.b3>
-        <Column alignItems="flex-end">
-          <Typo.s1 color={Palette.Gray4}>
-            3개의 답변이 등록되거나 3일이 지난 후,
-          </Typo.s1>
-          <Typo.s1 color={Palette.Gray4}>자동으로 쥬시글에 등록됩니다·</Typo.s1>
-        </Column>
+      <TypingLimit textLenght={text.length}></TypingLimit>
+    </Container>
+  );
+};
+
+const TypingLimit = ({ textLenght }: { textLenght: number }) => {
+  return (
+    <Column alignItems="flex-end" gap={5}>
+      <Typo.b3 color={Palette.Main}>{textLenght} / 1000자</Typo.b3>
+      <Column alignItems="flex-end">
+        <Typo.s1 color={Palette.Gray4}>
+          3개의 답변이 등록되거나 3일이 지난 후,
+        </Typo.s1>
+        <Typo.s1 color={Palette.Gray4}>자동으로 쥬시글에 등록됩니다·</Typo.s1>
       </Column>
     </Column>
   );
@@ -47,9 +58,13 @@ const WriteInputBox = () => {
 
 export default WriteInputBox;
 
-const Input = styled.textarea`
-  width: 330px;
-  min-height: 203px;
+const Container = styled(Column)`
+  width: 100%;
+  gap: 11px;
+`;
+const Input = styled.textarea<{ minHeight: number }>`
+  width: 100%;
+  min-height: ${({ minHeight }) => minHeight}px;
   height: textareaHeight;
 
   display: flex;

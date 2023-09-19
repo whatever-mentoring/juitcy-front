@@ -1,6 +1,6 @@
 import { Column, EntireContainer, Row } from 'assets/common';
-import { Header } from 'components/Header';
-import Homebar from 'components/Homebar';
+import { Header } from 'components/common/Header';
+import Homebar from 'components/common/Homebar';
 import CardSlider from 'components/Main/CardSlider';
 import { Palette } from 'styles/Palette';
 import { useParams } from 'react-router';

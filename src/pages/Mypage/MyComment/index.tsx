@@ -1,5 +1,5 @@
 import { EntireContainer, Row } from 'assets/common';
-import { Header } from 'components/Header';
+import { Header } from 'components/common/Header';
 import { CommentListBox } from 'components/Mypage/CommentListBox';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';

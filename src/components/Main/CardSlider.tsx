@@ -1,5 +1,5 @@
 import { Column, Row } from 'assets/common';
-import { AnsCard, QContentCard, QTitleCard } from 'components/Card';
+import { AnsCard, QContentCard, QTitleCard } from 'components/common/Card';
 import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';

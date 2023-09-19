@@ -1,8 +1,8 @@
 import { Column, EntireContainer } from 'assets/common';
-import WriteInputBox from 'components/Answer/WriteInputBox';
-import { QDetailCard } from 'components/Card';
-import { Header } from 'components/Header';
-import WriteConfirmBar from 'components/WriteConfirmBar';
+import WriteInputBox from 'components/common/WriteInputBox';
+import { QDetailCard } from 'components/common/Card';
+import { Header } from 'components/common/Header';
+import WriteConfirmBar from 'components/common/WriteConfirmBar';
 import { Palette } from 'styles/Palette';
 
 const WriteAnswer = () => {
@@ -14,7 +14,10 @@ const WriteAnswer = () => {
       <EntireContainer>
         <Column gap={22} alignItems="center">
           <QDetailCard />
-          <WriteInputBox />
+          <WriteInputBox
+            minHeight={203}
+            placeholder="시니어님의 경험을 바탕으로 답변을 작성해주세요."
+          />
         </Column>
       </EntireContainer>
       <WriteConfirmBar userType={2} />

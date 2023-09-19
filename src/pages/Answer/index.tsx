@@ -1,18 +1,18 @@
 import { Column, EntireContainer } from 'assets/common';
 import AnswersContainer from 'components/Answer/AnswersContainer';
 import Notice from 'components/Answer/Notice';
-import { Categories, Container } from 'components/CategoryBar';
-import { Header } from 'components/Header';
-import Homebar from 'components/Homebar';
+import { Header } from 'components/common/Header';
+import Homebar from 'components/common/Homebar';
+import CategoryBar from 'components/Category/CategoryBar';
 
 const Answer = () => {
   return (
     <Column>
       <Header borderBottom={true}>답변하기</Header>
       <Notice></Notice>
-      <Container>
-        <Categories />
-      </Container>
+      <CategoryBar.container>
+        <CategoryBar.ctgs ctgAll={true} />
+      </CategoryBar.container>
       <EntireContainer>
         <AnswersContainer />
       </EntireContainer>

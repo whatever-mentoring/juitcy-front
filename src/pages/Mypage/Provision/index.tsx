@@ -1,5 +1,5 @@
 import { Column } from 'assets/common';
-import { Header } from 'components/Header';
+import { Header } from 'components/common/Header';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';

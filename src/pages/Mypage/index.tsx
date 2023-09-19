@@ -1,7 +1,7 @@
 import { Column, EntireContainer, Row } from 'assets/common';
 import { myPageMemu } from 'assets/data/MypageData';
-import { Header } from 'components/Header';
-import Homebar from 'components/Homebar';
+import { Header } from 'components/common/Header';
+import Homebar from 'components/common/Homebar';
 import { SubMenuBox } from 'components/Mypage/SubMenuBox';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';

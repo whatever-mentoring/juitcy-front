@@ -1,5 +1,5 @@
 import { Column } from 'assets/common';
-import { AnsButtonCard } from 'components/Card';
+import { AnsButtonCard } from 'components/common/Card';
 
 const AnswersContainer = () => {
   return (

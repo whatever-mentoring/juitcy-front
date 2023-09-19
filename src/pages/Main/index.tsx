@@ -1,7 +1,7 @@
 import { Column, EntireContainer, Row, StyledLink } from 'assets/common';
-import CategoryBar from 'components/CategoryBar';
-import { Header } from 'components/Header';
-import Homebar from 'components/Homebar';
+import CategoryBar from 'components/Category/CategoryBar';
+import { Header } from 'components/common/Header';
+import Homebar from 'components/common/Homebar';
 import styled from 'styled-components';
 import CardSlider from '../../components/Main/CardSlider';
 import { Palette } from 'styles/Palette';
@@ -14,7 +14,7 @@ const Main = () => {
         쥬시글
       </Header>
       <Column color={Palette.Gray05}>
-        <CategoryBar />
+        <CategoryBar ctgAll={true} />
         <CallToAction />
       </Column>
       <EntireContainer>
