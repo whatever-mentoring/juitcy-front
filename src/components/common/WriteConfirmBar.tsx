@@ -1,23 +1,27 @@
 import { Row } from 'assets/common';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { currentUser } from 'recoil/recoil';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
-const WriteConfirmBar = ({ userType }: { userType: number }) => {
+const WriteConfirmBar = () => {
   const navigate = useNavigate();
+  const user = useRecoilValue(currentUser);
+
   const onClickWrite = () => {
     const result = window.confirm('답변을 등록하겠습니까?');
     if (result) {
-      userType === 1 ? navigate('/answer') : navigate('/ask');
+      user === 'Cyni' ? navigate('/answer') : navigate('/ask');
     } else {
     }
   };
   const onClickCancle = () => {
     const result = window.confirm('작성을 취소하시겠습니까?');
     if (result) {
-      userType === 1 ? navigate('/answer') : navigate('/ask');
+      user === 'Cyni' ? navigate('/answer') : navigate('/ask');
     } else {
     }
   };

@@ -29,7 +29,7 @@ const WriteQuestion = () => {
           />
         </Column>
       </EntireContainer>
-      <WriteConfirmBar userType={2} />
+      <WriteConfirmBar />
     </Column>
   );
 };

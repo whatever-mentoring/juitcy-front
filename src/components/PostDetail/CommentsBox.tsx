@@ -9,7 +9,7 @@ const CommentsBox = (props: { comments: commentType[] }) => {
       {props.comments.map((comment: commentType, index) => (
         <Comment
           key={index}
-          userType={comment.userType}
+          user={comment.userType}
           text={comment.text}
           date={comment.date}
         />

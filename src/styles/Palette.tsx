@@ -1,7 +1,10 @@
 import { rgba } from 'polished';
+import { useRecoilValue } from 'recoil';
+import { currentUser } from 'recoil/recoil';
 
-let userType = 0; //1이 시니어라 가정
-const main: string = userType == 1 ? '#3F6EFF' : '#FF8267';
+const user = useRecoilValue(currentUser);
+
+const main: string = user === 'Juni' ? '#3F6EFF' : '#FF8267';
 
 export const Palette = {
   Grey: '#e7e7e7',

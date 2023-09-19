@@ -1,4 +1,6 @@
 import { MyPageBoxContainer, Row, TextContainer } from 'assets/common';
+import { useRecoilValue } from 'recoil';
+import { currentUser } from 'recoil/recoil';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
@@ -13,10 +15,10 @@ export const CommentListBox = ({
   title,
   date,
 }: commentBoxInterface) => {
-  let userType = 0;
+  const user = useRecoilValue(currentUser);
   let icon = 'juni_commentSubIcon';
-  if (userType == 0) icon = 'juni_commentSubIcon';
-  else if (userType == 1) icon = 'cyni_commentSubIcon';
+  if (user === 'Juni') icon = 'juni_commentSubIcon';
+  else icon = 'cyni_commentSubIcon';
 
   return (
     <MyPageBoxContainer padding="14px" height="79px">

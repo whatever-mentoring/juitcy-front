@@ -12,10 +12,12 @@ import mypageOnCyni from '@assets/icons/mypage-on-cyni.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { currentUser } from 'recoil/recoil';
 
 const Homebar = () => {
   const { pathname } = useLocation();
-  let userType = 2; //임시 변수
+  const user = useRecoilValue(currentUser);
 
   const [icons, setIcons] = useState({
     isAnsOn: false,
@@ -26,7 +28,7 @@ const Homebar = () => {
 
   return (
     <Container>
-      {userType == 1 ? (
+      {user === 'Cyni' ? (
         <Menu to="/answer">
           <Icon src={`${pathname === '/answer' ? answerOn : answerOff}`} />
           <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
@@ -42,7 +44,7 @@ const Homebar = () => {
         <Icon
           src={`${
             pathname === '/'
-              ? userType === 1
+              ? user === 'Cyni'
                 ? juicygeulOnCyni
                 : juicygeulOnJuni
               : juicygeulOff
@@ -55,7 +57,7 @@ const Homebar = () => {
         <Icon
           src={`${
             pathname === '/myPage'
-              ? userType === 1
+              ? user === 'Cyni'
                 ? mypageOnCyni
                 : mypageOnJuni
               : mypageOff

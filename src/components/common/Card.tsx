@@ -10,6 +10,8 @@ import Typo from 'styles/Typo';
 import { Column, Row, StyledLink } from 'assets/common';
 import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
+import { useRecoilValue } from 'recoil';
+import { currentUser } from 'recoil/recoil';
 
 /* Card components */
 
@@ -118,15 +120,15 @@ interface tagProps {
   tagType: string;
 }
 const Tag = ({ children, tagType }: tagProps) => {
-  const userType = 1;
+  const user = useRecoilValue(currentUser);
 
   let tagImg: any = defaultTag;
   switch (tagType) {
     case 'answer':
-      tagImg = userType === 1 ? answerCyni : answerJuni;
+      tagImg = user === 'Cyni' ? answerCyni : answerJuni;
       break;
     case 'question':
-      tagImg = userType === 1 ? questionCyni : questionJuni;
+      tagImg = user === 'Cyni' ? questionCyni : questionJuni;
       break;
   }
 
