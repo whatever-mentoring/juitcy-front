@@ -30,7 +30,7 @@ export const Mypage = () => {
       >
         MY
       </Header>
-      <EntireContainer homebar={true}>
+      <EntireContainer homebar={true} background={`${Palette.Gray05}`}>
         <Row justifyContent="space-between" alignItems="center">
           <Column>
             <Typo.h4>안녕하세요</Typo.h4>

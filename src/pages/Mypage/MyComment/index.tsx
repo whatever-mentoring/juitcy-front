@@ -33,7 +33,7 @@ export const MyComment = () => {
       <Header borderBottom={false} btn="back">
         내댓글
       </Header>
-      <EntireContainer>
+      <EntireContainer background={`${Palette.Gray05}`}>
         <Row>
           <Typo.b2 color={Palette.Main}>4</Typo.b2>
           <Typo.b2> &nbsp; 개의 댓글</Typo.b2>

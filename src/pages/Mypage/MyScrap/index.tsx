@@ -85,7 +85,7 @@ export const MyScrap = () => {
       <Header borderBottom={false} btn="back">
         스크랩
       </Header>
-      <EntireContainer>
+      <EntireContainer background={`${Palette.Gray05}`}>
         <Row>
           <Typo.b2 color={Palette.Main}>4</Typo.b2>
           <Typo.b2> &nbsp; 개의 스크랩</Typo.b2>
