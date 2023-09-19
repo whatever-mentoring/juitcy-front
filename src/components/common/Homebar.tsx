@@ -11,10 +11,12 @@ import mypageOnJuni from '@assets/icons/mypage-on-juni.svg';
 import mypageOnCyni from '@assets/icons/mypage-on-cyni.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Homebar = () => {
+  const { pathname } = useLocation();
   let userType = 2; //임시 변수
+
   const [icons, setIcons] = useState({
     isAnsOn: false,
     isAskOn: false,
@@ -22,34 +24,24 @@ const Homebar = () => {
     isMpgOn: false,
   });
 
-  const handleClick = (iconName: string) => {
-    setIcons((prevState) => ({
-      ...prevState,
-      isAnsOn: iconName === 'ans',
-      isAskOn: iconName === 'ask',
-      isJuicyOn: iconName === 'juicy',
-      isMpgOn: iconName === 'mpg',
-    }));
-  };
-
   return (
     <Container>
       {userType == 1 ? (
-        <Menu to="/answer" onClick={() => handleClick('ans')}>
-          <Icon src={`${icons.isAnsOn ? answerOn : answerOff}`} />
+        <Menu to="/answer">
+          <Icon src={`${pathname === '/answer' ? answerOn : answerOff}`} />
           <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
         </Menu>
       ) : (
-        <Menu to="/ask" onClick={() => handleClick('ask')}>
-          <Icon src={`${icons.isAskOn ? askOn : askOff}`} />
+        <Menu to="/answer">
+          <Icon src={`${pathname === '/answer' ? askOn : askOff}`} />
           <Typo.homebar isOn={icons.isAskOn}>질문하기</Typo.homebar>
         </Menu>
       )}
 
-      <Menu to="/" onClick={() => handleClick('juicy')}>
+      <Menu to="/">
         <Icon
           src={`${
-            icons.isJuicyOn
+            pathname === '/'
               ? userType === 1
                 ? juicygeulOnCyni
                 : juicygeulOnJuni
@@ -59,10 +51,10 @@ const Homebar = () => {
         <Typo.homebar isOn={icons.isJuicyOn}>주씨글</Typo.homebar>
       </Menu>
 
-      <Menu to="/myPage" onClick={() => handleClick('mpg')}>
+      <Menu to="/myPage">
         <Icon
           src={`${
-            icons.isMpgOn
+            pathname === '/myPage'
               ? userType === 1
                 ? mypageOnCyni
                 : mypageOnJuni

@@ -92,7 +92,10 @@ export const MyQna = () => {
         {userType === 0 ? '내질문' : '내답변'}
       </Header>
       <Waitingtab setNowTab={setNowTab} />
-      <EntireContainer style={{ height: 'calc(100vh - 101px)' }}>
+      <EntireContainer
+        background={`${Palette.Gray05}`}
+        style={{ height: 'calc(100vh - 101px)' }}
+      >
         <Row>
           <Typo.b2>{text} &nbsp;</Typo.b2>
           <Typo.b2 color={Palette.Main}>12</Typo.b2>

@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 
-export const EntireContainer = styled.div<{ homebar?: boolean }>`
+export const EntireContainer = styled.div<{
+  homebar?: boolean;
+  background?: string;
+}>`
   padding: 25px 30px;
-  background: ${Palette.White};
+  background: ${({ background }) => (background ? background : Palette.White)};
   height: ${({ homebar }) =>
     homebar ? 'calc(100vh - 156px)' : 'calc(100vh - 60px)'};
   overflow: auto;
