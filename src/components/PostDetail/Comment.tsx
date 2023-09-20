@@ -7,8 +7,7 @@ import moreMenu from 'assets/icons/more-menu.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
 import CommentModal from './CommentModal';
-import { useRecoilValue } from 'recoil';
-import { currentUser } from 'recoil/recoil';
+import closure from 'store/closure';
 
 interface commentProps {
   user?: number;
@@ -17,7 +16,8 @@ interface commentProps {
 }
 
 const Comment = ({ text, date }: commentProps) => {
-  const user = useRecoilValue(currentUser);
+  const userType = closure.getUserType();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -25,12 +25,12 @@ const Comment = ({ text, date }: commentProps) => {
   };
   return (
     <Container>
-      <img src={user === 'Cyni' ? commentCyni : commentJuni}></img>
+      <img src={userType === 'Cyni' ? commentCyni : commentJuni}></img>
       <Content justifyContent="space-between">
         <Column gap={9}>
           <Row>
             <Typo.s1 color={Palette.Main}>
-              {user === 'Cyni' ? '익명의 시니' : '익명의 주니'}
+              {userType === 'Cyni' ? '익명의 시니' : '익명의 주니'}
             </Typo.s1>
             <DotWrapper>
               <Dot />

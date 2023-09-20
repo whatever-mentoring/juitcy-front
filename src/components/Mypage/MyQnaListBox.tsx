@@ -3,9 +3,7 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { MyPageBoxContainer, Row } from 'assets/common';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
-import { useRecoilValue } from 'recoil';
-import { currentUser } from 'recoil/recoil';
-
+import closure from 'store/closure';
 interface qnaBoxInterface {
   children: string;
   count: number;
@@ -21,14 +19,14 @@ export const MyQnaListBox = ({
   category,
   date,
 }: qnaBoxInterface) => {
-  const user = useRecoilValue(currentUser);
+  const userType = closure.getUserType();
 
   return (
     <MyPageBoxContainer height="72px">
       <CountStick ansCount={count} />
       <SubContainer>
         <Row gap={3}>
-          <Typo.b3>{user === 'Juni' ? 'Q.' : 'A.'}</Typo.b3>
+          <Typo.b3>{userType === 'Juni' ? 'Q.' : 'A.'}</Typo.b3>
           <Typo.b4>{children}</Typo.b4>
         </Row>
         <Row justifyContent="space-between" alignItems="center">

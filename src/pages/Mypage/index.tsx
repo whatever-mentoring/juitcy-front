@@ -4,8 +4,7 @@ import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
 import { SubMenuBox } from 'components/Mypage/SubMenuBox';
 import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { currentUser } from 'recoil/recoil';
+import closure from 'store/closure';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -18,10 +17,10 @@ export interface mypageMenuInterface {
 }
 
 export const Mypage = () => {
-  const user = useRecoilValue(currentUser);
+  const userType = closure.getUserType();
   let icon = 'juniIcon';
 
-  user === 'Juni' ? (icon = 'juniIcon') : (icon = 'cyniIcon');
+  userType === 'Juni' ? (icon = 'juniIcon') : (icon = 'cyniIcon');
 
   return (
     <>

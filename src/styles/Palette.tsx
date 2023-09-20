@@ -1,10 +1,8 @@
 import { rgba } from 'polished';
-import { useRecoilValue } from 'recoil';
-import { currentUser } from 'recoil/recoil';
+import closure from 'store/closure';
 
-const user = useRecoilValue(currentUser);
-
-const main: string = user === 'Juni' ? '#3F6EFF' : '#FF8267';
+const userType = closure.getUserType();
+const main: string = userType === 'Juni' ? '#3F6EFF' : '#FF8267';
 
 export const Palette = {
   Grey: '#e7e7e7',

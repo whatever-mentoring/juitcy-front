@@ -5,11 +5,11 @@ import commentJuni from 'assets/icons/comment-juni.svg';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useState, useEffect, useRef } from 'react';
-import { useRecoilValue } from 'recoil';
-import { currentUser } from 'recoil/recoil';
+import closure from 'store/closure';
 
 const CommentInputBox = () => {
-  const user = useRecoilValue(currentUser);
+  const userType = closure.getUserType();
+
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,7 +18,7 @@ const CommentInputBox = () => {
   };
   const handleClickSend = () => {
     const newComment = {
-      userType: user,
+      userType: userType,
       text: text,
       date: '2023-09-18',
     };
@@ -33,14 +33,14 @@ const CommentInputBox = () => {
 
   return (
     <Container>
-      <img src={user === 'Cyni' ? commentCyni : commentJuni}></img>
+      <img src={userType === 'Cyni' ? commentCyni : commentJuni}></img>
       <TextInputWrapper>
         <TextInput
           ref={textareaRef}
           value={text}
           onChange={handleChange}
           placeholder={`익명의 ${
-            user === 'Cyni' ? '시니' : '쥬니'
+            userType === 'Cyni' ? '시니' : '쥬니'
           }로 댓글 달기...`}
         ></TextInput>
         {text && <SendButton onClick={handleClickSend}>게시</SendButton>}
