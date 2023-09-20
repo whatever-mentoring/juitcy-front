@@ -20,7 +20,7 @@ const WriteAnswer = () => {
           />
         </Column>
       </EntireContainer>
-      <WriteConfirmBar userType={2} />
+      <WriteConfirmBar />
     </Column>
   );
 };

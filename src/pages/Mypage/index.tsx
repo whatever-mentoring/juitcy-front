@@ -4,6 +4,7 @@ import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
 import { SubMenuBox } from 'components/Mypage/SubMenuBox';
 import { Link } from 'react-router-dom';
+import closure from 'store/closure';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -16,10 +17,10 @@ export interface mypageMenuInterface {
 }
 
 export const Mypage = () => {
-  let userType = 0;
+  const userType = closure.getUserType();
   let icon = 'juniIcon';
 
-  userType === 0 ? (icon = 'juniIcon') : (icon = 'cyniIcon');
+  userType === 'Juni' ? (icon = 'juniIcon') : (icon = 'cyniIcon');
 
   return (
     <>

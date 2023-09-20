@@ -7,9 +7,10 @@ import questionCyni from '@assets/icons/question-cyni.svg';
 import questionBlack from '@assets/icons/question-black.svg';
 import defaultTag from '@assets/icons/default-tag.svg';
 import Typo from 'styles/Typo';
-import { Column, Row, StyledLink } from 'assets/common';
+import { Column, Row } from 'assets/common';
 import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
+import closure from 'store/closure';
 
 /* Card components */
 
@@ -118,15 +119,15 @@ interface tagProps {
   tagType: string;
 }
 const Tag = ({ children, tagType }: tagProps) => {
-  const userType = 1;
+  const userType = closure.getUserType();
 
   let tagImg: any = defaultTag;
   switch (tagType) {
     case 'answer':
-      tagImg = userType === 1 ? answerCyni : answerJuni;
+      tagImg = userType === 'Cyni' ? answerCyni : answerJuni;
       break;
     case 'question':
-      tagImg = userType === 1 ? questionCyni : questionJuni;
+      tagImg = userType === 'Cyni' ? questionCyni : questionJuni;
       break;
   }
 
@@ -169,10 +170,6 @@ const Title = styled(Typo.h1)`
 `;
 const AnsTitle = styled(Typo.h2)`
   height: 100%;
-`;
-const Icon = styled.img`
-  width: 17.8px;
-  height: 17.8px;
 `;
 const ScrollBox = styled(Typo.b3)`
   height: 100%;

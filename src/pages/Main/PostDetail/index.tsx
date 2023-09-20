@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { QTitleCard, QContentCard, AnsCard } from 'components/common/Card';
 
 export interface commentType {
-  userType: number;
+  userType: string;
   text: string;
   date: string;
 }
@@ -29,27 +29,27 @@ const PostDetail = () => {
 
   const comments: commentType[] = [
     {
-      userType: 1,
+      userType: 'Cyni',
       text: '댓글입니다댓글입니다댓글입니다댓글입니다댓글입니다댓글입니다니다댓글입니다댓글입니다댓글입니다댓글입니다',
       date: '2023.09.11',
     },
     {
-      userType: 2,
+      userType: 'Juni',
       text: '두 번째 댓글',
       date: '2023.09.10',
     },
     {
-      userType: 2,
+      userType: 'Cyni',
       text: '세 번째 댓글',
       date: '2023.09.13',
     },
     {
-      userType: 1,
+      userType: 'Juni',
       text: '네 번째 댓글',
       date: '2023.09.21',
     },
     {
-      userType: 1,
+      userType: 'Cyni',
       text: '다섯 번째 댓글',
       date: '2023.09.23',
     },

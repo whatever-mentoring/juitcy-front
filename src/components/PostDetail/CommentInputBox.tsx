@@ -5,9 +5,11 @@ import commentJuni from 'assets/icons/comment-juni.svg';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useState, useEffect, useRef } from 'react';
+import closure from 'store/closure';
 
 const CommentInputBox = () => {
-  let userType = 1;
+  const userType = closure.getUserType();
+
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -31,14 +33,14 @@ const CommentInputBox = () => {
 
   return (
     <Container>
-      <img src={userType === 1 ? commentCyni : commentJuni}></img>
+      <img src={userType === 'Cyni' ? commentCyni : commentJuni}></img>
       <TextInputWrapper>
         <TextInput
           ref={textareaRef}
           value={text}
           onChange={handleChange}
           placeholder={`익명의 ${
-            userType === 1 ? '시니' : '쥬니'
+            userType === 'Cyni' ? '시니' : '쥬니'
           }로 댓글 달기...`}
         ></TextInput>
         {text && <SendButton onClick={handleClickSend}>게시</SendButton>}

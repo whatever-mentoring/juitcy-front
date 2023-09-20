@@ -7,27 +7,33 @@ import moreMenu from 'assets/icons/more-menu.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
 import CommentModal from './CommentModal';
+import closure from 'store/closure';
 
 interface commentProps {
-  userType: number;
+  user: string;
   text: string;
   date: string;
 }
 
-const Comment = ({ userType, text, date }: commentProps) => {
+const Comment = ({ user, text, date }: commentProps) => {
+  const userType = user;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const toggleModal = () => {
     setIsModalOpen(true);
   };
   return (
     <Container>
-      <img src={userType === 1 ? commentCyni : commentJuni}></img>
+      <img src={userType === 'Cyni' ? commentCyni : commentJuni}></img>
       <Content justifyContent="space-between">
         <Column gap={9}>
           <Row>
-            <Typo.s1 color={Palette.Main}>
-              {userType === 1 ? '익명의 시니' : '익명의 주니'}
-            </Typo.s1>
+            {userType === 'Cyni' ? (
+              <Typo.s1 color={Palette.Blue}>익명의 시니</Typo.s1>
+            ) : (
+              <Typo.s1 color={Palette.Orange}>익명의 주니</Typo.s1>
+            )}
             <DotWrapper>
               <Dot />
             </DotWrapper>

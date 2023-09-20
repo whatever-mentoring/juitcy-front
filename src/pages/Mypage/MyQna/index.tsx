@@ -4,8 +4,9 @@ import { MyQnaListBox } from 'components/Mypage/MyQnaListBox';
 import { Waitingtab } from 'components/Mypage/WaitingTab';
 import { NoticeLabel } from 'components/common/NotcieLabel';
 import { useState } from 'react';
-import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+import { Palette } from 'styles/Palette';
+import closure from 'store/closure';
 
 const fakeData = [
   {
@@ -74,14 +75,15 @@ const fakeData = [
 ];
 
 export const MyQna = () => {
-  let userType = 0; // 0은 주니어
+  const userType = closure.getUserType();
+
   let text = '쥬시 완료된 질문 ';
   const [nowTab, setNowTab] = useState(0); // index 가 0이면 완료 api 불러오기 , 1이면 대기 api 불러오기
 
-  if (userType === 0) {
+  if (userType === 'Juni') {
     if (nowTab === 0) text = '쥬시 완료된 질문 ';
     else text = '쥬시 대기 중인 질문 ';
-  } else if (userType === 1) {
+  } else {
     if (nowTab === 0) text = '쥬시 완료된 답변 ';
     else text = '쥬시 대기 중인 답변 ';
   }
@@ -89,7 +91,7 @@ export const MyQna = () => {
   return (
     <>
       <Header borderBottom={false} btn="back">
-        {userType === 0 ? '내질문' : '내답변'}
+        {userType === 'Juni' ? '내질문' : '내답변'}
       </Header>
       <Waitingtab setNowTab={setNowTab} />
       <EntireContainer
