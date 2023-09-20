@@ -9,7 +9,8 @@ import defaultTag from '@assets/icons/default-tag.svg';
 import Typo from 'styles/Typo';
 import { Column, Row } from 'assets/common';
 import { ShortBtn } from './Button';
-import { CategoryLabel } from 'components/CategoryLabel';
+import { CategoryLabel } from 'components/Category/CategoryLabel';
+import closure from 'store/closure';
 
 /* Card components */
 
@@ -85,7 +86,7 @@ export const AnsButtonCard = () => {
         <Date>2023.09.11</Date>
       </Column>
 
-      <ShortBtn>답변하기</ShortBtn>
+      <ShortBtn to="/answer/1">답변하기</ShortBtn>
     </ABContainer>
   );
 };
@@ -118,15 +119,15 @@ interface tagProps {
   tagType: string;
 }
 const Tag = ({ children, tagType }: tagProps) => {
-  const userType = 1;
+  const userType = closure.getUserType();
 
   let tagImg: any = defaultTag;
   switch (tagType) {
     case 'answer':
-      tagImg = userType === 1 ? answerCyni : answerJuni;
+      tagImg = userType === 'Cyni' ? answerCyni : answerJuni;
       break;
     case 'question':
-      tagImg = userType === 1 ? questionCyni : questionJuni;
+      tagImg = userType === 'Cyni' ? questionCyni : questionJuni;
       break;
   }
 
@@ -153,8 +154,6 @@ const Container = styled(Column)<{ height?: number; color: string }>`
   border: 1.5px solid ${Palette.Main};
   background: ${(props) => props.color};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  cursor: pointer;
 `;
 const ABContainer = styled(Container)`
   padding: 30px 24px;
@@ -171,10 +170,6 @@ const Title = styled(Typo.h1)`
 `;
 const AnsTitle = styled(Typo.h2)`
   height: 100%;
-`;
-const Icon = styled.img`
-  width: 17.8px;
-  height: 17.8px;
 `;
 const ScrollBox = styled(Typo.b3)`
   height: 100%;

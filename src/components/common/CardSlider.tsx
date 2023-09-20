@@ -1,14 +1,13 @@
 import { Column, Row } from 'assets/common';
-import { AnsCard, QContentCard, QTitleCard } from 'components/Card';
+import { AnsCard, QContentCard, QTitleCard } from 'components/common/Card';
 import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { styled } from 'styled-components';
-import { Palette } from 'styles/Palette';
-import PageIndicator, { Dot } from './PageIndicator';
+import PageIndicator, { Dot } from '../Main/PageIndicator';
 
-const CardSlider = () => {
+const CardSlider = ({ cards }: { cards: React.ReactNode[] }) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const settings = {
     dots: false,
@@ -21,13 +20,6 @@ const CardSlider = () => {
       setCurrentSlide(current);
     },
   };
-  const cards = [
-    <QTitleCard></QTitleCard>,
-    <QContentCard></QContentCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-  ];
 
   return (
     <Wrapper>
@@ -47,12 +39,17 @@ export default CardSlider;
 
 const Wrapper = styled(Column)`
   height: 100%;
+  gap: 36px;
 `;
 const StyledSlider = styled(Slider)`
   .slick-list {
     margin: 0 -5px; //slider 내부 카드 컴포넌트 간 margin
   }
   .slick-slide > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     padding: 7px 5px; //slider 자체의 padding
   }
 `;

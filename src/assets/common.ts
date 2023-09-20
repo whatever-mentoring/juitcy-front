@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 
-export const EntireContainer = styled.div<{ homebar?: boolean }>`
+export const EntireContainer = styled.div<{
+  homebar?: boolean;
+  background?: string;
+}>`
   padding: 25px 30px;
-  background: ${Palette.Gray05};
+  background: ${({ background }) => (background ? background : Palette.White)};
   height: ${({ homebar }) =>
     homebar ? 'calc(100vh - 156px)' : 'calc(100vh - 60px)'};
   overflow: auto;
@@ -69,4 +73,9 @@ export const TextContainer = styled.div<{ gap?: number }>`
   display: flex;
   flex-direction: column;
   gap: ${({ gap }) => (gap ? gap : 0)}px;
+`;
+
+export const StyledLink = styled(Link)<{ color?: string }>`
+  text-decoration: none;
+  color: ${({ color }) => (color ? color : Palette.Black)};
 `;

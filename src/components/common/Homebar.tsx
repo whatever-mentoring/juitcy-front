@@ -11,10 +11,13 @@ import mypageOnJuni from '@assets/icons/mypage-on-juni.svg';
 import mypageOnCyni from '@assets/icons/mypage-on-cyni.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import closure from 'store/closure';
 
 const Homebar = () => {
-  let userType = 2; //임시 변수
+  const { pathname } = useLocation();
+  const userType = closure.getUserType();
+
   const [icons, setIcons] = useState({
     isAnsOn: false,
     isAskOn: false,
@@ -22,35 +25,25 @@ const Homebar = () => {
     isMpgOn: false,
   });
 
-  const handleClick = (iconName: string) => {
-    setIcons((prevState) => ({
-      ...prevState,
-      isAnsOn: iconName === 'ans',
-      isAskOn: iconName === 'ask',
-      isJuicyOn: iconName === 'juicy',
-      isMpgOn: iconName === 'mpg',
-    }));
-  };
-
   return (
     <Container>
-      {userType == 1 ? (
-        <Menu to="/" onClick={() => handleClick('ans')}>
-          <Icon src={`${icons.isAnsOn ? answerOn : answerOff}`} />
+      {userType === 'Cyni' ? (
+        <Menu to="/answer">
+          <Icon src={`${pathname === '/answer' ? answerOn : answerOff}`} />
           <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
         </Menu>
       ) : (
-        <Menu to="/" onClick={() => handleClick('ask')}>
-          <Icon src={`${icons.isAskOn ? askOn : askOff}`} />
+        <Menu to="/answer">
+          <Icon src={`${pathname === '/answer' ? askOn : askOff}`} />
           <Typo.homebar isOn={icons.isAskOn}>질문하기</Typo.homebar>
         </Menu>
       )}
 
-      <Menu to="/" onClick={() => handleClick('juicy')}>
+      <Menu to="/">
         <Icon
           src={`${
-            icons.isJuicyOn
-              ? userType === 1
+            pathname === '/'
+              ? userType === 'Cyni'
                 ? juicygeulOnCyni
                 : juicygeulOnJuni
               : juicygeulOff
@@ -59,11 +52,11 @@ const Homebar = () => {
         <Typo.homebar isOn={icons.isJuicyOn}>주씨글</Typo.homebar>
       </Menu>
 
-      <Menu to="/myPage" onClick={() => handleClick('mpg')}>
+      <Menu to="/myPage">
         <Icon
           src={`${
-            icons.isMpgOn
-              ? userType === 1
+            pathname === '/myPage'
+              ? userType === 'Cyni'
                 ? mypageOnCyni
                 : mypageOnJuni
               : mypageOff
@@ -98,6 +91,7 @@ const Menu = styled(Link)`
   align-items: center;
   gap: 3px;
 
+  text-decoration: none;
   cursor: pointer;
 `;
 const Icon = styled.img``;

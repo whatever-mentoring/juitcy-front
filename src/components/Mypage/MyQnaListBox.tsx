@@ -2,8 +2,8 @@ import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { MyPageBoxContainer, Row } from 'assets/common';
-import { CategoryLabel } from 'components/CategoryLabel';
-
+import { CategoryLabel } from 'components/Category/CategoryLabel';
+import closure from 'store/closure';
 interface qnaBoxInterface {
   children: string;
   count: number;
@@ -19,14 +19,14 @@ export const MyQnaListBox = ({
   category,
   date,
 }: qnaBoxInterface) => {
-  let userType = 0; // userType 임시변수
+  const userType = closure.getUserType();
 
   return (
     <MyPageBoxContainer height="72px">
-      <CountStick ansCount={count} userType={userType} />
+      <CountStick ansCount={count} />
       <SubContainer>
         <Row gap={3}>
-          <Typo.b3>{userType === 0 ? 'Q.' : 'A.'}</Typo.b3>
+          <Typo.b3>{userType === 'Juni' ? 'Q.' : 'A.'}</Typo.b3>
           <Typo.b4>{children}</Typo.b4>
         </Row>
         <Row justifyContent="space-between" alignItems="center">
@@ -41,10 +41,10 @@ export const MyQnaListBox = ({
   );
 };
 
-const CountStick = styled.div<{ ansCount?: number; userType?: number }>`
+const CountStick = styled.div<{ ansCount?: number }>`
   width: 7px;
   height: 100%;
-  background: ${({ ansCount, userType }) =>
+  background: ${({ ansCount }) =>
     ansCount == 0
       ? Palette.Gray2
       : ansCount == 1

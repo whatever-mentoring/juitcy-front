@@ -23,8 +23,6 @@ const Container = styled(Row)`
   width: 100%;
   justify-content: center;
   align-items: center;
-
-  margin: 27px auto;
   gap: 11px;
 `;
 export const Dot = styled.div<{ selected: boolean }>`
