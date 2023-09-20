@@ -33,8 +33,8 @@ const Homebar = () => {
           <Typo.homebar isOn={icons.isAnsOn}>답변하기</Typo.homebar>
         </Menu>
       ) : (
-        <Menu to="/answer">
-          <Icon src={`${pathname === '/answer' ? askOn : askOff}`} />
+        <Menu to="/ask">
+          <Icon src={`${pathname === '/ask' ? askOn : askOff}`} />
           <Typo.homebar isOn={icons.isAskOn}>질문하기</Typo.homebar>
         </Menu>
       )}
