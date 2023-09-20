@@ -96,7 +96,7 @@ export const MyQna = () => {
       <Waitingtab setNowTab={setNowTab} />
       <EntireContainer
         background={`${Palette.Gray05}`}
-        style={{ height: 'calc(100vh - 101px)' }}
+        style={{ height: 'calc(100dvh - 101px)' }}
       >
         <Row>
           <Typo.b2>{text} &nbsp;</Typo.b2>
