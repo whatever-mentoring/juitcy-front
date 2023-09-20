@@ -9,11 +9,13 @@ const Answer = () => {
   return (
     <Column>
       <Header borderBottom={true}>답변하기</Header>
-      <Notice></Notice>
-      <CategoryBar.container>
-        <CategoryBar.ctgs ctgAll={true} />
-      </CategoryBar.container>
-      <EntireContainer>
+      <EntireContainer homebar={true}>
+        <div style={{ padding: '10px 0' }}>
+          <Notice />
+          <CategoryBar.container>
+            <CategoryBar.ctgs ctgAll={true} />
+          </CategoryBar.container>
+        </div>
         <AnswersContainer />
       </EntireContainer>
       <Homebar />

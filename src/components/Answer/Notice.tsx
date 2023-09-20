@@ -14,7 +14,6 @@ const Notice = () => {
 export default Notice;
 
 const Container = styled(Column)`
-  padding: 30px;
   padding-bottom: 10px;
   gap: 5px;
 `;

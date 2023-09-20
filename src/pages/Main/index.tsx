@@ -22,17 +22,21 @@ const Main = () => {
       <Header borderBottom={false} btn={'search'}>
         쥬시글
       </Header>
-      <Column color={Palette.Gray05}>
-        <CategoryBar ctgAll={true} />
-        <CallToAction />
-      </Column>
-      <EntireContainer>
-        <Column gap={26}>
-          <StyledLink to="/post/1">
-            <CardSlider cards={cards} />
-          </StyledLink>
-          <CardSlider cards={cards} />
+      <EntireContainer homebar={true} padding="25px 0px">
+        <Column color={Palette.Gray05}>
+          <div className="padding-container">
+            <CategoryBar ctgAll={true} />
+          </div>
+          <CallToAction />
         </Column>
+        <div className="padding-container">
+          <Column gap={26}>
+            <StyledLink to="/post/1">
+              <CardSlider cards={cards} />
+            </StyledLink>
+            <CardSlider cards={cards} />
+          </Column>
+        </div>
       </EntireContainer>
       <Homebar />
     </Column>

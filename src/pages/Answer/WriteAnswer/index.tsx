@@ -8,10 +8,13 @@ import { Palette } from 'styles/Palette';
 const WriteAnswer = () => {
   return (
     <Column>
-      <Header borderBottom={true} color={Palette.Main}>
+      <Header borderBottom={true} color={Palette.Main} btn="back">
         답변하기
       </Header>
-      <EntireContainer>
+      <EntireContainer
+        homebar={false}
+        style={{ height: 'calc(100dvh - 119px)' }}
+      >
         <Column gap={22} alignItems="center">
           <QDetailCard />
           <WriteInputBox

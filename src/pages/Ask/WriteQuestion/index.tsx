@@ -14,7 +14,10 @@ const WriteQuestion = () => {
       <Header borderBottom={false} btn={'back'}>
         질문하기
       </Header>
-      <EntireContainer>
+      <EntireContainer
+        homebar={false}
+        style={{ height: 'calc(100dvh - 119px)' }}
+      >
         <Column gap={18} alignItems="flex-start">
           <Typo.s2>제목(최대 100자)</Typo.s2>
           <Title />

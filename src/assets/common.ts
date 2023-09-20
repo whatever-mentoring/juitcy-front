@@ -5,8 +5,9 @@ import { Palette } from 'styles/Palette';
 export const EntireContainer = styled.div<{
   homebar?: boolean;
   background?: string;
+  padding?: string;
 }>`
-  padding: 25px 30px;
+  padding: ${({ padding }) => (padding ? padding : '25px 30px')};
   background: ${({ background }) => (background ? background : Palette.White)};
   height: ${({ homebar }) =>
     homebar ? 'calc(100dvh - 156px)' : 'calc(100dvh - 60px)'};
@@ -14,6 +15,11 @@ export const EntireContainer = styled.div<{
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  // 쥬시글 둘러보기 메인페이지
+  .padding-container {
+    padding: 0px 30px;
   }
 
   // 마이페이지

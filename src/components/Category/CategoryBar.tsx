@@ -57,7 +57,7 @@ const Categories = ({ ctgAll }: { ctgAll: boolean }) => {
 const Container = styled(Column)`
   width: 100%;
   gap: 6px;
-  padding: 10px 30px;
+  padding: 10px 0;
 `;
 const Title = () => {
   return <Typo.s1>카테고리</Typo.s1>;
