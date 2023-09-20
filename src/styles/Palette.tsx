@@ -2,11 +2,15 @@ import { rgba } from 'polished';
 import closure from 'store/closure';
 
 const userType = closure.getUserType();
-const main: string = userType === 'Juni' ? '#3F6EFF' : '#FF8267';
+const orange = '#FF8267';
+const blue = '#3F6EFF';
+const main: string = userType === 'Juni' ? orange : blue;
 
 export const Palette = {
   Grey: '#e7e7e7',
   Main: main,
+  Orange: orange,
+  Blue: blue,
   Sub: { yellow: '#FDF7E8', blue: '#F7F6FA' },
 
   White: '#FFFFFF',
