@@ -11,7 +11,7 @@ const Ask = () => {
   return (
     <Column>
       <Header borderBottom={false}>질문하기</Header>
-      <EntireContainer>
+      <EntireContainer homebar={true}>
         <InnerContainer justifyContent="space-between">
           <CTAText />
           <InnerContents>
