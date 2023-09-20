@@ -21,7 +21,9 @@ export const QTitleCard = () => {
       <Tag tagType={'question'}>
         <CategoryLabel>일상</CategoryLabel>
       </Tag>
-      <Title>글 제목입니다 글 제목입니다 글 제목입니다 글 제목입니다</Title>
+      <Title>
+        일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십
+      </Title>
       <Date>2023.09.11</Date>
     </Container>
   );
@@ -30,7 +32,7 @@ export const QContentCard = () => {
   return (
     <Container height={317} color={Palette.Main05} gap={14}>
       <Tag tagType={'question'}>
-        <Typo.b2 color={Palette.Main}>질문 내용</Typo.b2>
+        <Typo.b2>질문 내용</Typo.b2>
       </Tag>
       <ScrollBox>
         로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인
@@ -146,6 +148,7 @@ const Date = ({ children }: { children: string }) => {
 
 const Container = styled(Column)<{ height?: number; color: string }>`
   width: 330px;
+  max-width: 100%;
   ${({ height }) => height && `height: ${height}px`};
 
   padding: 27px 28px;
@@ -167,6 +170,7 @@ const Title = styled(Typo.h1)`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 const AnsTitle = styled(Typo.h2)`
   height: 100%;
