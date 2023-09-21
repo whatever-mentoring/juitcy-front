@@ -1,4 +1,5 @@
 import { MyPageBoxContainer, Row, TextContainer } from 'assets/common';
+import { Ref, forwardRef } from 'react';
 import closure from 'store/closure';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -9,11 +10,10 @@ interface commentBoxInterface {
   date: string;
 }
 
-export const CommentListBox = ({
-  children,
-  title,
-  date,
-}: commentBoxInterface) => {
+const CommentListBox = (
+  { children, title, date }: commentBoxInterface,
+  ref: Ref<HTMLDivElement>,
+) => {
   const userType = closure.getUserType();
 
   let icon = 'juni_commentSubIcon';
@@ -21,7 +21,7 @@ export const CommentListBox = ({
   else icon = 'cyni_commentSubIcon';
 
   return (
-    <MyPageBoxContainer padding="14px" height="79px">
+    <MyPageBoxContainer padding="14px" height="79px" ref={ref}>
       <TextContainer>
         <Typo.b4>{children}</Typo.b4>
         <Row gap={5}>
@@ -33,3 +33,5 @@ export const CommentListBox = ({
     </MyPageBoxContainer>
   );
 };
+
+export default forwardRef(CommentListBox);

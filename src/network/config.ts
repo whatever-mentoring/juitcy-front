@@ -6,6 +6,7 @@ export const publicInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: '토큰들어갈자리',
+    Authorization:
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2Iiwicm9sZSI6IkpVTlkiLCJpYXQiOjE2OTUyNzM5ODMsImV4cCI6MTY5NTI3NDI4M30.57idlu0MVeQsqqykWDBMNCFcgL7M26MwFqNa9TlyBRc',
   },
 });
