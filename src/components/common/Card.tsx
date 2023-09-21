@@ -147,7 +147,8 @@ const Date = ({ children }: { children: string }) => {
 /* styles */
 
 const Container = styled(Column)<{ height?: number; color: string }>`
-  width: 100%;
+  width: 330px;
+  max-width: 100%;
   ${({ height }) => height && `height: ${height}px`};
 
   padding: 27px 28px;
