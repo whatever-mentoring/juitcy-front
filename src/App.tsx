@@ -15,6 +15,7 @@ import WriteQuestion from 'pages/Ask/WriteQuestion';
 import Signup from 'pages/Signup';
 import Oauth from 'pages/Signup/Oauth';
 import TermsOfService from 'pages/Signup/TermsOfService';
+import SignupSuccess from 'pages/Signup/SignupSuccess';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/oauth" element={<Oauth />} />
         <Route path="/signup/terms" element={<TermsOfService />} />
+        <Route path="/signup/success" element={<SignupSuccess />} />
 
         {/* AnswerPage */}
         <Route path="/answer" element={<Answer />} />
