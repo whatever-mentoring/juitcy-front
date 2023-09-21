@@ -155,7 +155,7 @@ const Container = styled(Column)<{ height?: number; color: string }>`
 
   border-radius: 16px;
   border: 1.5px solid ${Palette.Main};
-  background: ${(props) => props.color};
+  background: ${({ color }) => color};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const ABContainer = styled(Container)`
