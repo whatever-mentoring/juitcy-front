@@ -14,6 +14,7 @@ import Ask from 'pages/Ask';
 import WriteQuestion from 'pages/Ask/WriteQuestion';
 import Signup from 'pages/Signup';
 import Oauth from 'pages/Signup/Oauth';
+import TermsOfService from 'pages/Signup/TermsOfService';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         {/* SignupPage */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/oauth" element={<Oauth />} />
+        <Route path="/signup/terms" element={<TermsOfService />} />
 
         {/* AnswerPage */}
         <Route path="/answer" element={<Answer />} />
