@@ -60,7 +60,7 @@ const PostDetail = () => {
   return (
     <Column>
       <Header btn={'back'} borderBottom={true}>
-        쥬시글
+        {''}
       </Header>
       {cards && (
         <EntireContainer color={Palette.Gray05}>
