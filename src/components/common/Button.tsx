@@ -9,10 +9,11 @@ import { Row } from 'assets/common';
 interface buttonProps {
   children: string;
   to: string;
+  color?: string;
 }
-export const LongBtn = ({ children, to }: buttonProps) => {
+export const LongBtn = ({ children, to, color }: buttonProps) => {
   return (
-    <Container to={to}>
+    <Container to={to} color={color ? color : Palette.Main}>
       <Typo.h5 color={Palette.White}>{children}</Typo.h5>
     </Container>
   );
@@ -46,7 +47,7 @@ export const SignupBtn = ({ children, to }: buttonProps) => {
   );
 };
 
-const Container = styled(Link)<{ width?: number }>`
+const Container = styled(Link)<{ width?: number; color?: string }>`
   width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 50px;
 
@@ -56,7 +57,7 @@ const Container = styled(Link)<{ width?: number }>`
 
   border: none;
   border-radius: 10px;
-  background: ${Palette.Main};
+  background: ${({ color }) => (color ? color : Palette.Main)};
 
   text-decoration: none;
   cursor: pointer;
