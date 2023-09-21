@@ -2,6 +2,7 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { MyPageBoxContainer, Row, TextContainer } from 'assets/common';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
+import { Ref, forwardRef } from 'react';
 
 interface ScrapBoxInterface {
   children: string;
@@ -12,16 +13,19 @@ interface ScrapBoxInterface {
   scrapCount: number;
 }
 
-export const ScrapListBox = ({
-  children,
-  title,
-  date,
-  category,
-  commentCount,
-  scrapCount,
-}: ScrapBoxInterface) => {
+const ScrapListBox = (
+  {
+    children,
+    title,
+    date,
+    category,
+    commentCount,
+    scrapCount,
+  }: ScrapBoxInterface,
+  ref: Ref<HTMLDivElement>,
+) => {
   return (
-    <MyPageBoxContainer padding="14px 15px">
+    <MyPageBoxContainer padding="14px 15px" ref={ref}>
       <TextContainer gap={4}>
         <CategoryLabel>{category}</CategoryLabel>
         <Typo.b1>{title}</Typo.b1>
@@ -41,3 +45,5 @@ export const ScrapListBox = ({
     </MyPageBoxContainer>
   );
 };
+
+export default forwardRef(ScrapListBox);

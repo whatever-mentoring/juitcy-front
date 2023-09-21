@@ -1,85 +1,48 @@
 import { EntireContainer, Row } from 'assets/common';
 import { Header } from 'components/common/Header';
-import { ScrapListBox } from 'components/Mypage/ScrapListBox';
+import ScrapListBox from 'components/Mypage/ScrapListBox';
+import { publicInstance } from 'network/config';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
-const fakeData = [
-  {
-    category: '일상',
-    title: '글 ㅇㅁㅇㅍㅁ',
-    content: 'ㅇㅇㅇㅇㅇㅇ.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-    commentCount: 23,
-    scrapCount: 44,
-  },
-  {
-    category: '일상',
-    title: '글맹퍄ㅜㅁ애푸',
-    content: '꺄ㅏ아아아아아ㅏ.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-    commentCount: 23,
-    scrapCount: 44,
-  },
-  {
-    category: '일상',
-    title: '글마푸앺ㅁ제목',
-    date: '2023.09.05',
-    content: '아아아아ㅏ아아댓글입니다댓글입니다.',
-    commentCount: 23,
-    scrapCount: 44,
-  },
-  {
-    category: '일상',
-    title: '파ㅜㅐㅍ먀ㅜ제목',
-    content: '파무애ㅑ풰배ㅑㅜㅍㅇ.댓글입니다댓글입니다.',
-    commentCount: 23,
-    scrapCount: 44,
-    date: '2023.09.05',
-  },
-  {
-    category: '일상',
-    title: '글 제목',
-    commentCount: 23,
-    scrapCount: 44,
-    content: '아푸매야ㅜ패먕.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    category: '일상',
-    title: '글 제목',
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-    commentCount: 23,
-    scrapCount: 44,
-  },
-  {
-    category: '일상',
-    title: '글 제목',
-    commentCount: 23,
-    scrapCount: 44,
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    category: '일상',
-    commentCount: 23,
-    scrapCount: 44,
-    title: '글 제목',
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-  {
-    category: '일상',
-    title: '글 제목',
-    commentCount: 23,
-    scrapCount: 44,
-    content: '댓글입니다댓글입니다.댓글입니다댓글입니다.',
-    date: '2023.09.05',
-  },
-];
+interface myScrapData {
+  postTitle: string;
+  postIdx: number;
+  category: string;
+  content: string;
+  commentCount: number;
+  scrapCount: number;
+  createdDate: string;
+}
 
 export const MyScrap = () => {
+  const [myScrapData, setMyScrapData] = useState<myScrapData[]>();
+  const [myScrapCount, setMyScrapCount] = useState<number>();
+  const [page, setPage] = useState<number>(2);
+
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    publicInstance.get('/users/scrap?requestPageNum=1').then((res) => {
+      setMyScrapData(res?.data?.result?.content);
+      setMyScrapCount(res?.data?.result?.totalElements);
+    });
+  }, []);
+
+  const getNewPageData = () => {
+    publicInstance.get(`/users/comments?requestPageNum=${page}`).then((res) => {
+      const newData = res?.data?.result?.content || [];
+      myScrapData !== undefined && setMyScrapData([...myScrapData, ...newData]);
+      setPage(page + 1);
+    });
+  };
+
+  useEffect(() => {
+    if (inView) getNewPageData();
+  }, [inView]);
+
   return (
     <>
       <Header borderBottom={false} btn="back">
@@ -87,22 +50,28 @@ export const MyScrap = () => {
       </Header>
       <EntireContainer background={`${Palette.Gray05}`}>
         <Row>
-          <Typo.b2 color={Palette.Main}>4</Typo.b2>
+          <Typo.b2 color={Palette.Main}>{myScrapCount}</Typo.b2>
           <Typo.b2> &nbsp; 개의 스크랩</Typo.b2>
         </Row>
         <div className="mypage-list-container">
-          {fakeData.map((data: any, index: number) => (
-            <ScrapListBox
-              date={data.date}
-              title={data.title}
-              category={data.category}
-              commentCount={data.commentCount}
-              scrapCount={data.scrapCount}
-              key={index}
-            >
-              {data.content}
-            </ScrapListBox>
-          ))}
+          {myScrapData !== undefined &&
+            myScrapData.map((data: myScrapData, index: number) => (
+              <ScrapListBox
+                date={data.createdDate}
+                title={data.postTitle}
+                category={data.category}
+                commentCount={data.commentCount}
+                scrapCount={data.scrapCount}
+                key={index}
+                ref={
+                  index > 8 && index === myScrapData.length - 1
+                    ? ref
+                    : undefined
+                }
+              >
+                {data.content}
+              </ScrapListBox>
+            ))}
         </div>
       </EntireContainer>
     </>

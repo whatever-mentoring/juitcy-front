@@ -58,7 +58,11 @@ export const MyComment = () => {
                 date={data.createdDate}
                 title={data.postTitle}
                 key={index}
-                ref={index === myCommentData.length - 1 ? ref : undefined}
+                ref={
+                  index > 8 && index === myCommentData.length - 1
+                    ? ref
+                    : undefined
+                }
               >
                 {data.content}
               </CommentListBox>
