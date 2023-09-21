@@ -12,6 +12,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WriteAnswer from 'pages/Answer/WriteAnswer';
 import Ask from 'pages/Ask';
 import WriteQuestion from 'pages/Ask/WriteQuestion';
+import Signup from 'pages/Signup';
+import Oauth from 'pages/Signup/Oauth';
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/search" element={<Search />} />
+
+        {/* SignupPage */}
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/oauth" element={<Oauth />} />
 
         {/* AnswerPage */}
         <Route path="/answer" element={<Answer />} />

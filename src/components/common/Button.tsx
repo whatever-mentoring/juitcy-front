@@ -3,6 +3,8 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import ctaArrow from 'assets/icons/cta-arrow.svg';
 import { Link } from 'react-router-dom';
+import naverLogo from 'assets/icons/naver-logo.svg';
+import { Row } from 'assets/common';
 
 interface buttonProps {
   children: string;
@@ -33,6 +35,17 @@ export const CTABtn = ({ children, to }: buttonProps) => {
   );
 };
 
+export const SignupBtn = ({ children, to }: buttonProps) => {
+  return (
+    <SignupContainer to={to}>
+      <img src={naverLogo}></img>
+      <SignupTextWrapper>
+        <Typo.h5 color={Palette.White}>{children}</Typo.h5>
+      </SignupTextWrapper>
+    </SignupContainer>
+  );
+};
+
 const Container = styled(Link)<{ width?: number }>`
   width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 50px;
@@ -51,4 +64,13 @@ const Container = styled(Link)<{ width?: number }>`
 const CTABtnContainer = styled(Container)`
   width: 130px;
   height: 33px;
+`;
+const SignupContainer = styled(Container)`
+  justify-content: flex-start;
+  padding: 5px;
+  background: #03c75a;
+`;
+const SignupTextWrapper = styled(Row)`
+  width: 100%;
+  justify-content: center;
 `;
