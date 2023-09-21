@@ -3,6 +3,8 @@ import { myPageMemu } from 'assets/data/MypageData';
 import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
 import { SubMenuBox } from 'components/Mypage/SubMenuBox';
+import { publicInstance } from 'network/config';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import closure from 'store/closure';
 import { styled } from 'styled-components';
@@ -14,13 +16,27 @@ export interface mypageMenuInterface {
   icon: string;
   menu: string;
   margin: number;
+  count: string;
+}
+export interface userMypageData {
+  name: string;
+  questionCount: number;
+  commentCount: number;
+  scrapCount: number;
 }
 
 export const Mypage = () => {
   const userType = closure.getUserType();
   let icon = 'juniIcon';
+  const [userMypageData, setUserMypageData] = useState<userMypageData>();
 
   userType === 'Juni' ? (icon = 'juniIcon') : (icon = 'cyniIcon');
+
+  useEffect(() => {
+    publicInstance
+      .get('/users')
+      .then((res) => setUserMypageData(res?.data?.result));
+  }, []);
 
   return (
     <>
@@ -36,7 +52,7 @@ export const Mypage = () => {
           <Column>
             <Typo.h4>안녕하세요</Typo.h4>
             <UnderLine>
-              <Typo.h2>김쥬니</Typo.h2>
+              <Typo.h2>{userMypageData?.name}</Typo.h2>
               <Typo.h4> &nbsp; 님</Typo.h4>
             </UnderLine>
           </Column>
@@ -48,7 +64,18 @@ export const Mypage = () => {
               .slice(0, 3)
               .map((menu: mypageMenuInterface, index: number) => (
                 <StyledLink to={menu.link} key={index} margin={menu.margin}>
-                  <SubMenuBox count={5} icon={menu.icon}>
+                  <SubMenuBox
+                    count={
+                      menu.count === 'questionCount'
+                        ? userMypageData?.questionCount
+                        : menu.count === 'commentCount'
+                        ? userMypageData?.commentCount
+                        : menu.count === 'scrapCount'
+                        ? userMypageData?.scrapCount
+                        : 0
+                    }
+                    icon={menu.icon}
+                  >
                     {menu.menu}
                   </SubMenuBox>
                 </StyledLink>
