@@ -6,8 +6,9 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useState, useEffect, useRef } from 'react';
 import closure from 'store/closure';
+import { postCommentApi } from 'network/commentApi';
 
-const CommentInputBox = () => {
+const CommentInputBox = ({ idx }: { idx: number }) => {
   const userType = closure.getUserType();
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -16,12 +17,15 @@ const CommentInputBox = () => {
     const newText = event.target.value;
     setText(newText);
   };
-  const handleClickSend = () => {
-    const newComment = {
-      userType: userType,
-      text: text,
-      date: '2023-09-18',
-    };
+  const handleClickSend = async () => {
+    const [content, postIdx] = [text, idx];
+    let res = await postCommentApi({ content, postIdx });
+
+    if (res.isSuccess) {
+      alert('댓글이 등록되었습니다.');
+      //새로고침
+      window.location.reload();
+    }
   };
   useEffect(() => {
     if (textareaRef && textareaRef.current) {

@@ -55,7 +55,8 @@ const PostDetail = () => {
           <div>loading...</div>
         )}
       </EntireContainer>
-      <CommentInputBox />
+
+      {idxNum && <CommentInputBox idx={idxNum} />}
     </Column>
   );
 };
