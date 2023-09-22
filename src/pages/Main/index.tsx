@@ -1,21 +1,19 @@
-import { Column, EntireContainer, Row, StyledLink } from 'assets/common';
+import { Column, EntireContainer, StyledLink } from 'assets/common';
 import CategoryBar from 'components/Category/CategoryBar';
 import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
-import styled from 'styled-components';
-import CardSlider from '../../components/common/CardSlider';
+import CardSlider, { MakeCardSlider } from '../../components/common/CardSlider';
 import { Palette } from 'styles/Palette';
 import CallToAction from 'components/Main/CallToAction';
-import { QTitleCard, QContentCard, AnsCard } from 'components/common/Card';
+import { useEffect, useState } from 'react';
+import { postAllApi } from 'network/postsApi';
+import { postType } from 'types';
 
 const Main = () => {
-  const cards = [
-    <QTitleCard></QTitleCard>,
-    <QContentCard></QContentCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-  ];
+  const [posts, setPosts] = useState<postType[]>();
+  useEffect(() => {
+    postAllApi({ setPosts });
+  }, []);
 
   return (
     <Column>
@@ -31,10 +29,15 @@ const Main = () => {
         </Column>
         <div className="padding-container">
           <Column gap={26}>
-            <StyledLink to="/post/1">
-              <CardSlider cards={cards} />
-            </StyledLink>
-            <CardSlider cards={cards} />
+            {/* card slider들을 렌더한다. */}
+            {posts?.map((cards, index) => {
+              const cardComponents = MakeCardSlider(cards);
+              return (
+                <StyledLink key={index} to={`/post/${cards.postIdx}`}>
+                  <CardSlider key={`slider_${index}`} cards={cardComponents} />
+                </StyledLink>
+              );
+            })}
           </Column>
         </div>
       </EntireContainer>
