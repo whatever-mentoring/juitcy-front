@@ -27,7 +27,7 @@ export const ShortBtn = ({ children, to }: buttonProps) => {
 export const CTABtn = ({ children, to }: buttonProps) => {
   return (
     <CTABtnContainer to={to}>
-      <Typo.b3 color={Palette.White}>{children}</Typo.b3>
+      <Typo.s1 color={Palette.White}>{children}</Typo.s1>
       <img src={ctaArrow}></img>
     </CTABtnContainer>
   );
@@ -49,6 +49,6 @@ const Container = styled(Link)<{ width?: number }>`
   cursor: pointer;
 `;
 const CTABtnContainer = styled(Container)`
-  width: 130px;
-  height: 33px;
+  width: 108px;
+  height: 25px;
 `;

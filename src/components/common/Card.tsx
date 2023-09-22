@@ -147,14 +147,15 @@ const Date = ({ children }: { children: string }) => {
 /* styles */
 
 const Container = styled(Column)<{ height?: number; color: string }>`
-  width: 100%;
+  width: 330px;
+  max-width: 100%;
   ${({ height }) => height && `height: ${height}px`};
 
   padding: 27px 28px;
 
   border-radius: 16px;
   border: 1.5px solid ${Palette.Main};
-  background: ${(props) => props.color};
+  background: ${({ color }) => color};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const ABContainer = styled(Container)`

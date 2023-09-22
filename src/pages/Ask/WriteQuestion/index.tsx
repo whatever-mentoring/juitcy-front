@@ -18,8 +18,8 @@ const WriteQuestion = () => {
         homebar={false}
         style={{ height: 'calc(100dvh - 119px)' }}
       >
-        <Column gap={18} alignItems="flex-start">
-          <Typo.s2>제목(최대 100자)</Typo.s2>
+        <Column gap={20} alignItems="flex-start">
+          <Typo.s2>제목(최대 50자)</Typo.s2>
           <Title />
           <CtgWrapper>
             <Typo.s2>카테고리</Typo.s2>
@@ -64,7 +64,7 @@ const CtgWrapper = styled(CategoryBar.container)`
 `;
 const TitleInput = styled.input`
   width: 100%;
-  padding: 12px 10px;
+  padding: 12px;
   border: 1px solid ${Palette.Gray4};
   border-radius: 4px;
 
