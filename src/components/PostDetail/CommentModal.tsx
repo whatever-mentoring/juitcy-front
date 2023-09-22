@@ -8,6 +8,7 @@ import report from 'assets/icons/report.svg';
 import { useRecoilState } from 'recoil';
 import { editCommentState } from 'recoil/atom';
 import { commentType } from 'types';
+import { deleteCommentApi } from 'network/commentApi';
 
 const CommentModal = ({
   setIsModalOpen,
@@ -25,8 +26,11 @@ const CommentModal = ({
     });
     setIsModalOpen(false);
   };
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    const commentIdx = comment.commentIdx;
+    let res = await deleteCommentApi({ commentIdx });
     setIsModalOpen(false);
+    window.location.reload();
   };
   const handleReport = () => {
     alert('해당 댓글 신고를 원하시면 ****로 문의 바랍니다.');

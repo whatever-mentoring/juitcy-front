@@ -38,3 +38,17 @@ export const editCommentApi = async ({
     console.log(err);
   }
 };
+
+export const deleteCommentApi = async ({
+  commentIdx,
+}: {
+  commentIdx: number;
+}) => {
+  try {
+    let res = await publicInstance.delete(`/comments/${commentIdx}`);
+
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
