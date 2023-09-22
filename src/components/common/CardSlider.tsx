@@ -7,8 +7,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import { styled } from 'styled-components';
 import PageIndicator, { Dot } from '../Main/PageIndicator';
 import { postType } from 'types';
+import { Ref, forwardRef } from 'react';
 
-const CardSlider = ({ cards }: { cards: JSX.Element[] }) => {
+const CardSlider = (
+  { cards }: { cards: JSX.Element[] },
+  ref: Ref<HTMLDivElement>,
+) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const settings = {
     dots: false,
@@ -23,7 +27,7 @@ const CardSlider = ({ cards }: { cards: JSX.Element[] }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <StyledSlider {...settings}>
         {cards.map((card, index) => card)}
       </StyledSlider>
@@ -36,7 +40,7 @@ const CardSlider = ({ cards }: { cards: JSX.Element[] }) => {
   );
 };
 
-export default CardSlider;
+export default forwardRef(CardSlider);
 
 export const MakeCardSlider = (posts: postType) => {
   const cardComponents: JSX.Element[] = [];

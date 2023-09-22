@@ -41,20 +41,20 @@ export const postsApi = async ({
 
 // 카테고리 필터링을 사용한 쥬시글 목록 조회
 export const getPostsApi = async ({
-  setPosts,
+  page,
   seletedCtg,
 }: {
-  setPosts: React.Dispatch<React.SetStateAction<postType[] | undefined>>;
+  page: number;
   seletedCtg: string;
 }) => {
   try {
-    const data = await postsApi({
+    const res = await postsApi({
       size: 10,
-      page: 0,
+      page: page,
       category: seletedCtg,
       searchWord: '',
     });
-    setPosts(data);
+    return res;
   } catch (error) {
     console.log(error);
   }

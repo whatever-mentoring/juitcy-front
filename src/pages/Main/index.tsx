@@ -8,14 +8,43 @@ import CallToAction from 'components/Main/CallToAction';
 import { useEffect, useState } from 'react';
 import { getPostsApi } from 'network/postsApi';
 import { postType } from 'types';
+import { useInView } from 'react-intersection-observer';
 
 const Main = () => {
   const [posts, setPosts] = useState<postType[]>();
   const [seletedCtg, setSelectedCtg] = useState<string>('');
+  const { ref, inView } = useInView();
+  const [page, setPage] = useState(0);
+
+  const fetchNewPosts = async () => {
+    try {
+      let newPosts = await getPostsApi({ page, seletedCtg });
+      if (posts !== undefined) {
+        setPosts([...posts, ...newPosts]);
+      }
+      setPage(page + 1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(page);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const page = 0;
+        let newPosts = await getPostsApi({ page, seletedCtg });
+        setPosts(newPosts);
+        setPage(page + 1);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchPosts();
+  }, [seletedCtg]);
 
   useEffect(() => {
-    getPostsApi({ setPosts, seletedCtg });
-  }, [seletedCtg]);
+    if (inView) fetchNewPosts();
+  }, [inView]);
 
   return (
     <Column>
@@ -36,7 +65,11 @@ const Main = () => {
               const cardComponents = MakeCardSlider(cards);
               return (
                 <StyledLink key={index} to={`/post/${cards.postIdx}`}>
-                  <CardSlider key={`slider_${index}`} cards={cardComponents} />
+                  <CardSlider
+                    key={`slider_${index}`}
+                    cards={cardComponents}
+                    ref={index === posts.length - 1 ? ref : undefined}
+                  />
                 </StyledLink>
               );
             })}
