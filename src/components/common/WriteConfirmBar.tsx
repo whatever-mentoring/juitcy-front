@@ -4,23 +4,37 @@ import closure from 'store/closure';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+import { useLocation } from 'react-router-dom';
 
 const WriteConfirmBar = () => {
   const userType = closure.getUserType();
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentURI = location.pathname;
 
   const onClickWrite = () => {
-    const result = window.confirm('답변을 등록하겠습니까?');
-    if (result) {
-      userType === 'Cyni' ? navigate('/answer') : navigate('/ask');
+    let message, destination;
+
+    if (currentURI === '/ask/write') {
+      message = '질문을 등록하겠습니까?';
+      destination = '/ask';
     } else {
+      message = '답변을 등록하겠습니까?';
+      destination = '/answer';
+    }
+
+    const result = window.confirm(message);
+    if (result) {
+      navigate(destination);
     }
   };
-  const onClickCancle = () => {
-    const result = window.confirm('작성을 취소하시겠습니까?');
+  const onClickCancel = () => {
+    const message = '작성을 취소하시겠습니까?';
+    const destination = currentURI === '/ask/write' ? '/ask' : '/answer';
+
+    const result = window.confirm(message);
     if (result) {
-      userType === 'Cyni' ? navigate('/answer') : navigate('/ask');
-    } else {
+      navigate(destination);
     }
   };
 
@@ -29,7 +43,7 @@ const WriteConfirmBar = () => {
       <BtnDib
         color={Palette.White}
         borderClr={Palette.Gray2}
-        onClick={onClickCancle}
+        onClick={onClickCancel}
       >
         <Typo.h2 color={Palette.Gray4}>취소</Typo.h2>
       </BtnDib>
