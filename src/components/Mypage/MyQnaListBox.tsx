@@ -7,7 +7,7 @@ import closure from 'store/closure';
 import { Ref, forwardRef } from 'react';
 
 interface qnaBoxInterface {
-  children: string;
+  children?: string;
   count: number;
   dDay: number;
   category: string;

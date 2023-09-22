@@ -11,10 +11,11 @@ import { publicInstance } from 'network/config';
 import { useInView } from 'react-intersection-observer';
 
 interface myQnaDataInterface {
-  title: string;
+  title?: string;
   date: string;
   category: string;
   answerCount: number;
+  content?: string;
   daysUntilDday: number;
 }
 
@@ -40,9 +41,9 @@ export const MyQna = () => {
   useEffect(() => {
     publicInstance
       .get(
-        `/users${userType === 'Juni' ? '/juny' : ''}/questions?status=${
-          nowTab === 0 ? 'completed' : 'waiting'
-        }&requestPageNum=1`,
+        `/users${userType === 'Juni' ? '/juny' : '/siny'}/${
+          userType === 'Juni' ? 'questions' : 'answers'
+        }?status=${nowTab === 0 ? 'completed' : 'waiting'}&requestPageNum=1`,
       )
       .then((res) => {
         setMyQnaData(res?.data?.result?.content);
@@ -53,7 +54,9 @@ export const MyQna = () => {
   const getNewPageData = () => {
     publicInstance
       .get(
-        `/users${userType === 'Juni' ? '/juny' : ''}/questions?status=${
+        `/users${userType === 'Juni' ? '/juny' : '/siny'}/${
+          userType === 'Juni' ? 'questions' : 'answers'
+        }?status=${
           nowTab === 0 ? 'completed' : 'waiting'
         }&requestPageNum=${page}`,
       )
@@ -100,7 +103,7 @@ export const MyQna = () => {
                   index > 8 && index === myQnaData?.length - 1 ? ref : undefined
                 }
               >
-                {data.title}
+                {userType === 'Juni' ? data.title : data.content}
               </MyQnaListBox>
             ))}
         </div>

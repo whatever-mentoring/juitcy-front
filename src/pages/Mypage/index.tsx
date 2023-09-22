@@ -20,9 +20,10 @@ export interface mypageMenuInterface {
 }
 export interface userMypageData {
   name: string;
-  questionCount: number;
+  questionCount?: number;
   commentCount: number;
   scrapCount: number;
+  answerCount?: number;
 }
 
 export const Mypage = () => {
@@ -67,7 +68,9 @@ export const Mypage = () => {
                   <SubMenuBox
                     count={
                       menu.count === 'questionCount'
-                        ? userMypageData?.questionCount
+                        ? userType === 'Juni'
+                          ? userMypageData?.questionCount
+                          : userMypageData?.answerCount
                         : menu.count === 'commentCount'
                         ? userMypageData?.commentCount
                         : menu.count === 'scrapCount'

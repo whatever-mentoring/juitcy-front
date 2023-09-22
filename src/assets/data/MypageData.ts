@@ -1,10 +1,13 @@
 import { mypageMenuInterface } from 'pages/Mypage';
+import closure from 'store/closure';
+
+const userType = closure.getUserType();
 
 export const myPageMemu: mypageMenuInterface[] = [
   {
     link: 'myQna',
     icon: 'myQnaIcon',
-    menu: '내 질문',
+    menu: `${userType === 'Juni' ? '내 질문' : '내 답변'}`,
     margin: 0,
     count: 'questionCount',
   },
