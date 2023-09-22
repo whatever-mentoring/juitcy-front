@@ -5,6 +5,7 @@ import Typo from 'styles/Typo';
 import search from '@assets/icons/search.svg';
 import back from '@assets/icons/back.svg';
 import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 interface headerProps {
   btn?: string;
@@ -22,10 +23,20 @@ export const Header = ({
   background,
 }: headerProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBack = () => {
+    const currentURI = location.pathname;
+    if (currentURI === '/ask/write' || currentURI.match(/^\/answer\/\d+$/)) {
+      alert('작성을 취소하시겠습니까?');
+    }
+
+    navigate(-1);
+  };
 
   return (
     <Container borderBottom={borderBottom} background={background}>
-      <img src={btn === 'back' && back} onClick={() => navigate(-1)}></img>
+      <img src={btn === 'back' && back} onClick={handleBack}></img>
       <Typo.h2 color={color}>{children}</Typo.h2>
       <StyledLink to="/search">
         <img src={btn === 'search' && search}></img>
