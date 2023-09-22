@@ -26,10 +26,18 @@ const WriteConfirmBar = () => {
 
   return (
     <Container>
-      <BtnDib color={Palette.White} onClick={onClickCancle}>
+      <BtnDib
+        color={Palette.White}
+        borderClr={Palette.Gray2}
+        onClick={onClickCancle}
+      >
         <Typo.h2 color={Palette.Gray4}>취소</Typo.h2>
       </BtnDib>
-      <BtnDib color={Palette.Main} onClick={onClickWrite}>
+      <BtnDib
+        color={Palette.Main}
+        borderClr={Palette.Main}
+        onClick={onClickWrite}
+      >
         <Typo.h2 color={Palette.White}>작성완료</Typo.h2>
       </BtnDib>
     </Container>
@@ -41,14 +49,13 @@ export default WriteConfirmBar;
 const Container = styled(Row)`
   width: 100%;
   height: 59px;
-
-  box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1);
 `;
-const BtnDib = styled(Row)<{ color: string }>`
+const BtnDib = styled(Row)<{ color: string; borderClr: string }>`
   width: 50%;
   justify-content: center;
   align-items: center;
 
   background: ${({ color }) => color};
+  border-top: 1px solid ${({ borderClr }) => borderClr};
   cursor: pointer;
 `;

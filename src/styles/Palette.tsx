@@ -12,6 +12,7 @@ export const Palette = {
   Orange: orange,
   Blue: blue,
   Sub: { yellow: '#FDF7E8', blue: '#F7F6FA' },
+  Back: { juni: '#FDFBFB' },
 
   White: '#FFFFFF',
   Gray05: '#FBFBFD',
