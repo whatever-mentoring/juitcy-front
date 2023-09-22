@@ -34,7 +34,6 @@ const PostDetail = () => {
 
     fetchData();
   }, [idxNum]);
-  console.log(postdetail);
   return (
     <Column>
       <Header btn={'back'} borderBottom={true}>
@@ -48,7 +47,9 @@ const PostDetail = () => {
               <CommentScrapInfo post={postdetail}></CommentScrapInfo>
               <ScrapButton></ScrapButton>
             </Row>
-            {/* <CommentsBox comments={comments}></CommentsBox> */}
+            {postdetail.commentList !== undefined && (
+              <CommentsBox comments={postdetail.commentList}></CommentsBox>
+            )}
           </Column>
         ) : (
           <div>loading...</div>

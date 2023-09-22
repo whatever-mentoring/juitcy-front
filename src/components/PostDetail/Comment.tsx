@@ -7,17 +7,9 @@ import moreMenu from 'assets/icons/more-menu.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
 import CommentModal from './CommentModal';
-import closure from 'store/closure';
+import { commentType } from 'types';
 
-interface commentProps {
-  user: string;
-  text: string;
-  date: string;
-}
-
-const Comment = ({ user, text, date }: commentProps) => {
-  const userType = user;
-
+const Comment = ({ comment }: { comment: commentType }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -25,21 +17,25 @@ const Comment = ({ user, text, date }: commentProps) => {
   };
   return (
     <Container>
-      <img src={userType === 'Cyni' ? commentCyni : commentJuni}></img>
+      <img
+        src={comment.writer === '익명의 시니' ? commentCyni : commentJuni}
+      ></img>
       <Content justifyContent="space-between">
         <Column gap={9}>
           <Row>
-            {userType === 'Cyni' ? (
-              <Typo.s1 color={Palette.Blue}>익명의 시니</Typo.s1>
-            ) : (
-              <Typo.s1 color={Palette.Orange}>익명의 주니</Typo.s1>
-            )}
+            <Typo.s1
+              color={
+                comment.writer === '익명의 시니' ? Palette.Blue : Palette.Orange
+              }
+            >
+              {comment.writer}
+            </Typo.s1>
             <DotWrapper>
               <Dot />
             </DotWrapper>
-            <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>
+            <Typo.s2 color={Palette.Gray4}>{comment.commentDateTime}</Typo.s2>
           </Row>
-          <Typo.s2 color={Palette.Gray6}>{text}</Typo.s2>
+          <Typo.s2 color={Palette.Gray6}>{comment.content}</Typo.s2>
         </Column>
       </Content>
       <Moremenu src={moreMenu} onClick={toggleModal}></Moremenu>

@@ -1,18 +1,13 @@
 import { Column } from 'assets/common';
 import styled from 'styled-components';
 import Comment from './Comment';
-import { commentType } from 'pages/Main/PostDetail';
+import { commentType } from 'types';
 
-const CommentsBox = (props: { comments: commentType[] }) => {
+const CommentsBox = ({ comments }: { comments: commentType[] }) => {
   return (
     <Container>
-      {props.comments.map((comment: commentType, index) => (
-        <Comment
-          key={index}
-          user={comment.userType}
-          text={comment.text}
-          date={comment.date}
-        />
+      {comments.map((comment: commentType, index) => (
+        <Comment key={comment.commentIdx} comment={comment} />
       ))}
     </Container>
   );
