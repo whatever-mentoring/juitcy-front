@@ -16,7 +16,6 @@ const CommentInputBox = ({ idx }: { idx: number }) => {
   const resetEditComment = useResetRecoilState(editCommentState);
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  console.log(editState);
   const [text, setText] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
