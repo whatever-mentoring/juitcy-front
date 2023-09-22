@@ -26,10 +26,6 @@ export const loginApi = async ({
     );
     //만료시간도 저장
 
-    //헤더 설정
-    publicInstance.defaults.headers.common['Authorization'] =
-      res.data.result.jwt.access_token;
-
     //회원가입/로그인 구분
     if (res.data.result.isNewUser) {
       window.location.href = '/signup/terms';

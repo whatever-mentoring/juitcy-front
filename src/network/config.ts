@@ -10,6 +10,7 @@ export const publicInstance = axios.create({
   },
 });
 
+/* interceptors */
 const getTokens = () => {
   const accessToken = localStorage.getItem('access_token');
   const refreshToken = localStorage.getItem('refresh_token');
@@ -19,6 +20,22 @@ const setAccessToken = (accessToken: string) => {
   localStorage.setItem('access_token', accessToken);
 };
 
+//요청시 헤더에 accessToken 추가
+publicInstance.interceptors.request.use(
+  async (config) => {
+    const { accessToken, refreshToken } = getTokens();
+    if (accessToken) {
+      config.headers.Authorization = `${accessToken}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+//access token이 만료되었을시 재발급
 publicInstance.interceptors.response.use(
   (res) => {
     return res;
@@ -44,7 +61,6 @@ publicInstance.interceptors.response.use(
       } catch (err) {
         // refresh token이 유효하지 않은 경우
         // 로그아웃
-        delete publicInstance.defaults.headers.common['Authorization'];
         localStorage.clear();
         window.location.href = '/signup';
       }
