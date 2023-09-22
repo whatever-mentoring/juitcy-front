@@ -1,20 +1,27 @@
-import { Column, Row } from 'assets/common';
-import CardSlider from 'components/common/CardSlider';
+import { Column, Row, StyledLink } from 'assets/common';
+import CardSlider, { MakeCardSlider } from 'components/common/CardSlider';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { QTitleCard, QContentCard, AnsCard } from 'components/common/Card';
+import { postType } from 'types';
+import { searchApi } from 'network/postsApi';
 
 const SearchResult = ({ text }: { text: string }) => {
-  let resultNum = 23;
-  const cards = [
-    <QTitleCard></QTitleCard>,
-    <QContentCard></QContentCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-  ];
+  const [resultNum, setResultNum] = useState<number>();
+  const [posts, setPosts] = useState<postType[] | null>(null);
 
+  useEffect(() => {
+    const search = async () => {
+      try {
+        let res = await searchApi({ text, setPosts });
+        //setResultNum(res.length); 검색 테스트가 되지 않아 테스트 후 수정 필요
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    search();
+  }, [text]);
   return (
     <Column gap={30}>
       <Row>
@@ -24,8 +31,15 @@ const SearchResult = ({ text }: { text: string }) => {
         <Typo.b4>개</Typo.b4>
       </Row>
       <ResultContainer>
-        <CardSlider cards={cards}></CardSlider>
-        <CardSlider cards={cards}></CardSlider>
+        {/* card slider들을 렌더한다. */}
+        {posts?.map((cards, index) => {
+          const cardComponents = MakeCardSlider(cards);
+          return (
+            <StyledLink key={index} to={`/post/${cards.postIdx}`}>
+              <CardSlider key={`slider_${index}`} cards={cardComponents} />
+            </StyledLink>
+          );
+        })}
       </ResultContainer>
     </Column>
   );

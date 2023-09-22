@@ -54,6 +54,25 @@ export const postAllApi = async ({
     });
     setPosts(data);
   } catch (error) {
-    console.error(error);
+    console.log(error);
+  }
+};
+export const searchApi = async ({
+  text,
+  setPosts,
+}: {
+  text: string;
+  setPosts: React.Dispatch<React.SetStateAction<postType[] | null>>;
+}) => {
+  try {
+    const res = await postsApi({
+      size: 10,
+      category: '',
+      searchWord: text,
+    });
+
+    setPosts(res.result.content);
+  } catch (error) {
+    console.log(error);
   }
 };
