@@ -3,10 +3,10 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
 interface propsType {
-  id: number;
+  id: string | null;
   name: string;
   selected: boolean;
-  onClick: (id: number) => void;
+  onClick: (id: string | null) => void;
 }
 interface containerProps {
   selected: boolean;

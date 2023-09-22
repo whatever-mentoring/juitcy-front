@@ -12,63 +12,43 @@ import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
 import closure from 'store/closure';
 
+interface cardProps {
+  category?: string;
+  content: string;
+  juicyDateTime?: string;
+}
+
 /* Card components */
 
 // main page
-export const QTitleCard = () => {
+export const QTitleCard = ({ category, content, juicyDateTime }: cardProps) => {
   return (
     <Container height={317} color={Palette.White} gap={16}>
       <Tag tagType={'question'}>
-        <CategoryLabel>일상</CategoryLabel>
+        {category !== undefined && <CategoryLabel>{category}</CategoryLabel>}
       </Tag>
-      <Title>
-        일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십
-      </Title>
-      <Date>2023.09.11</Date>
+      <Title>{content}</Title>
+      <Date>{juicyDateTime !== undefined ? juicyDateTime : ''}</Date>
     </Container>
   );
 };
-export const QContentCard = () => {
+export const QContentCard = ({ content }: cardProps) => {
   return (
     <Container height={317} color={Palette.Main05} gap={14}>
       <Tag tagType={'question'}>
         <Typo.b2>질문 내용</Typo.b2>
       </Tag>
-      <ScrollBox>
-        로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인
-        분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을
-        보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인
-        문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도
-        이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도
-        부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도
-        사용된다.로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽
-        디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적
-        연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는
-        실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움
-        글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을
-        그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는
-        무언가를 지칭하는 용어로도 사용된다.로렘 입숨(lorem ipsum; 줄여서 립숨,
-        lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃
-        같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기
-        텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각
-        디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘
-        입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는
-        무언가를 지칭하는 용어로도 사용된다.
-      </ScrollBox>
+      <ScrollBox>{content}</ScrollBox>
     </Container>
   );
 };
-export const AnsCard = () => {
+export const AnsCard = ({ content }: cardProps) => {
   return (
     <Container height={317} color={Palette.Main15} gap={14}>
       <Tag tagType={'answer'}>
         <Typo.b2 color={Palette.Main}>익명의 시니어</Typo.b2>
       </Tag>
-      <ScrollBox>
-        로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인
-        분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을
-        보여줄 때 사용하는 표준 채우기 텍스트
-      </ScrollBox>
+      <ScrollBox>{content}</ScrollBox>
       <Date>2023.09.11</Date>
     </Container>
   );
@@ -79,7 +59,7 @@ export const AnsButtonCard = () => {
     <ABContainer color={Palette.White} gap={16} height={277}>
       <Column gap={10}>
         <Tag tagType={'question'}>
-          <CategoryLabel>일상</CategoryLabel>
+          <CategoryLabel> "df"</CategoryLabel>
         </Tag>
         <AnsTitle>
           장례식에서 조례금을 얼마정도하는게 좋을 장례식에서 조례금을

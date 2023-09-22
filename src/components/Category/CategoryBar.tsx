@@ -4,35 +4,48 @@ import { useState } from 'react';
 import { Column, Row } from 'assets/common';
 import Typo from 'styles/Typo';
 
-const CategoryBar = ({ ctgAll }: { ctgAll: boolean }) => {
+const CategoryBar = ({
+  ctgAll,
+  setSelectedCtg,
+}: {
+  ctgAll: boolean;
+  setSelectedCtg: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   return (
     <Container>
       <Title></Title>
-      <Categories ctgAll={ctgAll}></Categories>
+      <Categories ctgAll={ctgAll} setSelectedCtg={setSelectedCtg}></Categories>
     </Container>
   );
 };
 
-const Categories = ({ ctgAll }: { ctgAll: boolean }) => {
+const Categories = ({
+  ctgAll,
+  setSelectedCtg,
+}: {
+  ctgAll: boolean;
+  setSelectedCtg: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const ctgArr = ctgAll
     ? [
-        { id: 1, name: '전체', selected: true },
-        { id: 2, name: '일상', selected: false },
-        { id: 3, name: '인간관계', selected: false },
-        { id: 4, name: '사회생활', selected: false },
-        { id: 5, name: '기타', selected: false },
+        { id: '', name: '전체', selected: true },
+        { id: 'DAILY', name: '일상', selected: false },
+        { id: 'RELATIONSHIP', name: '인간관계', selected: false },
+        { id: 'SOCIAL', name: '사회생활', selected: false },
+        { id: 'ETC', name: '기타', selected: false },
       ]
     : [
-        { id: 2, name: '일상', selected: false },
-        { id: 3, name: '인간관계', selected: false },
-        { id: 4, name: '사회생활', selected: false },
-        { id: 5, name: '기타', selected: false },
+        { id: 'DAILY', name: '일상', selected: false },
+        { id: 'RELATIONSHIP', name: '인간관계', selected: false },
+        { id: 'SOCIAL', name: '사회생활', selected: false },
+        { id: 'ETC', name: '기타', selected: false },
       ];
 
   const [categories, setCategories] = useState(ctgArr);
-  const handleClick = (id: number) => {
+  const handleClick = (id: string | null) => {
     const updatedCategories = categories.map((category) => {
       if (category.id === id) {
+        setSelectedCtg(id);
         return { ...category, selected: true };
       } else {
         return { ...category, selected: false };

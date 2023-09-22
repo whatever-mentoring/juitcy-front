@@ -1,20 +1,50 @@
-import { Column, EntireContainer, Row, StyledLink } from 'assets/common';
+import { Column, EntireContainer, StyledLink } from 'assets/common';
 import CategoryBar from 'components/Category/CategoryBar';
 import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
-import CardSlider from '../../components/common/CardSlider';
+import CardSlider, { MakeCardSlider } from '../../components/common/CardSlider';
 import { Palette } from 'styles/Palette';
 import CallToAction from 'components/Main/CallToAction';
-import { QTitleCard, QContentCard, AnsCard } from 'components/common/Card';
+import { useEffect, useState } from 'react';
+import { getPostsApi } from 'network/postsApi';
+import { postType } from 'types';
+import { useInView } from 'react-intersection-observer';
 
 const Main = () => {
-  const cards = [
-    <QTitleCard></QTitleCard>,
-    <QContentCard></QContentCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-    <AnsCard></AnsCard>,
-  ];
+  const [posts, setPosts] = useState<postType[]>();
+  const [seletedCtg, setSelectedCtg] = useState<string>('');
+  const { ref, inView } = useInView();
+  const [page, setPage] = useState(0);
+
+  const fetchNewPosts = async () => {
+    try {
+      let newPosts = await getPostsApi({ page, seletedCtg });
+      if (posts !== undefined) {
+        setPosts([...posts, ...newPosts]);
+      }
+      setPage(page + 1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const page = 0;
+        let newPosts = await getPostsApi({ page, seletedCtg });
+        setPosts(newPosts);
+        setPage(page + 1);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchPosts();
+  }, [seletedCtg]);
+
+  useEffect(() => {
+    if (inView) fetchNewPosts();
+  }, [inView]);
 
   return (
     <Column>
@@ -25,21 +55,29 @@ const Main = () => {
         <Column gap={22}>
           <Column color={Palette.Gray05} gap={12}>
             <div className="padding-container">
-              <CategoryBar ctgAll={true} />
+              <CategoryBar ctgAll={true} setSelectedCtg={setSelectedCtg} />
             </div>
             <CallToAction />
           </Column>
           <div className="padding-container">
             <Column gap={26}>
-              <StyledLink to="/post/1">
-                <CardSlider cards={cards} />
-              </StyledLink>
-              <CardSlider cards={cards} />
+              {/* card slider들을 렌더한다. */}
+              {posts?.map((cards, index) => {
+                const cardComponents = MakeCardSlider(cards);
+                return (
+                  <StyledLink key={index} to={`/post/${cards.postIdx}`}>
+                    <CardSlider
+                      key={`slider_${index}`}
+                      cards={cardComponents}
+                      ref={index === posts.length - 1 ? ref : undefined}
+                    />
+                  </StyledLink>
+                );
+              })}
             </Column>
           </div>
         </Column>
       </EntireContainer>
-      <Homebar />
     </Column>
   );
 };
