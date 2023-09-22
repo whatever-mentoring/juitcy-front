@@ -8,7 +8,7 @@ import { postType } from 'types';
 import { searchApi } from 'network/postsApi';
 
 const SearchResult = ({ text }: { text: string }) => {
-  const [resultNum, setResultNum] = useState<number>();
+  const [resultNum, setResultNum] = useState<number>(0);
   const [posts, setPosts] = useState<postType[] | null>(null);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const SearchResult = ({ text }: { text: string }) => {
         setResultNum(res.length);
       } catch (err) {
         console.log(err);
+        setResultNum(0);
       }
     };
     search();
