@@ -1,84 +1,33 @@
 import { EntireContainer, Row } from 'assets/common';
 import { Header } from 'components/common/Header';
-import { MyQnaListBox } from 'components/Mypage/MyQnaListBox';
+import MyQnaListBox from 'components/Mypage/MyQnaListBox';
 import { Waitingtab } from 'components/Mypage/WaitingTab';
 import { NoticeLabel } from 'components/common/NotcieLabel';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Typo from 'styles/Typo';
 import { Palette } from 'styles/Palette';
 import closure from 'store/closure';
+import { publicInstance } from 'network/config';
+import { useInView } from 'react-intersection-observer';
 
-const fakeData = [
-  {
-    count: 1,
-    category: '일상',
-    dDay: 2,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 1,
-    category: '일상',
-    dDay: 1,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 2,
-    category: '사회생활',
-    dDay: 2,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 3,
-    category: '일상',
-    dDay: 2,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 3,
-    category: '기타',
-    dDay: 3,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 1,
-    category: '일상',
-    dDay: 2,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 3,
-    category: '일상',
-    dDay: 1,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 1,
-    category: '일상',
-    dDay: 2,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-  {
-    count: 2,
-    category: '일상',
-    dDay: 2,
-    date: '2023.09.09',
-    content: '결혼식 축의금 얼마할까요?',
-  },
-];
+interface myQnaDataInterface {
+  title: string;
+  date: string;
+  category: string;
+  answerCount: number;
+  daysUntilDday: number;
+}
 
 export const MyQna = () => {
   const userType = closure.getUserType();
 
   let text = '쥬시 완료된 질문 ';
   const [nowTab, setNowTab] = useState(0); // index 가 0이면 완료 api 불러오기 , 1이면 대기 api 불러오기
+  const [myQnaData, setMyQnaData] = useState<myQnaDataInterface[]>();
+  const [myQnaCount, setMyQnaCount] = useState<number>();
+  const [page, setPage] = useState<number>(2);
+
+  const { ref, inView } = useInView();
 
   if (userType === 'Juni') {
     if (nowTab === 0) text = '쥬시 완료된 질문 ';
@@ -87,6 +36,37 @@ export const MyQna = () => {
     if (nowTab === 0) text = '쥬시 완료된 답변 ';
     else text = '쥬시 대기 중인 답변 ';
   }
+
+  useEffect(() => {
+    publicInstance
+      .get(
+        `/users${userType === 'Juni' ? '/juny' : ''}/questions?status=${
+          nowTab === 0 ? 'completed' : 'waiting'
+        }&requestPageNum=1`,
+      )
+      .then((res) => {
+        setMyQnaData(res?.data?.result?.content);
+        setMyQnaCount(res?.data?.result?.totalElements);
+      });
+  }, [nowTab]);
+
+  const getNewPageData = () => {
+    publicInstance
+      .get(
+        `/users${userType === 'Juni' ? '/juny' : ''}/questions?status=${
+          nowTab === 0 ? 'completed' : 'waiting'
+        }&requestPageNum=${page}`,
+      )
+      .then((res) => {
+        const newData = res?.data?.result?.content || [];
+        myQnaData !== undefined && setMyQnaData([...myQnaData, ...newData]);
+        setPage(page + 1);
+      });
+  };
+
+  useEffect(() => {
+    if (inView) getNewPageData();
+  }, [inView]);
 
   return (
     <>
@@ -100,7 +80,7 @@ export const MyQna = () => {
       >
         <Row>
           <Typo.b2>{text} &nbsp;</Typo.b2>
-          <Typo.b2 color={Palette.Main}>12</Typo.b2>
+          <Typo.b2 color={Palette.Main}>{myQnaCount}</Typo.b2>
         </Row>
         {nowTab === 1 && (
           <NoticeLabel margin="20px 0 0 0">
@@ -108,17 +88,21 @@ export const MyQna = () => {
           </NoticeLabel>
         )}
         <div className="mypage-list-container">
-          {fakeData.map((data: any, index: number) => (
-            <MyQnaListBox
-              count={data.count}
-              dDay={data.dDay}
-              date={data.date}
-              category={data.category}
-              key={index}
-            >
-              {data.content}
-            </MyQnaListBox>
-          ))}
+          {myQnaData !== undefined &&
+            myQnaData.map((data: myQnaDataInterface, index: number) => (
+              <MyQnaListBox
+                count={data.answerCount}
+                dDay={data.daysUntilDday}
+                date={data.date}
+                category={data.category}
+                key={index}
+                ref={
+                  index > 8 && index === myQnaData?.length - 1 ? ref : undefined
+                }
+              >
+                {data.title}
+              </MyQnaListBox>
+            ))}
         </div>
       </EntireContainer>
     </>

@@ -9,7 +9,7 @@ import Typo from 'styles/Typo';
 
 interface myCommentInterface {
   content: string;
-  createdDate: string;
+  date: string;
   postIdx: number;
   postTitle: string;
 }
@@ -55,11 +55,11 @@ export const MyComment = () => {
           {myCommentData !== undefined &&
             myCommentData?.map((data: myCommentInterface, index: number) => (
               <CommentListBox
-                date={data.createdDate}
+                date={data.date}
                 title={data.postTitle}
                 key={index}
                 ref={
-                  index > 8 && index === myCommentData.length - 1
+                  index > 8 && index === myCommentData?.length - 1
                     ? ref
                     : undefined
                 }

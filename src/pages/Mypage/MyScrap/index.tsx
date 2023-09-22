@@ -14,7 +14,7 @@ interface myScrapData {
   content: string;
   commentCount: number;
   scrapCount: number;
-  createdDate: string;
+  date: string;
 }
 
 export const MyScrap = () => {
@@ -57,14 +57,14 @@ export const MyScrap = () => {
           {myScrapData !== undefined &&
             myScrapData.map((data: myScrapData, index: number) => (
               <ScrapListBox
-                date={data.createdDate}
+                date={data.date}
                 title={data.postTitle}
                 category={data.category}
                 commentCount={data.commentCount}
                 scrapCount={data.scrapCount}
                 key={index}
                 ref={
-                  index > 8 && index === myScrapData.length - 1
+                  index > 8 && index === myScrapData?.length - 1
                     ? ref
                     : undefined
                 }
