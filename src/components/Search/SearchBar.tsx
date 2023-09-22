@@ -42,6 +42,7 @@ const SearchBar = ({
           value={text}
           onChange={handleTextChange}
           onKeyUp={handleKeyPress}
+          placeholder="검색어를 입력하세요."
         ></SearchInput>
         <SearchIcon src={searchButton} onClick={toggleSearched} />
       </SearchInputWrapper>
