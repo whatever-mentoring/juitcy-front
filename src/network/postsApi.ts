@@ -39,7 +39,7 @@ export const postsApi = async ({
   }
 };
 
-// postsApi를 활용한 apis
+// 카테고리 필터링을 사용한 쥬시글 목록 조회
 export const getPostsApi = async ({
   setPosts,
   seletedCtg,
@@ -59,6 +59,8 @@ export const getPostsApi = async ({
     console.log(error);
   }
 };
+
+//검색어를 사용한 쥬시글 목록 조회
 export const searchApi = async ({
   text,
   setPosts,
@@ -76,5 +78,15 @@ export const searchApi = async ({
     setPosts(res.result.content);
   } catch (error) {
     console.log(error);
+  }
+};
+
+//스크랩
+export const scrapApi = async ({ postIdx }: { postIdx: number }) => {
+  try {
+    let res = await publicInstance.post(`/posts/${postIdx}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
   }
 };

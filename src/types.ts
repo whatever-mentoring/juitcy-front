@@ -6,6 +6,7 @@ export interface postType {
   cardList: string[];
   juicyDateTime: string;
   commentList?: commentType[];
+  isScrap?: boolean;
 }
 
 export interface commentType {
