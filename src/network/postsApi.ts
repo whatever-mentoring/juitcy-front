@@ -61,21 +61,13 @@ export const getPostsApi = async ({
 };
 
 //검색어를 사용한 쥬시글 목록 조회
-export const searchApi = async ({
-  text,
-  setPosts,
-}: {
-  text: string;
-  setPosts: React.Dispatch<React.SetStateAction<postType[] | null>>;
-}) => {
+export const searchApi = async ({ text }: { text: string }) => {
   try {
     const res = await postsApi({
-      size: 10,
       category: '',
       searchWord: text,
     });
-
-    setPosts(res.result.content);
+    return res;
   } catch (error) {
     console.log(error);
   }

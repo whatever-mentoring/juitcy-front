@@ -14,14 +14,16 @@ const SearchResult = ({ text }: { text: string }) => {
   useEffect(() => {
     const search = async () => {
       try {
-        let res = await searchApi({ text, setPosts });
-        //setResultNum(res.length); 검색 테스트가 되지 않아 테스트 후 수정 필요
+        let res = await searchApi({ text });
+        setPosts(res);
+        setResultNum(res.length);
       } catch (err) {
         console.log(err);
       }
     };
     search();
   }, [text]);
+
   return (
     <Column gap={30}>
       <Row>
