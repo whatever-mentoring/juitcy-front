@@ -6,14 +6,16 @@ import CardSlider, { MakeCardSlider } from '../../components/common/CardSlider';
 import { Palette } from 'styles/Palette';
 import CallToAction from 'components/Main/CallToAction';
 import { useEffect, useState } from 'react';
-import { postAllApi } from 'network/postsApi';
+import { getPostsApi } from 'network/postsApi';
 import { postType } from 'types';
 
 const Main = () => {
   const [posts, setPosts] = useState<postType[]>();
+  const [seletedCtg, setSelectedCtg] = useState<string>('');
+
   useEffect(() => {
-    postAllApi({ setPosts });
-  }, []);
+    getPostsApi({ setPosts, seletedCtg });
+  }, [seletedCtg]);
 
   return (
     <Column>
@@ -23,7 +25,7 @@ const Main = () => {
       <EntireContainer homebar={true} padding="25px 0px">
         <Column color={Palette.Gray05}>
           <div className="padding-container">
-            <CategoryBar ctgAll={true} />
+            <CategoryBar ctgAll={true} setSelectedCtg={setSelectedCtg} />
           </div>
           <CallToAction />
         </Column>

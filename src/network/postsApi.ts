@@ -40,16 +40,18 @@ export const postsApi = async ({
 };
 
 // postsApi를 활용한 apis
-export const postAllApi = async ({
+export const getPostsApi = async ({
   setPosts,
+  seletedCtg,
 }: {
   setPosts: React.Dispatch<React.SetStateAction<postType[] | undefined>>;
+  seletedCtg: string;
 }) => {
   try {
     const data = await postsApi({
       size: 10,
       page: 0,
-      category: '',
+      category: seletedCtg,
       searchWord: '',
     });
     setPosts(data);
