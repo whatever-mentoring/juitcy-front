@@ -15,19 +15,20 @@ import closure from 'store/closure';
 interface cardProps {
   category?: string;
   content: string;
+  juicyDateTime?: string;
 }
 
 /* Card components */
 
 // main page
-export const QTitleCard = ({ category, content }: cardProps) => {
+export const QTitleCard = ({ category, content, juicyDateTime }: cardProps) => {
   return (
     <Container height={317} color={Palette.White} gap={16}>
       <Tag tagType={'question'}>
         {category !== undefined && <CategoryLabel>{category}</CategoryLabel>}
       </Tag>
       <Title>{content}</Title>
-      <Date>2023.09.11</Date>
+      <Date>{juicyDateTime !== undefined ? juicyDateTime : ''}</Date>
     </Container>
   );
 };

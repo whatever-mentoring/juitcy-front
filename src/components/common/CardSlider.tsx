@@ -50,6 +50,7 @@ export const MakeCardSlider = (posts: postType) => {
       key={'qtitle'}
       category={posts.category}
       content={posts.cardList[0]}
+      juicyDateTime={posts.juicyDateTime}
     ></QTitleCard>,
   );
   cardComponents.push(
