@@ -45,7 +45,9 @@ const PostDetail = () => {
             <CardSlider cards={MakeCardSlider(postdetail)} />
             <Row justifyContent="space-between">
               <CommentScrapInfo post={postdetail}></CommentScrapInfo>
-              <ScrapButton></ScrapButton>
+              {idxNum && (
+                <ScrapButton postIdx={idxNum} post={postdetail}></ScrapButton>
+              )}
             </Row>
             {postdetail.commentList !== undefined && (
               <CommentsBox comments={postdetail.commentList}></CommentsBox>
