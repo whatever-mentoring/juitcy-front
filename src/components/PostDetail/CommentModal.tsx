@@ -38,8 +38,8 @@ const CommentModal = ({
   };
 
   return (
-    <Container>
-      <Modal>
+    <Container onClick={() => setIsModalOpen(false)}>
+      <Modal onClick={(e) => e.stopPropagation()}>
         <Typo.b4>댓글</Typo.b4>
         {comment.isWriter ? (
           <Column gap={10}>
