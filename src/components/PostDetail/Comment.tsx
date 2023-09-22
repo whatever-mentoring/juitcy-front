@@ -39,7 +39,9 @@ const Comment = ({ comment }: { comment: commentType }) => {
         </Column>
       </Content>
       <Moremenu src={moreMenu} onClick={toggleModal}></Moremenu>
-      {isModalOpen && <CommentModal setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && (
+        <CommentModal setIsModalOpen={setIsModalOpen} comment={comment} />
+      )}
     </Container>
   );
 };

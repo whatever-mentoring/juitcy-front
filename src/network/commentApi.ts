@@ -19,3 +19,22 @@ export const postCommentApi = async ({
     console.log(err);
   }
 };
+
+export const editCommentApi = async ({
+  content,
+  commentIdx,
+}: {
+  content: string;
+  commentIdx: number;
+}) => {
+  try {
+    const body = {
+      content: content,
+    };
+    let res = await publicInstance.patch(`/comments/${commentIdx}`, body);
+
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
