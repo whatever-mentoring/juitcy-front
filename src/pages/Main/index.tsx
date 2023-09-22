@@ -27,7 +27,7 @@ const Main = () => {
       console.log(err);
     }
   };
-  console.log(page);
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
