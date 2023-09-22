@@ -23,7 +23,7 @@ function App() {
       <Routes>
         {/* MainPage */}
         <Route path="/" element={<Main />} />
-        <Route path="/post/:id" element={<PostDetail />} />
+        <Route path="/post/:idx" element={<PostDetail />} />
         <Route path="/search" element={<Search />} />
 
         {/* SignupPage */}
@@ -34,7 +34,7 @@ function App() {
 
         {/* AnswerPage */}
         <Route path="/answer" element={<Answer />} />
-        <Route path="/answer/:id" element={<WriteAnswer />} />
+        <Route path="/answer/:idx" element={<WriteAnswer />} />
 
         {/* AskPage */}
         <Route path="/ask" element={<Ask />} />
