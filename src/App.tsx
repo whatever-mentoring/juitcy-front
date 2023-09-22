@@ -16,38 +16,41 @@ import Signup from 'pages/Signup';
 import Oauth from 'pages/Signup/Oauth';
 import TermsOfService from 'pages/Signup/TermsOfService';
 import SignupSuccess from 'pages/Signup/SignupSuccess';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* MainPage */}
-        <Route path="/" element={<Main />} />
-        <Route path="/post/:idx" element={<PostDetail />} />
-        <Route path="/search" element={<Search />} />
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          {/* MainPage */}
+          <Route path="/" element={<Main />} />
+          <Route path="/post/:idx" element={<PostDetail />} />
+          <Route path="/search" element={<Search />} />
 
-        {/* SignupPage */}
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/oauth" element={<Oauth />} />
-        <Route path="/signup/terms" element={<TermsOfService />} />
-        <Route path="/signup/success" element={<SignupSuccess />} />
+          {/* SignupPage */}
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/oauth" element={<Oauth />} />
+          <Route path="/signup/terms" element={<TermsOfService />} />
+          <Route path="/signup/success" element={<SignupSuccess />} />
 
-        {/* AnswerPage */}
-        <Route path="/answer" element={<Answer />} />
-        <Route path="/answer/:idx" element={<WriteAnswer />} />
+          {/* AnswerPage */}
+          <Route path="/answer" element={<Answer />} />
+          <Route path="/answer/:idx" element={<WriteAnswer />} />
 
-        {/* AskPage */}
-        <Route path="/ask" element={<Ask />} />
-        <Route path="/ask/write" element={<WriteQuestion />} />
+          {/* AskPage */}
+          <Route path="/ask" element={<Ask />} />
+          <Route path="/ask/write" element={<WriteQuestion />} />
 
-        {/* MyPage */}
-        <Route path="/myPage" element={<Mypage />} />
-        <Route path="/myPage/myQna" element={<MyQna />} />
-        <Route path="/myPage/myComment" element={<MyComment />} />
-        <Route path="/myPage/myScrap" element={<MyScrap />} />
-        <Route path="/myPage/provision" element={<Provision />} />
-      </Routes>
-    </BrowserRouter>
+          {/* MyPage */}
+          <Route path="/myPage" element={<Mypage />} />
+          <Route path="/myPage/myQna" element={<MyQna />} />
+          <Route path="/myPage/myComment" element={<MyComment />} />
+          <Route path="/myPage/myScrap" element={<MyScrap />} />
+          <Route path="/myPage/provision" element={<Provision />} />
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   );
 }
 
