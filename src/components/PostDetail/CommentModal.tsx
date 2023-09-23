@@ -5,29 +5,43 @@ import Typo from 'styles/Typo';
 import edit from 'assets/icons/edit.svg';
 import deleteComment from 'assets/icons/delete-comment.svg';
 import report from 'assets/icons/report.svg';
+import { useRecoilState } from 'recoil';
+import { editCommentState } from 'recoil/atom';
+import { commentType } from 'types';
+import { deleteCommentApi } from 'network/commentApi';
 
 const CommentModal = ({
   setIsModalOpen,
+  comment,
 }: {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  comment: commentType;
 }) => {
-  const isAuthor: boolean = true;
-
+  const [editState, setEditState] = useRecoilState(editCommentState);
   const handleEdit = () => {
+    setEditState({
+      editClicked: true,
+      text: comment.content,
+      commentIdx: comment.commentIdx,
+    });
     setIsModalOpen(false);
   };
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    const commentIdx = comment.commentIdx;
+    let res = await deleteCommentApi({ commentIdx });
     setIsModalOpen(false);
+    window.location.reload();
   };
   const handleReport = () => {
     alert('해당 댓글 신고를 원하시면 ****로 문의 바랍니다.');
+    setIsModalOpen(false);
   };
 
   return (
-    <Container>
-      <Modal>
+    <Container onClick={() => setIsModalOpen(false)}>
+      <Modal onClick={(e) => e.stopPropagation()}>
         <Typo.b4>댓글</Typo.b4>
-        {isAuthor ? (
+        {comment.isWriter ? (
           <Column gap={10}>
             <Menu onClick={handleEdit}>
               <img src={edit} />

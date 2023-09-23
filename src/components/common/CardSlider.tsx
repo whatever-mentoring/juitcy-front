@@ -1,4 +1,4 @@
-import { Column, Row } from 'assets/common';
+import { Column, Row, StyledLink } from 'assets/common';
 import { AnsCard, QContentCard, QTitleCard } from 'components/common/Card';
 import { useState } from 'react';
 import Slider from 'react-slick';
@@ -6,8 +6,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { styled } from 'styled-components';
 import PageIndicator, { Dot } from '../Main/PageIndicator';
+import { postType } from 'types';
+import { Ref, forwardRef } from 'react';
 
-const CardSlider = ({ cards }: { cards: React.ReactNode[] }) => {
+const CardSlider = (
+  { cards }: { cards: JSX.Element[] },
+  ref: Ref<HTMLDivElement>,
+) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const settings = {
     dots: false,
@@ -22,7 +27,7 @@ const CardSlider = ({ cards }: { cards: React.ReactNode[] }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <StyledSlider {...settings}>
         {cards.map((card, index) => card)}
       </StyledSlider>
@@ -35,7 +40,30 @@ const CardSlider = ({ cards }: { cards: React.ReactNode[] }) => {
   );
 };
 
-export default CardSlider;
+export default forwardRef(CardSlider);
+
+export const MakeCardSlider = (posts: postType) => {
+  const cardComponents: JSX.Element[] = [];
+
+  cardComponents.push(
+    <QTitleCard
+      key={'qtitle'}
+      category={posts.category}
+      content={posts.cardList[0]}
+      juicyDateTime={posts.juicyDateTime}
+    ></QTitleCard>,
+  );
+  cardComponents.push(
+    <QContentCard key={'qcontent'} content={posts.cardList[1]}></QContentCard>,
+  );
+  for (let i = 2; i < posts.cardList.length; i++) {
+    cardComponents.push(
+      <AnsCard key={`ans_${i}`} content={posts.cardList[i]}></AnsCard>,
+    );
+  }
+
+  return cardComponents;
+};
 
 const Wrapper = styled(Column)`
   height: 100%;
