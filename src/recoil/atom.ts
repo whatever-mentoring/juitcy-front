@@ -17,3 +17,11 @@ export const writeState = atom({
     content: '',
   },
 });
+
+export const questionState = atom({
+  key: 'questionState',
+  default: {
+    title: '',
+    content: '',
+  },
+});

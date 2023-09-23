@@ -1,6 +1,5 @@
 import { Row } from 'assets/common';
 import { useNavigate } from 'react-router-dom';
-import closure from 'store/closure';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -8,8 +7,9 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { writeState } from 'recoil/atom';
 import { postQuestionApi } from 'network/question';
+import { postAnswerApi } from 'network/answerApi';
 
-const WriteConfirmBar = () => {
+const WriteConfirmBar = ({ postIdx }: { postIdx?: number }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentURI = location.pathname;
@@ -26,7 +26,7 @@ const WriteConfirmBar = () => {
     } else {
       message = '답변을 등록하겠습니까?';
       destination = '/answer';
-      api = postQuestionApi({ title, category, content });
+      api = postIdx ? postAnswerApi({ postIdx, answer: content }) : '';
     }
 
     const result = window.confirm(message);

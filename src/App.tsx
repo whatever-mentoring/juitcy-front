@@ -1,5 +1,4 @@
 import Main from 'pages/Main';
-import Answer from 'pages/Answer';
 import PostDetail from 'pages/Main/PostDetail';
 import Search from 'pages/Main/Search';
 import React from 'react';
@@ -17,6 +16,7 @@ import Oauth from 'pages/Signup/Oauth';
 import TermsOfService from 'pages/Signup/TermsOfService';
 import SignupSuccess from 'pages/Signup/SignupSuccess';
 import { RecoilRoot } from 'recoil';
+import Answer from 'pages/Answer';
 
 function App() {
   return (

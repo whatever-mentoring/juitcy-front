@@ -16,3 +16,11 @@ export interface commentType {
   isWriter: boolean;
   commentDateTime: string;
 }
+
+export interface questionType {
+  postIdx: number;
+  category: string;
+  title: string;
+  content: string;
+  dateTime: string;
+}
