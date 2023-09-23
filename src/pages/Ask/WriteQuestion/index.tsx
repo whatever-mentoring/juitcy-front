@@ -3,12 +3,24 @@ import CategoryBar from 'components/Category/CategoryBar';
 import { Header } from 'components/common/Header';
 import WriteConfirmBar from 'components/common/WriteConfirmBar';
 import WriteInputBox from 'components/common/WriteInputBox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+import { useSetRecoilState } from 'recoil';
+import { writeState } from 'recoil/atom';
 
 const WriteQuestion = () => {
+  const [selectedCtg, setSelectedCtg] = useState<string>('DAILY');
+  const setWriteState = useSetRecoilState(writeState);
+  //카테고리 저장
+  useEffect(() => {
+    setWriteState((prevState) => ({
+      ...prevState,
+      category: selectedCtg,
+    }));
+  }, [selectedCtg]);
+
   return (
     <Column>
       <Header borderBottom={false} btn={'back'}>
@@ -23,7 +35,7 @@ const WriteQuestion = () => {
           <Title />
           <CtgWrapper>
             <Typo.s2>카테고리</Typo.s2>
-            <CategoryBar.ctgs ctgAll={false} />
+            <CategoryBar.ctgs ctgAll={false} setSelectedCtg={setSelectedCtg} />
           </CtgWrapper>
           <Typo.s2>내용</Typo.s2>
           <WriteInputBox
@@ -38,6 +50,7 @@ const WriteQuestion = () => {
 };
 
 const Title = () => {
+  const setWriteState = useSetRecoilState(writeState);
   const [text, setText] = useState<string>('');
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newText = event.target.value;
@@ -47,6 +60,13 @@ const Title = () => {
       setText(newText);
     }
   };
+  //title 저장
+  useEffect(() => {
+    setWriteState((prevState) => ({
+      ...prevState,
+      title: text,
+    }));
+  }, [text]);
 
   return (
     <TitleInput

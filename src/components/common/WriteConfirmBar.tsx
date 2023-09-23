@@ -4,32 +4,65 @@ import closure from 'store/closure';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+import { useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { writeState } from 'recoil/atom';
+import { postQuestionApi } from 'network/question';
 
 const WriteConfirmBar = () => {
-  const userType = closure.getUserType();
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentURI = location.pathname;
+  const { title, category, content } = useRecoilValue(writeState);
 
+  //onClick
   const onClickWrite = () => {
-    const result = window.confirm('답변을 등록하겠습니까?');
-    if (result) {
-      userType === 'Cyni' ? navigate('/answer') : navigate('/ask');
+    let message, destination: string, api: any;
+
+    if (currentURI === '/ask/write') {
+      message = '질문을 등록하겠습니까?';
+      destination = '/ask';
+      api = postQuestionApi({ title, category, content });
     } else {
+      message = '답변을 등록하겠습니까?';
+      destination = '/answer';
+      api = postQuestionApi({ title, category, content });
+    }
+
+    const result = window.confirm(message);
+    if (result) {
+      if (title && title.length < 10) {
+        alert('제목을 10자 이상 입력해주세요.');
+      } else if (content.length < 10) {
+        alert('내용을 10자 이상 입력해주세요.');
+      } else {
+        const postApi = async () => {
+          try {
+            let res = await api;
+            res.isSuccess && navigate(destination);
+          } catch (err) {}
+        };
+
+        postApi();
+      }
     }
   };
-  const onClickCancle = () => {
-    const result = window.confirm('작성을 취소하시겠습니까?');
+  const onClickCancel = () => {
+    const message = '작성을 취소하시겠습니까?';
+    const destination = currentURI === '/ask/write' ? '/ask' : '/answer';
+
+    const result = window.confirm(message);
     if (result) {
-      userType === 'Cyni' ? navigate('/answer') : navigate('/ask');
-    } else {
+      navigate(destination);
     }
   };
 
   return (
     <Container>
-      <BtnDib
-        color={Palette.White}
+       <BtnDib
+        color={Palette.Gray05}
         borderClr={Palette.Gray2}
-        onClick={onClickCancle}
+        onClick={onClickCancel}
       >
         <Typo.h2 color={Palette.Gray4}>취소</Typo.h2>
       </BtnDib>

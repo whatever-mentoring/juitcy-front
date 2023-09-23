@@ -35,7 +35,7 @@ const Categories = ({
         { id: 'ETC', name: '기타', selected: false },
       ]
     : [
-        { id: 'DAILY', name: '일상', selected: false },
+        { id: 'DAILY', name: '일상', selected: true },
         { id: 'RELATIONSHIP', name: '인간관계', selected: false },
         { id: 'SOCIAL', name: '사회생활', selected: false },
         { id: 'ETC', name: '기타', selected: false },

@@ -8,3 +8,12 @@ export const editCommentState = atom({
     commentIdx: -1,
   },
 });
+
+export const writeState = atom({
+  key: 'writeState',
+  default: {
+    title: '',
+    category: '',
+    content: '',
+  },
+});
