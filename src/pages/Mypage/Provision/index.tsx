@@ -12,7 +12,7 @@ export const Provision = () => {
   return (
     <>
       <Header borderBottom={false} btn="back">
-        이용약관
+        {page === '이용약관' ? '이용약관' : '개인정보 처리방침'}
       </Header>
       <Container padding="10px 0 0 0">
         <Container background={`${Palette.White}`} padding="30px">
