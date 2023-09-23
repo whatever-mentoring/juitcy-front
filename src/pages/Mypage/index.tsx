@@ -3,7 +3,7 @@ import { myPageMemu } from 'assets/data/MypageData';
 import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
 import { SubMenuBox } from 'components/Mypage/SubMenuBox';
-import { publicInstance } from 'network/config';
+import { myPageApi } from 'network/apis/myPageApi';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import closure from 'store/closure';
@@ -34,8 +34,8 @@ export const Mypage = () => {
   userType === 'Juni' ? (icon = 'juniIcon') : (icon = 'cyniIcon');
 
   useEffect(() => {
-    publicInstance
-      .get('/users')
+    myPageApi
+      .GET_MYPAGE_DATA()
       .then((res) => setUserMypageData(res?.data?.result));
   }, []);
 

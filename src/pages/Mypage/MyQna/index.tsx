@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import Typo from 'styles/Typo';
 import { Palette } from 'styles/Palette';
 import closure from 'store/closure';
-import { publicInstance } from 'network/config';
 import { useInView } from 'react-intersection-observer';
+import { myPageApi } from 'network/apis/myPageApi';
 
 interface myQnaDataInterface {
   title?: string;
@@ -39,32 +39,24 @@ export const MyQna = () => {
   }
 
   useEffect(() => {
-    publicInstance
-      .get(
-        `/users${userType === 'Juni' ? '/juny' : '/siny'}/${
-          userType === 'Juni' ? 'questions' : 'answers'
-        }?status=${nowTab === 0 ? 'completed' : 'waiting'}&requestPageNum=1`,
-      )
-      .then((res) => {
-        setMyQnaData(res?.data?.result?.content);
-        setMyQnaCount(res?.data?.result?.totalElements);
-      });
+    myPageApi.GET_MYPAGE_QNA(1, userType, nowTab).then((res) => {
+      setMyQnaData(res?.data?.result?.content);
+      setMyQnaCount(res?.data?.result?.totalElements);
+    });
+  }, []);
+  useEffect(() => {
+    myPageApi.GET_MYPAGE_QNA(page, userType, nowTab).then((res) => {
+      setMyQnaData(res?.data?.result?.content);
+      setMyQnaCount(res?.data?.result?.totalElements);
+    });
   }, [nowTab]);
 
   const getNewPageData = () => {
-    publicInstance
-      .get(
-        `/users${userType === 'Juni' ? '/juny' : '/siny'}/${
-          userType === 'Juni' ? 'questions' : 'answers'
-        }?status=${
-          nowTab === 0 ? 'completed' : 'waiting'
-        }&requestPageNum=${page}`,
-      )
-      .then((res) => {
-        const newData = res?.data?.result?.content || [];
-        myQnaData !== undefined && setMyQnaData([...myQnaData, ...newData]);
-        setPage(page + 1);
-      });
+    myPageApi.GET_MYPAGE_QNA(page, userType, nowTab).then((res) => {
+      const newData = res?.data?.result?.content || [];
+      myQnaData !== undefined && setMyQnaData([...myQnaData, ...newData]);
+      setPage(page + 1);
+    });
   };
 
   useEffect(() => {

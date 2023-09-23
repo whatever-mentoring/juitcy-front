@@ -1,7 +1,7 @@
 import { EntireContainer, Row } from 'assets/common';
 import { Header } from 'components/common/Header';
 import ScrapListBox from 'components/Mypage/ScrapListBox';
-import { publicInstance } from 'network/config';
+import { myPageApi } from 'network/apis/myPageApi';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Palette } from 'styles/Palette';
@@ -25,14 +25,14 @@ export const MyScrap = () => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    publicInstance.get('/users/scrap?requestPageNum=1').then((res) => {
+    myPageApi.GET_MYPAGE_SCRAP(1).then((res) => {
       setMyScrapData(res?.data?.result?.content);
       setMyScrapCount(res?.data?.result?.totalElements);
     });
   }, []);
 
   const getNewPageData = () => {
-    publicInstance.get(`/users/comments?requestPageNum=${page}`).then((res) => {
+    myPageApi.GET_MYPAGE_SCRAP(page).then((res) => {
       const newData = res?.data?.result?.content || [];
       myScrapData !== undefined && setMyScrapData([...myScrapData, ...newData]);
       setPage(page + 1);

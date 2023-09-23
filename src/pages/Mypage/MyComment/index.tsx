@@ -1,7 +1,7 @@
 import { EntireContainer, Row } from 'assets/common';
 import CommentListBox from 'components/Mypage/CommentListBox';
 import { Header } from 'components/common/Header';
-import { publicInstance } from 'network/config';
+import { myPageApi } from 'network/apis/myPageApi';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Palette } from 'styles/Palette';
@@ -22,14 +22,14 @@ export const MyComment = () => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    publicInstance.get('/users/comments?requestPageNum=1').then((res) => {
+    myPageApi.GET_MYPAGE_COMMENT(1).then((res) => {
       setMyCommentData(res?.data?.result?.content);
       setMyCommentCount(res?.data?.result?.totalElements);
     });
   }, []);
 
   const getNewPageData = () => {
-    publicInstance.get(`/users/comments?requestPageNum=${page}`).then((res) => {
+    myPageApi.GET_MYPAGE_COMMENT(page).then((res) => {
       const newData = res?.data?.result?.content || [];
       myCommentData !== undefined &&
         setMyCommentData([...myCommentData, ...newData]);
