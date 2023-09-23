@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { postType } from 'types';
-import { searchApi } from 'network/postsApi';
+import { searchApi } from 'network/apis/postsApi';
 
 const SearchResult = ({ text }: { text: string }) => {
   const [resultNum, setResultNum] = useState<number>(0);

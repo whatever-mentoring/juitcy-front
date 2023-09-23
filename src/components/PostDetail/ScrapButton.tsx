@@ -1,7 +1,7 @@
 import scrapOff from 'assets/icons/scrap-off.svg';
 import scrapOnCyni from 'assets/icons/scrap-on-cyni.svg';
 import scrapOnJuni from 'assets/icons/scrap-on-juni.svg';
-import { scrapApi } from 'network/postsApi';
+import { scrapApi } from 'network/apis/postsApi';
 import { useEffect, useState } from 'react';
 import closure from 'store/closure';
 import styled from 'styled-components';

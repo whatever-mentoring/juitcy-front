@@ -1,4 +1,4 @@
-import { loginApi } from 'network/loginApi';
+import { loginApi } from 'network/apis/loginApi';
 import { useEffect } from 'react';
 
 const Oauth = () => {

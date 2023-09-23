@@ -1,5 +1,5 @@
 import { postType } from 'types';
-import { publicInstance } from './config';
+import { publicInstance } from '../config';
 
 interface postsParams {
   size?: number;

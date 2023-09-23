@@ -6,7 +6,7 @@ import CardSlider, { MakeCardSlider } from '../../components/common/CardSlider';
 import { Palette } from 'styles/Palette';
 import CallToAction from 'components/Main/CallToAction';
 import { useEffect, useState } from 'react';
-import { getPostsApi } from 'network/postsApi';
+import { getPostsApi } from 'network/apis/postsApi';
 import { postType } from 'types';
 import { useInView } from 'react-intersection-observer';
 
