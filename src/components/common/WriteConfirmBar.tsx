@@ -59,7 +59,7 @@ const WriteConfirmBar = () => {
 
   return (
     <Container>
-      <BtnDib
+       <BtnDib
         color={Palette.Gray05}
         borderClr={Palette.Gray2}
         onClick={onClickCancel}
