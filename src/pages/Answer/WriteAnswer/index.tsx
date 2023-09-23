@@ -4,8 +4,12 @@ import { QDetailCard } from 'components/common/Card';
 import { Header } from 'components/common/Header';
 import WriteConfirmBar from 'components/common/WriteConfirmBar';
 import { Palette } from 'styles/Palette';
+import { useParams } from 'react-router-dom';
 
 const WriteAnswer = () => {
+  const { idx } = useParams();
+  const idxNum = idx ? parseInt(idx) : null;
+
   return (
     <Column>
       <Header borderBottom={true} color={Palette.Main} btn="back">
@@ -23,7 +27,7 @@ const WriteAnswer = () => {
           />
         </Column>
       </EntireContainer>
-      <WriteConfirmBar />
+      {idxNum && <WriteConfirmBar postIdx={idxNum} />}
     </Column>
   );
 };
