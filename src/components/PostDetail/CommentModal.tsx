@@ -8,7 +8,7 @@ import report from 'assets/icons/report.svg';
 import { useRecoilState } from 'recoil';
 import { editCommentState } from 'recoil/atom';
 import { commentType } from 'types';
-import { deleteCommentApi } from 'network/commentApi';
+import { deleteCommentApi } from 'network/apis/commentApi';
 
 const CommentModal = ({
   setIsModalOpen,

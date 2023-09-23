@@ -8,7 +8,7 @@ import ScrapButton from 'components/PostDetail/ScrapButton';
 import CommentsBox from 'components/PostDetail/CommentsBox';
 import CommentInputBox from 'components/PostDetail/CommentInputBox';
 import { useEffect, useState } from 'react';
-import { postsDetailApi } from 'network/postsApi';
+import { postsDetailApi } from 'network/apis/postsApi';
 import { postType, commentType } from 'types';
 
 const PostDetail = () => {

@@ -6,7 +6,7 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useState, useEffect, useRef } from 'react';
 import closure from 'store/closure';
-import { editCommentApi, postCommentApi } from 'network/commentApi';
+import { editCommentApi, postCommentApi } from 'network/apis/commentApi';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { editCommentState } from 'recoil/atom';
 

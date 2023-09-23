@@ -49,7 +49,7 @@ const Homebar = () => {
               : juicygeulOff
           }`}
         />
-        <Typo.homebar isOn={icons.isJuicyOn}>주씨글</Typo.homebar>
+        <Typo.homebar isOn={icons.isJuicyOn}>쥬시글</Typo.homebar>
       </Menu>
 
       <Menu to="/myPage">
