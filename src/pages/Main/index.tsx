@@ -52,29 +52,31 @@ const Main = () => {
         쥬시글
       </Header>
       <EntireContainer homebar={true} padding="25px 0px">
-        <Column color={Palette.Gray05}>
-          <div className="padding-container">
-            <CategoryBar ctgAll={true} setSelectedCtg={setSelectedCtg} />
-          </div>
-          <CallToAction />
-        </Column>
-        <div className="padding-container">
-          <Column gap={26}>
-            {/* card slider들을 렌더한다. */}
-            {posts?.map((cards, index) => {
-              const cardComponents = MakeCardSlider(cards);
-              return (
-                <StyledLink key={index} to={`/post/${cards.postIdx}`}>
-                  <CardSlider
-                    key={`slider_${index}`}
-                    cards={cardComponents}
-                    ref={index === posts.length - 1 ? ref : undefined}
-                  />
-                </StyledLink>
-              );
-            })}
+        <Column gap={22}>
+          <Column color={Palette.Gray05} gap={12}>
+            <div className="padding-container">
+              <CategoryBar ctgAll={true} setSelectedCtg={setSelectedCtg} />
+            </div>
+            <CallToAction />
           </Column>
-        </div>
+          <div className="padding-container">
+            <Column gap={26}>
+              {/* card slider들을 렌더한다. */}
+              {posts?.map((cards, index) => {
+                const cardComponents = MakeCardSlider(cards);
+                return (
+                  <StyledLink key={index} to={`/post/${cards.postIdx}`}>
+                    <CardSlider
+                      key={`slider_${index}`}
+                      cards={cardComponents}
+                      ref={index === posts.length - 1 ? ref : undefined}
+                    />
+                  </StyledLink>
+                );
+              })}
+            </Column>
+          </div>
+        </Column>
       </EntireContainer>
       <Homebar />
     </Column>

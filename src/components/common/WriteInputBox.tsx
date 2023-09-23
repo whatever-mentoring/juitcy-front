@@ -75,7 +75,7 @@ const Input = styled.textarea<{ minHeight: number }>`
   padding: 20px;
 
   border-radius: 12px;
-  border: 1.5px solid ${Palette.Gray4};
+  border: 1px solid ${Palette.Gray4};
   background: ${Palette.White};
 
   font-family: PretendardMedium;
