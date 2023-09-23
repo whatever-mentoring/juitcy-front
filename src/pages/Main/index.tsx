@@ -78,6 +78,7 @@ const Main = () => {
           </div>
         </Column>
       </EntireContainer>
+      <Homebar />
     </Column>
   );
 };

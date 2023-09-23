@@ -22,3 +22,25 @@ export const postQuestionApi = async ({
     console.log(err);
   }
 };
+
+export const getQuestionApi = async ({
+  category,
+  page,
+}: {
+  category: string;
+  page: number;
+}) => {
+  try {
+    let res = await publicInstance.get('/questions', {
+      params: {
+        category: category,
+        page: page,
+        size: 10,
+      },
+    });
+
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
