@@ -1,10 +1,5 @@
 import { atom } from 'recoil';
 
-export const currentUser = atom<string>({
-  key: 'currentUser',
-  default: 'Juni',
-});
-
 export const editCommentState = atom({
   key: 'editCommentTextState',
   default: {

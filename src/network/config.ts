@@ -6,8 +6,6 @@ export const publicInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization:
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMSIsInJvbGUiOiJKdW5pIiwiaWF0IjoxNjk1NTU2MjUwLCJleHAiOjE2OTU1NjM0NTB9.L6yVl3dEe0CW1G2b_B_M69_nwGCIGoOi86BMT7u8R9k',
   },
 });
 

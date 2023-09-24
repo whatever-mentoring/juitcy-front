@@ -1,6 +1,5 @@
 import { MyPageBoxContainer, Row, TextContainer } from 'assets/common';
 import { Ref, forwardRef } from 'react';
-import closure from 'store/closure';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
@@ -14,7 +13,7 @@ const CommentListBox = (
   { children, title, date }: commentBoxInterface,
   ref: Ref<HTMLDivElement>,
 ) => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   let icon = 'juni_commentSubIcon';
   if (userType === 'Juni') icon = 'juni_commentSubIcon';

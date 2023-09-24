@@ -3,7 +3,6 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { MyPageBoxContainer, Row } from 'assets/common';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
-import closure from 'store/closure';
 import { Ref, forwardRef } from 'react';
 
 interface qnaBoxInterface {
@@ -18,7 +17,7 @@ const MyQnaListBox = (
   { children, count, dDay, category, date }: qnaBoxInterface,
   ref: Ref<HTMLDivElement>,
 ) => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   return (
     <MyPageBoxContainer height="72px" ref={ref}>

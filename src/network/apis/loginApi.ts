@@ -1,5 +1,4 @@
 import { publicInstance } from '../config';
-import closure from 'store/closure';
 
 export const loginApi = async ({
   code,

@@ -12,11 +12,10 @@ import mypageOnCyni from '@assets/icons/mypage-on-cyni.svg';
 import Typo from 'styles/Typo';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import closure from 'store/closure';
 
 const Homebar = () => {
   const { pathname } = useLocation();
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   const [icons, setIcons] = useState({
     isAnsOn: false,

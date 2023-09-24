@@ -1,7 +1,6 @@
 import { mypageMenuInterface } from 'pages/Mypage';
-import closure from 'store/closure';
 
-const userType = closure.getUserType();
+const userType = window.localStorage.getItem('userType');
 
 export const myPageMemu: mypageMenuInterface[] = [
   {
