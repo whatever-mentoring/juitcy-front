@@ -76,13 +76,13 @@ export const AnsButtonCard = forwardRef(
           });
         }}
       >
-        <Column gap={10}>
+        <InnerBox gap={10}>
           <Tag tagType={'question'}>
             <CategoryLabel> {question.category}</CategoryLabel>
           </Tag>
           <AnsTitle>{question.title}</AnsTitle>
           <Date>{question.dateTime}</Date>
-        </Column>
+        </InnerBox>
         <ShortBtn to={`/answer/${question.postIdx}`}>답변하기</ShortBtn>
       </ABContainer>
     );
@@ -131,7 +131,11 @@ const Tag = ({ children, tagType }: tagProps) => {
   );
 };
 const Date = ({ children }: { children: string }) => {
-  return <Typo.s2 color={Palette.Gray5}>{children}</Typo.s2>;
+  return (
+    <Typo.s2 color={Palette.Gray5} opacity={0.6}>
+      {children}
+    </Typo.s2>
+  );
 };
 
 /* styles */
@@ -149,6 +153,7 @@ const Container = styled(Column)<{ height?: number; color: string }>`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const ABContainer = styled(Container)`
+  height: 100%;
   padding: 30px 24px;
 `;
 const QDContainer = styled(Container)`
@@ -163,6 +168,9 @@ const Title = styled(Typo.h1)`
   text-align: center;
 `;
 const AnsTitle = styled(Typo.h2)`
+  height: 100%;
+`;
+const InnerBox = styled(Column)`
   height: 100%;
 `;
 const ScrollBox = styled(Typo.b3)`

@@ -8,6 +8,7 @@ import { questionType } from 'types';
 import { useInView } from 'react-intersection-observer';
 import { getQuestionApi } from 'network/apis/question';
 import { AnsButtonCard } from 'components/common/Card';
+import { Palette } from 'styles/Palette';
 
 const Answer = () => {
   const [selectedCtg, setSelectedCtg] = useState<string>('');
@@ -53,7 +54,7 @@ const Answer = () => {
   return (
     <Column>
       <Header borderBottom={true}>답변하기</Header>
-      <EntireContainer homebar={true}>
+      <EntireContainer homebar={true} background={Palette.Gray05}>
         <div style={{ padding: '10px 0' }}>
           <Notice />
           <CategoryBar.container>

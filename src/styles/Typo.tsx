@@ -67,11 +67,12 @@ const Small1 = styled.text<{ color?: string }>`
   line-height: 150%;
   color: ${({ color }) => color};
 `;
-const Small2 = styled.text<{ color?: string }>`
+const Small2 = styled.text<{ color?: string; opacity?: number }>`
   font-family: PretendardRegular;
   font-size: 12px;
   line-height: 150%;
   color: ${({ color }) => color};
+  opacity: ${({ opacity }) => opacity};
 `;
 interface HomebarProps {
   isOn: boolean;
