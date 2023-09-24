@@ -1,6 +1,9 @@
-// 클로저 함수를 사용하여 userType 설정
-const createUserModule = () => {
-  let userType: string;
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { currentUser } from './recoil/atom';
+
+const CreateUserModule = () => {
+  const userType = useRecoilValue(currentUser);
+  const setUserType = useSetRecoilState(currentUser);
 
   // userType을 가져오는 함수
   const getUserType = () => {
@@ -8,11 +11,11 @@ const createUserModule = () => {
   };
 
   // userType을 설정하는 함수
-  const setUserType = (newType: string) => {
-    userType = newType;
+  const updateUserType = (newType: string) => {
+    setUserType(newType);
   };
 
-  return { getUserType, setUserType };
+  return { getUserType, updateUserType };
 };
 
-export default createUserModule();
+export default CreateUserModule();

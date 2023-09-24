@@ -1,8 +1,12 @@
 import { loginApi } from 'network/apis/loginApi';
 import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import closure from 'store/closure';
+import { currentUser } from 'store/recoil/atom';
 
 const Oauth = () => {
+  const setCurrentUserType = useSetRecoilState(currentUser);
+
   // 인가코드, state를 가져온다.
   const code: string | null = new URL(window.location.href).searchParams.get(
     'code',
@@ -26,7 +30,8 @@ const Oauth = () => {
         );
         //만료시간도 저장
         //userType 저장
-        closure.setUserType(res?.data.result.role);
+        // closure.setUserType(res?.data.result.role);
+        setCurrentUserType(res?.data.result.role);
 
         //회원가입/로그인 구분
         if (res?.data.result.isNewUser) {

@@ -6,6 +6,8 @@ export const publicInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    Authorization:
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMSIsInJvbGUiOiJKdW5pIiwiaWF0IjoxNjk1NTU2MjUwLCJleHAiOjE2OTU1NjM0NTB9.L6yVl3dEe0CW1G2b_B_M69_nwGCIGoOi86BMT7u8R9k',
   },
 });
 
@@ -47,18 +49,17 @@ publicInstance.interceptors.response.use(
       // access token이 만료되었고 refresh token이 있는 경우
       try {
         // 새로운 access token을 받아온 뒤 저장
-        const response = await axios.get(`${BASE_URL}/login/token/refresh`, {
-          headers: {
-            Authorization: refreshToken,
-          },
+        const response = await publicInstance.post('/refreshToken', {
+          refreshToken,
         });
-        const newAccessToken = response.data.result.access_token;
+        const newAccessToken = response.data.accessToken;
         setAccessToken(newAccessToken);
 
         // 이전 요청을 재시도
+        publicInstance.defaults.headers.common['Authorization'] =
+          newAccessToken;
         return publicInstance(originalRequest);
       } catch (err) {
-        console.log(err);
         // refresh token이 유효하지 않은 경우
         // 로그아웃
         localStorage.clear();
