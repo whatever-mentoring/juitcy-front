@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from 'react';
 import closure from 'store/closure';
 import { editCommentApi, postCommentApi } from 'network/apis/commentApi';
 import { useRecoilState, useResetRecoilState } from 'recoil';
-import { editCommentState } from 'recoil/atom';
+import { editCommentState } from 'store/recoil/atom';
 
 const CommentInputBox = ({ idx }: { idx: number }) => {
   const userType = closure.getUserType();

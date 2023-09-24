@@ -5,7 +5,7 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { writeState } from 'recoil/atom';
+import { writeState } from 'store/recoil/atom';
 import { postQuestionApi } from 'network/apis/question';
 import { postAnswerApi } from 'network/apis/answerApi';
 

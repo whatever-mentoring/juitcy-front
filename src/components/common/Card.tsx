@@ -14,7 +14,7 @@ import closure from 'store/closure';
 import { questionType } from 'types';
 import { Ref, forwardRef } from 'react';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
-import { questionState } from 'recoil/atom';
+import { questionState } from 'store/recoil/atom';
 
 interface cardProps {
   category?: string;
