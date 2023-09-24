@@ -14,11 +14,7 @@ import { postType, commentType } from 'types';
 const PostDetail = () => {
   const { idx } = useParams();
   const idxNum = idx ? parseInt(idx) : null;
-
   const [postdetail, setPostdetail] = useState<postType | null>(null);
-  const [currentComments, setCurrentComments] = useState<commentType[] | null>(
-    null,
-  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,9 +33,9 @@ const PostDetail = () => {
   return (
     <Column>
       <Header btn={'back'} borderBottom={true}>
-        {''}
+        {' '}
       </Header>
-      <EntireContainer color={Palette.Gray05}>
+      <EntireContainer color={Palette.Gray05} background={Palette.Gray05}>
         {postdetail !== null ? (
           <Column gap={23}>
             <CardSlider cards={MakeCardSlider(postdetail)} />

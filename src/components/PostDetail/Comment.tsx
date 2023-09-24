@@ -55,7 +55,7 @@ const Container = styled(Row)`
   padding: 13px 10px;
   gap: 10px;
 
-  border-radius: 16px;
+  border-radius: 7px;
   background: ${Palette.White};
 `;
 const Content = styled(Row)`

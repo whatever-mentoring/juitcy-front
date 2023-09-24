@@ -49,10 +49,9 @@ export const AnsCard = ({ content }: cardProps) => {
   return (
     <Container height={317} color={Palette.Main15} gap={14}>
       <Tag tagType={'answer'}>
-        <Typo.b2 color={Palette.Main}>익명의 시니어</Typo.b2>
+        <Typo.b2 color={Palette.Main}>익명의 시니</Typo.b2>
       </Tag>
       <ScrollBox>{content}</ScrollBox>
-      <Date>2023.09.11</Date>
     </Container>
   );
 };
