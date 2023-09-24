@@ -54,7 +54,7 @@ const Title = () => {
   const [text, setText] = useState<string>('');
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newText = event.target.value;
-    if (newText.length > 100) {
+    if (newText.length > 50) {
       setText(text);
     } else {
       setText(newText);

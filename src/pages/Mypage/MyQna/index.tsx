@@ -6,7 +6,6 @@ import { NoticeLabel } from 'components/common/NotcieLabel';
 import { useEffect, useState } from 'react';
 import Typo from 'styles/Typo';
 import { Palette } from 'styles/Palette';
-import closure from 'store/closure';
 import { useInView } from 'react-intersection-observer';
 import { myPageApi } from 'network/apis/myPageApi';
 
@@ -20,7 +19,7 @@ interface myQnaDataInterface {
 }
 
 export const MyQna = () => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   let text = '쥬시 완료된 질문 ';
   const [nowTab, setNowTab] = useState(0); // index 가 0이면 완료 api 불러오기 , 1이면 대기 api 불러오기

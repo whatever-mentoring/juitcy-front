@@ -20,11 +20,11 @@ const WriteConfirmBar = ({ postIdx }: { postIdx?: number }) => {
     let message, destination: string, api: any;
 
     if (currentURI === '/ask/write') {
-      message = '질문을 등록하겠습니까?';
+      message = '질문을 등록하시겠습니까?';
       destination = '/ask';
       api = postQuestionApi({ title, category, content });
     } else {
-      message = '답변을 등록하겠습니까?';
+      message = '답변을 등록하시겠습니까?';
       destination = '/answer';
       api = postIdx ? postAnswerApi({ postIdx, answer: content }) : '';
     }

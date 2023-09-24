@@ -1,7 +1,7 @@
 import { rgba } from 'polished';
-import closure from 'store/closure';
 
-const userType = closure.getUserType();
+const userType = window.localStorage.getItem('userType');
+console.log(userType);
 const orange = '#FF8267';
 const blue = '#3F6EFF';
 const main: string = userType === 'Juni' ? orange : blue;

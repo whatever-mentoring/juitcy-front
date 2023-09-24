@@ -3,7 +3,6 @@ import scrapOnCyni from 'assets/icons/scrap-on-cyni.svg';
 import scrapOnJuni from 'assets/icons/scrap-on-juni.svg';
 import { scrapApi } from 'network/apis/postsApi';
 import { useEffect, useState } from 'react';
-import closure from 'store/closure';
 import styled from 'styled-components';
 import { postType } from 'types';
 
@@ -15,7 +14,7 @@ const ScrapButton = ({
   post: postType;
 }) => {
   const [isScraped, setIsScraped] = useState<boolean>();
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   const handleClick = async () => {
     if (postIdx !== undefined) {

@@ -1,12 +1,11 @@
-import { Column, Row, StyledLink } from 'assets/common';
+import { Column, Row } from 'assets/common';
 import { CTABtn } from 'components/common/Button';
-import closure from 'store/closure';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
 const CallToAction = () => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   return (
     <Container color={userType === 'Juni' ? Palette.Back.juni : Palette.Gray05}>
