@@ -15,6 +15,7 @@ interface myQnaDataInterface {
   category: string;
   answerCount: number;
   content?: string;
+  postIdx: number;
   daysUntilDday: number;
 }
 
@@ -86,6 +87,7 @@ export const MyQna = () => {
                 date={data.date}
                 category={data.category}
                 key={index}
+                postIdx={data.postIdx}
                 ref={
                   index > 8 && index === myQnaData?.length - 1 ? ref : undefined
                 }

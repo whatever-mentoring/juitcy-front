@@ -57,6 +57,7 @@ export const MyScrap = () => {
           {myScrapData !== undefined &&
             myScrapData.map((data: myScrapData, index: number) => (
               <ScrapListBox
+                postIdx={data.postIdx}
                 date={data.date}
                 title={data.postTitle}
                 category={data.category}
