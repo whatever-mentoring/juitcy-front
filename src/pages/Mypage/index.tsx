@@ -6,7 +6,6 @@ import { SubMenuBox } from 'components/Mypage/SubMenuBox';
 import { myPageApi } from 'network/apis/myPageApi';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import closure from 'store/closure';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -27,7 +26,7 @@ export interface userMypageData {
 }
 
 export const Mypage = () => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
   let icon = 'juniIcon';
   const [userMypageData, setUserMypageData] = useState<userMypageData>();
 

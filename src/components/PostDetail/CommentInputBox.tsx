@@ -5,13 +5,12 @@ import commentJuni from 'assets/icons/comment-juni.svg';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useState, useEffect, useRef } from 'react';
-import closure from 'store/closure';
 import { editCommentApi, postCommentApi } from 'network/apis/commentApi';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { editCommentState } from 'store/recoil/atom';
 
 const CommentInputBox = ({ idx }: { idx: number }) => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
   const [editState, setEditState] = useRecoilState(editCommentState);
   const resetEditComment = useResetRecoilState(editCommentState);
 

@@ -10,7 +10,6 @@ import Typo from 'styles/Typo';
 import { Column, Row } from 'assets/common';
 import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
-import closure from 'store/closure';
 import { questionType } from 'types';
 import { Ref, forwardRef } from 'react';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
@@ -112,7 +111,7 @@ interface tagProps {
   tagType: string;
 }
 const Tag = ({ children, tagType }: tagProps) => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   let tagImg: any = defaultTag;
   switch (tagType) {

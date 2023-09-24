@@ -8,11 +8,10 @@ import checkOnJuni from 'assets/icons/check-on-juni.svg';
 import checkOnCyni from 'assets/icons/check-on-cyni.svg';
 import termArrow from 'assets/icons/term-arrow.svg';
 import { useEffect, useState } from 'react';
-import closure from 'store/closure';
 import { LongBtn } from 'components/common/Button';
 
 const TermsOfService = () => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
   const [allChecked, setAllChecked] = useState<boolean>(false);
   const [checkboxStates, setCheckboxStates] = useState([
     {

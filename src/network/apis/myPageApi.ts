@@ -16,7 +16,7 @@ export const myPageApi = {
     );
     return response;
   },
-  GET_MYPAGE_QNA: async (page: number, userType: string, nowTab: number) => {
+  GET_MYPAGE_QNA: async (page: number, userType: any, nowTab: number) => {
     const response = publicInstance.get(
       `/users${userType === 'Juni' ? '/juny' : '/siny'}/${
         userType === 'Juni' ? 'questions' : 'answers'

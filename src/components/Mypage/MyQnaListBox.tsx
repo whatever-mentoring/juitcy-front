@@ -1,9 +1,8 @@
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
-import { MyPageBoxContainer, Row } from 'assets/common';
+import { MyPageBoxContainer, Row, StyledLink } from 'assets/common';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
-import closure from 'store/closure';
 import { Ref, forwardRef } from 'react';
 
 interface qnaBoxInterface {
@@ -12,31 +11,34 @@ interface qnaBoxInterface {
   dDay: number;
   category: string;
   date: string;
+  postIdx: number;
 }
 
 const MyQnaListBox = (
-  { children, count, dDay, category, date }: qnaBoxInterface,
+  { children, count, dDay, category, date, postIdx }: qnaBoxInterface,
   ref: Ref<HTMLDivElement>,
 ) => {
-  const userType = closure.getUserType();
+  const userType = window.localStorage.getItem('userType');
 
   return (
-    <MyPageBoxContainer height="72px" ref={ref}>
-      <CountStick ansCount={count} />
-      <SubContainer>
-        <Row gap={3}>
-          <Typo.b3>{userType === 'Juni' ? 'Q.' : 'A.'}</Typo.b3>
-          <Typo.b4>{children}</Typo.b4>
-        </Row>
-        <Row justifyContent="space-between" alignItems="center">
-          <Row gap={10} alignItems="center">
-            <CategoryLabel>{category}</CategoryLabel>
-            {count === 3 && <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>}
+    <StyledLink to={count !== 3 ? '' : `/post/${postIdx}`}>
+      <MyPageBoxContainer height="72px" ref={ref}>
+        <CountStick ansCount={count} />
+        <SubContainer>
+          <Row gap={3}>
+            <Typo.b3>{userType === 'Juni' ? 'Q.' : 'A.'}</Typo.b3>
+            <Typo.b4>{children}</Typo.b4>
           </Row>
-          {count !== 3 && <Typo.s1 color={Palette.Main}>D-{dDay}</Typo.s1>}
-        </Row>
-      </SubContainer>
-    </MyPageBoxContainer>
+          <Row justifyContent="space-between" alignItems="center">
+            <Row gap={10} alignItems="center">
+              <CategoryLabel>{category}</CategoryLabel>
+              {count === 3 && <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>}
+            </Row>
+            {count !== 3 && <Typo.s1 color={Palette.Main}>D-{dDay}</Typo.s1>}
+          </Row>
+        </SubContainer>
+      </MyPageBoxContainer>
+    </StyledLink>
   );
 };
 

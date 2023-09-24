@@ -58,6 +58,7 @@ export const MyComment = () => {
                 date={data.date}
                 title={data.postTitle}
                 key={index}
+                postIdx={data.postIdx}
                 ref={
                   index > 8 && index === myCommentData?.length - 1
                     ? ref
