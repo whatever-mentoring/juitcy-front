@@ -1,6 +1,6 @@
 // 클로저 함수를 사용하여 userType 설정
 const createUserModule = () => {
-  let userType = 'Juni';
+  let userType: string;
 
   // userType을 가져오는 함수
   const getUserType = () => {
