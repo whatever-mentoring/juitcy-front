@@ -17,9 +17,9 @@ const Comment = ({ comment }: { comment: commentType }) => {
   };
   return (
     <Container>
-      <img
+      <Img
         src={comment.writer === '익명의 시니' ? commentCyni : commentJuni}
-      ></img>
+      ></Img>
       <Content justifyContent="space-between">
         <Column gap={9}>
           <Row>
@@ -79,4 +79,8 @@ margin-right: 6.5px;
 `;
 const Moremenu = styled.img`
   cursor: pointer;
+`;
+const Img = styled.img`
+  width: 30px;
+  height: 30px;
 `;

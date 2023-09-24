@@ -56,7 +56,7 @@ const CommentInputBox = ({ idx }: { idx: number }) => {
 
   return (
     <Container>
-      <img src={userType === 'Cyni' ? commentCyni : commentJuni}></img>
+      <Img src={userType === 'Cyni' ? commentCyni : commentJuni}></Img>
       <TextInputWrapper>
         <TextInput
           ref={textareaRef}
@@ -76,7 +76,7 @@ export default CommentInputBox;
 
 const Container = styled(Row)`
   width: 100%;
-  padding: 11px 30px 33px 30px;
+  padding: 11px 30px;
   gap: 9px;
 
   box-shadow: -4px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -120,4 +120,8 @@ const TextInput = styled.textarea`
 const SendButton = styled(Typo.b3)`
   color: ${Palette.Main};
   cursor: pointer;
+`;
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
 `;

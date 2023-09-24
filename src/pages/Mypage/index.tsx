@@ -64,7 +64,7 @@ export const Mypage = () => {
               <Typo.h4> &nbsp; 님</Typo.h4>
             </UnderLine>
           </Column>
-          <img src={`/img/${icon}.svg`} />
+          <Img src={`/img/${icon}.svg`} />
         </Row>
         <div className="mypage-submenu-container">
           <div className="mypage-submenu-subcontainer">
@@ -151,4 +151,8 @@ const Circle = styled.div`
   height: 2px;
   border-radius: 50%;
   background: ${Palette.Gray4};
+`;
+const Img = styled.img`
+  width: 67px;
+  height: 67px;
 `;
