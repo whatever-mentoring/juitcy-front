@@ -10,7 +10,7 @@ export const EntireContainer = styled.div<{
   padding: ${({ padding }) => (padding ? padding : '25px 30px')};
   background: ${({ background }) => (background ? background : Palette.White)};
   height: ${({ homebar }) =>
-    homebar ? 'calc(100dvh - 156px)' : 'calc(100dvh - 60px)'};
+    homebar ? 'calc(100dvh - 140px)' : 'calc(100dvh - 60px)'};
   overflow: auto;
 
   &::-webkit-scrollbar {
