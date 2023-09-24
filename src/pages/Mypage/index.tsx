@@ -38,6 +38,13 @@ export const Mypage = () => {
       .then((res) => setUserMypageData(res?.data?.result));
   }, []);
 
+  const Logout = () => {
+    window.localStorage.removeItem('access_token');
+    window.localStorage.removeItem('refresh_token');
+    window.localStorage.removeItem('userType');
+    window.location.href = '/signup';
+  };
+
   return (
     <>
       <Header
@@ -86,7 +93,12 @@ export const Mypage = () => {
           {myPageMemu
             .slice(3, 5)
             .map((menu: mypageMenuInterface, index: number) => (
-              <StyledLink to={menu.link} key={index} margin={menu.margin}>
+              <StyledLink
+                to={menu.link}
+                key={index}
+                margin={menu.margin}
+                onClick={() => (index === 4 ? Logout() : null)}
+              >
                 <SubMenuBox count={-1} icon={menu.icon}>
                   {menu.menu}
                 </SubMenuBox>
