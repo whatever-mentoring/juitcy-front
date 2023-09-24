@@ -6,7 +6,7 @@ import CategoryBar from 'components/Category/CategoryBar';
 import { useEffect, useState } from 'react';
 import { questionType } from 'types';
 import { useInView } from 'react-intersection-observer';
-import { getQuestionApi } from 'network/question';
+import { getQuestionApi } from 'network/apis/question';
 import { AnsButtonCard } from 'components/common/Card';
 
 const Answer = () => {
