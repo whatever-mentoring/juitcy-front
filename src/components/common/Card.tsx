@@ -11,104 +11,95 @@ import { Column, Row } from 'assets/common';
 import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
 import closure from 'store/closure';
+import { questionType } from 'types';
+import { Ref, forwardRef } from 'react';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { questionState } from 'store/recoil/atom';
+
+interface cardProps {
+  category?: string;
+  content: string;
+  dateTime?: string;
+}
 
 /* Card components */
 
 // main page
-export const QTitleCard = () => {
+export const QTitleCard = ({ category, content, dateTime }: cardProps) => {
   return (
     <Container height={317} color={Palette.White} gap={16}>
       <Tag tagType={'question'}>
-        <CategoryLabel>일상</CategoryLabel>
+        {category !== undefined && <CategoryLabel>{category}</CategoryLabel>}
       </Tag>
-      <Title>
-        일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십일이삼사오륙칠팔구십
-      </Title>
-      <Date>2023.09.11</Date>
+      <Title>{content}</Title>
+      <Date>{dateTime !== undefined ? dateTime : ''}</Date>
     </Container>
   );
 };
-export const QContentCard = () => {
+export const QContentCard = ({ content }: cardProps) => {
   return (
     <Container height={317} color={Palette.Main05} gap={14}>
       <Tag tagType={'question'}>
         <Typo.b2>질문 내용</Typo.b2>
       </Tag>
-      <ScrollBox>
-        로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인
-        분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을
-        보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인
-        문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도
-        이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도
-        부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도
-        사용된다.로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽
-        디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적
-        연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는
-        실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움
-        글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을
-        그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는
-        무언가를 지칭하는 용어로도 사용된다.로렘 입숨(lorem ipsum; 줄여서 립숨,
-        lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃
-        같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기
-        텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각
-        디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘
-        입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는
-        무언가를 지칭하는 용어로도 사용된다.
-      </ScrollBox>
+      <ScrollBox>{content}</ScrollBox>
     </Container>
   );
 };
-export const AnsCard = () => {
+export const AnsCard = ({ content }: cardProps) => {
   return (
     <Container height={317} color={Palette.Main15} gap={14}>
       <Tag tagType={'answer'}>
         <Typo.b2 color={Palette.Main}>익명의 시니어</Typo.b2>
       </Tag>
-      <ScrollBox>
-        로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인
-        분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을
-        보여줄 때 사용하는 표준 채우기 텍스트
-      </ScrollBox>
+      <ScrollBox>{content}</ScrollBox>
       <Date>2023.09.11</Date>
     </Container>
   );
 };
 // answer page
-export const AnsButtonCard = () => {
-  return (
-    <ABContainer color={Palette.White} gap={16} height={277}>
-      <Column gap={10}>
-        <Tag tagType={'question'}>
-          <CategoryLabel>일상</CategoryLabel>
-        </Tag>
-        <AnsTitle>
-          장례식에서 조례금을 얼마정도하는게 좋을 장례식에서 조례금을
-          얼마정도하는게 좋을까요?
-        </AnsTitle>
-        <Date>2023.09.11</Date>
-      </Column>
+export const AnsButtonCard = forwardRef(
+  ({ question }: { question: questionType }, ref: Ref<HTMLDivElement>) => {
+    const setWriteState = useSetRecoilState(questionState);
 
-      <ShortBtn to="/answer/1">답변하기</ShortBtn>
-    </ABContainer>
-  );
-};
+    return (
+      <ABContainer
+        color={Palette.White}
+        gap={16}
+        height={270}
+        ref={ref}
+        justifyContent="space-between"
+        onClick={() => {
+          //질문 내용을 저장 후 클릭시 이어지는 상세 페이지에서 사용
+          setWriteState({
+            title: question.title,
+            content: question.content,
+          });
+        }}
+      >
+        <Column gap={10}>
+          <Tag tagType={'question'}>
+            <CategoryLabel> {question.category}</CategoryLabel>
+          </Tag>
+          <AnsTitle>{question.title}</AnsTitle>
+          <Date>{question.dateTime}</Date>
+        </Column>
+        <ShortBtn to={`/answer/${question.postIdx}`}>답변하기</ShortBtn>
+      </ABContainer>
+    );
+  },
+);
 
 export const QDetailCard = () => {
+  const question = useRecoilValue(questionState);
+
   return (
     <QDContainer color={Palette.Sub.blue} gap={20}>
       <Row gap={10}>
         <img src={questionBlack}></img>
-        <Typo.h2>장례식에서 조례금을 얼마정도 하는게 좋을까요?</Typo.h2>
+        <Typo.h2>{question.title}</Typo.h2>
       </Row>
-      <Typo.s1>
-        로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인
-        분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을
-        보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인
-        문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도
-        이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도
-        부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도
-        사용된다.
-      </Typo.s1>
+      <Typo.s1>{question.content}</Typo.s1>
       <Date>2023.09.11</Date>
     </QDContainer>
   );
@@ -147,14 +138,15 @@ const Date = ({ children }: { children: string }) => {
 /* styles */
 
 const Container = styled(Column)<{ height?: number; color: string }>`
-  width: 100%;
+  width: 330px;
+  max-width: 100%;
   ${({ height }) => height && `height: ${height}px`};
 
   padding: 27px 28px;
 
   border-radius: 16px;
   border: 1.5px solid ${Palette.Main};
-  background: ${(props) => props.color};
+  background: ${({ color }) => color};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const ABContainer = styled(Container)`

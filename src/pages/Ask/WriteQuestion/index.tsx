@@ -3,12 +3,24 @@ import CategoryBar from 'components/Category/CategoryBar';
 import { Header } from 'components/common/Header';
 import WriteConfirmBar from 'components/common/WriteConfirmBar';
 import WriteInputBox from 'components/common/WriteInputBox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+import { useSetRecoilState } from 'recoil';
+import { writeState } from 'store/recoil/atom';
 
 const WriteQuestion = () => {
+  const [selectedCtg, setSelectedCtg] = useState<string>('DAILY');
+  const setWriteState = useSetRecoilState(writeState);
+  //카테고리 저장
+  useEffect(() => {
+    setWriteState((prevState) => ({
+      ...prevState,
+      category: selectedCtg,
+    }));
+  }, [selectedCtg]);
+
   return (
     <Column>
       <Header borderBottom={false} btn={'back'}>
@@ -18,12 +30,12 @@ const WriteQuestion = () => {
         homebar={false}
         style={{ height: 'calc(100dvh - 119px)' }}
       >
-        <Column gap={18} alignItems="flex-start">
-          <Typo.s2>제목(최대 100자)</Typo.s2>
+        <Column gap={20} alignItems="flex-start">
+          <Typo.s2>제목(최대 50자)</Typo.s2>
           <Title />
           <CtgWrapper>
             <Typo.s2>카테고리</Typo.s2>
-            <CategoryBar.ctgs ctgAll={false} />
+            <CategoryBar.ctgs ctgAll={false} setSelectedCtg={setSelectedCtg} />
           </CtgWrapper>
           <Typo.s2>내용</Typo.s2>
           <WriteInputBox
@@ -38,6 +50,7 @@ const WriteQuestion = () => {
 };
 
 const Title = () => {
+  const setWriteState = useSetRecoilState(writeState);
   const [text, setText] = useState<string>('');
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newText = event.target.value;
@@ -47,6 +60,13 @@ const Title = () => {
       setText(newText);
     }
   };
+  //title 저장
+  useEffect(() => {
+    setWriteState((prevState) => ({
+      ...prevState,
+      title: text,
+    }));
+  }, [text]);
 
   return (
     <TitleInput
@@ -64,7 +84,7 @@ const CtgWrapper = styled(CategoryBar.container)`
 `;
 const TitleInput = styled.input`
   width: 100%;
-  padding: 12px 10px;
+  padding: 12px;
   border: 1px solid ${Palette.Gray4};
   border-radius: 4px;
 

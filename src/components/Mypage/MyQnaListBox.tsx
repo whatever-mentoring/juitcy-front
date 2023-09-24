@@ -4,25 +4,24 @@ import Typo from 'styles/Typo';
 import { MyPageBoxContainer, Row } from 'assets/common';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
 import closure from 'store/closure';
+import { Ref, forwardRef } from 'react';
+
 interface qnaBoxInterface {
-  children: string;
+  children?: string;
   count: number;
   dDay: number;
   category: string;
   date: string;
 }
 
-export const MyQnaListBox = ({
-  children,
-  count,
-  dDay,
-  category,
-  date,
-}: qnaBoxInterface) => {
+const MyQnaListBox = (
+  { children, count, dDay, category, date }: qnaBoxInterface,
+  ref: Ref<HTMLDivElement>,
+) => {
   const userType = closure.getUserType();
 
   return (
-    <MyPageBoxContainer height="72px">
+    <MyPageBoxContainer height="72px" ref={ref}>
       <CountStick ansCount={count} />
       <SubContainer>
         <Row gap={3}>
@@ -40,6 +39,8 @@ export const MyQnaListBox = ({
     </MyPageBoxContainer>
   );
 };
+
+export default forwardRef(MyQnaListBox);
 
 const CountStick = styled.div<{ ansCount?: number }>`
   width: 7px;

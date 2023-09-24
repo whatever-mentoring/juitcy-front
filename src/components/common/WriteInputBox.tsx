@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
+import { useSetRecoilState } from 'recoil';
+import { writeState } from 'store/recoil/atom';
 
 interface inputboxProps {
   placeholder: string;
@@ -11,6 +13,14 @@ interface inputboxProps {
 const WriteInputBox = ({ placeholder, minHeight }: inputboxProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState<string>('');
+  const setWriteState = useSetRecoilState(writeState);
+  //content 저장
+  useEffect(() => {
+    setWriteState((prevState) => ({
+      ...prevState,
+      content: text,
+    }));
+  }, [text]);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
@@ -75,7 +85,7 @@ const Input = styled.textarea<{ minHeight: number }>`
   padding: 20px;
 
   border-radius: 12px;
-  border: 1.5px solid ${Palette.Gray4};
+  border: 1px solid ${Palette.Gray4};
   background: ${Palette.White};
 
   font-family: PretendardMedium;

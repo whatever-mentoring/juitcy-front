@@ -49,7 +49,7 @@ const Homebar = () => {
               : juicygeulOff
           }`}
         />
-        <Typo.homebar isOn={icons.isJuicyOn}>주씨글</Typo.homebar>
+        <Typo.homebar isOn={icons.isJuicyOn}>쥬시글</Typo.homebar>
       </Menu>
 
       <Menu to="/myPage">
@@ -72,7 +72,7 @@ export default Homebar;
 
 const Container = styled.div`
   width: 100%;
-  height: 96px;
+  height: 70px;
 
   display: flex;
   flex-direction: row;
@@ -94,4 +94,6 @@ const Menu = styled(Link)`
   text-decoration: none;
   cursor: pointer;
 `;
-const Icon = styled.img``;
+const Icon = styled.img`
+  width: 30px;
+`;
