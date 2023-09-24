@@ -20,6 +20,8 @@ import Answer from 'pages/Answer';
 import { Onboarding } from 'pages/Onboarding';
 
 function App() {
+  const userType = window.localStorage.getItem('userType');
+
   return (
     <RecoilRoot>
       <BrowserRouter>
@@ -28,7 +30,10 @@ function App() {
           <Route path="/onBoarding" element={<Onboarding />} />
 
           {/* MainPage */}
-          <Route path="/" element={<Main />} />
+          <Route
+            path="/"
+            element={userType === null ? <Onboarding /> : <Main />}
+          />
           <Route path="/post/:idx" element={<PostDetail />} />
           <Route path="/search" element={<Search />} />
 

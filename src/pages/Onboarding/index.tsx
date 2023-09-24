@@ -97,27 +97,46 @@ export const Onboarding = () => {
           </StyledSlider>
         </div>
       </WithCard>
+
       {/* 카드슬라이드 없는 온보딩 */}
       <WithoutCard index={currentSlide}>
+        {/* 1페이지 */}
         <div className="main1">
-          <div className="main-img-container">
-            <Img src="/img/Onboarding/main1.svg" />
-          </div>
+          <MainContainer padding={10}>
+            <MainImgContainer>
+              <Img src="/img/Onboarding/main1.svg" />
+            </MainImgContainer>
+            <Column gap={20}>
+              <Typo.h3>
+                시니의 답변 3개가 모이면,
+                <br />
+                쥬시글에서 그 답변을 확인할 수 있습니다.
+              </Typo.h3>
+              <Typo.s1 color={Palette.Gray5}>
+                답변 3개가 모이지 않아도 걱정하지 마세요! <br />
+                3일 후에 자동으로 쥬시에 등록됩니다.
+              </Typo.s1>
+            </Column>
+          </MainContainer>
         </div>
+
+        {/* 2페이지 */}
         <div className="main2">
-          <div className="main2-container">
+          <MainContainer>
             <div style={{ textAlign: 'center' }}>
               <Typo.h3>
                 존재만으로 서로의 삶에 온기를 더하는 세대 공감 문답 커뮤니티,
                 쥬잇씨
               </Typo.h3>
             </div>
-            <div className="main-img-container">
+            <MainImgContainer margin={30}>
               <Img src="/img/Onboarding/main2.svg" />
-            </div>
-          </div>
+            </MainImgContainer>
+          </MainContainer>
         </div>
       </WithoutCard>
+
+      {/* 버튼 & 로그인하기 */}
       <TextContainer>
         <StyledLink to={currentSlide === 4 ? '/signup' : ''}>
           <StyledButton onClick={handleNextSlide}>
@@ -205,21 +224,23 @@ const WithoutCard = styled.div<{ index?: number }>`
     index === 0 || index === 1 || index === 2 ? 'none' : 'block'};
   height: 510px;
 
-  .main-img-container {
-    height: 80%;
-    width: 80%;
-  }
   .main1 {
     display: ${({ index }) => (index !== 3 ? 'none' : 'block')};
+    text-align: center;
   }
   .main2 {
     display: ${({ index }) => (index !== 4 ? 'none' : 'block')};
   }
-  .main2-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-    padding: 50px 0 0 0;
-  }
+`;
+const MainImgContainer = styled.div<{ margin?: number }>`
+  height: 80%;
+  width: 80%;
+  margin: ${({ margin }) => (margin ? margin : 10)}px;
+}
+`;
+const MainContainer = styled.div<{ padding?: number }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: ${({ padding }) => (padding ? padding : 50)}px 0 0 0;
 `;

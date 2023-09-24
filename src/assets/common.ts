@@ -61,7 +61,7 @@ export const Column = styled.div<divProps>`
     justifyContent ? justifyContent : 'initial'};
 `;
 
-export const MyPageBoxContainer = styled.div<{
+export const MyPageBoxContainer: any = styled.div<{
   height?: string;
   padding?: string;
   borderRadius?: number;
