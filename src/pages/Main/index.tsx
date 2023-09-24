@@ -9,15 +9,12 @@ import { useEffect, useState } from 'react';
 import { getPostsApi } from 'network/apis/postsApi';
 import { postType } from 'types';
 import { useInView } from 'react-intersection-observer';
-import closure from 'store/closure';
 
 const Main = () => {
   const [posts, setPosts] = useState<postType[]>();
   const [seletedCtg, setSelectedCtg] = useState<string>('');
   const { ref, inView } = useInView();
   const [page, setPage] = useState(0);
-
-  const userType = closure.getUserType();
 
   const fetchNewPosts = async () => {
     try {
