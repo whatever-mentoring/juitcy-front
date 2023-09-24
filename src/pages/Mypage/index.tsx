@@ -5,7 +5,7 @@ import Homebar from 'components/common/Homebar';
 import { SubMenuBox } from 'components/Mypage/SubMenuBox';
 import { myPageApi } from 'network/apis/myPageApi';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -27,6 +27,7 @@ export interface userMypageData {
 
 export const Mypage = () => {
   const userType = window.localStorage.getItem('userType');
+  const navigate = useNavigate();
   let icon = 'juniIcon';
   const [userMypageData, setUserMypageData] = useState<userMypageData>();
 
@@ -37,6 +38,13 @@ export const Mypage = () => {
       .GET_MYPAGE_DATA()
       .then((res) => setUserMypageData(res?.data?.result));
   }, []);
+
+  const Logout = () => {
+    window.localStorage.removeItem('access_token');
+    window.localStorage.removeItem('refresh_token');
+    window.localStorage.removeItem('userType');
+    window.location.href = '/signup';
+  };
 
   return (
     <>
@@ -86,7 +94,12 @@ export const Mypage = () => {
           {myPageMemu
             .slice(3, 5)
             .map((menu: mypageMenuInterface, index: number) => (
-              <StyledLink to={menu.link} key={index} margin={menu.margin}>
+              <StyledLink
+                to={menu.link}
+                key={index}
+                margin={menu.margin}
+                onClick={() => index === 1 && Logout()}
+              >
                 <SubMenuBox count={-1} icon={menu.icon}>
                   {menu.menu}
                 </SubMenuBox>
