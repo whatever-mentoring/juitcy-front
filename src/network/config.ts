@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const BASE_URL = 'http://15.164.102.2';
+export const BASE_URL = 'https://juitcy.store';
 
 export const publicInstance = axios.create({
   baseURL: BASE_URL,
