@@ -49,17 +49,18 @@ publicInstance.interceptors.response.use(
       // access token이 만료되었고 refresh token이 있는 경우
       try {
         // 새로운 access token을 받아온 뒤 저장
-        const response = await publicInstance.post('/refreshToken', {
-          refreshToken,
+        const response = await axios.get(`${BASE_URL}/login/token/refresh`, {
+          headers: {
+            Authorization: refreshToken,
+          },
         });
-        const newAccessToken = response.data.accessToken;
+        const newAccessToken = response.data.result.access_token;
         setAccessToken(newAccessToken);
 
         // 이전 요청을 재시도
-        publicInstance.defaults.headers.common['Authorization'] =
-          newAccessToken;
         return publicInstance(originalRequest);
       } catch (err) {
+        console.log(err);
         // refresh token이 유효하지 않은 경우
         // 로그아웃
         localStorage.clear();
