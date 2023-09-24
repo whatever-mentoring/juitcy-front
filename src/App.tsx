@@ -18,7 +18,6 @@ import SignupSuccess from 'pages/Signup/SignupSuccess';
 import { RecoilRoot } from 'recoil';
 import Answer from 'pages/Answer';
 import { Onboarding } from 'pages/Onboarding';
-import { WithoutCard } from 'pages/Onboarding/WithoutCard';
 
 function App() {
   return (
@@ -27,7 +26,6 @@ function App() {
         <Routes>
           {/* OnboardingPage */}
           <Route path="/onBoarding" element={<Onboarding />} />
-          <Route path="/onBoarding.without" element={<WithoutCard />} />
 
           {/* MainPage */}
           <Route path="/" element={<Main />} />
