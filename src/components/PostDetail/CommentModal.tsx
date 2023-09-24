@@ -6,7 +6,7 @@ import edit from 'assets/icons/edit.svg';
 import deleteComment from 'assets/icons/delete-comment.svg';
 import report from 'assets/icons/report.svg';
 import { useRecoilState } from 'recoil';
-import { editCommentState } from 'recoil/atom';
+import { editCommentState } from 'store/recoil/atom';
 import { commentType } from 'types';
 import { deleteCommentApi } from 'network/apis/commentApi';
 

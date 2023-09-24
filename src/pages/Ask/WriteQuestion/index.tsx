@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useSetRecoilState } from 'recoil';
-import { writeState } from 'recoil/atom';
+import { writeState } from 'store/recoil/atom';
 
 const WriteQuestion = () => {
   const [selectedCtg, setSelectedCtg] = useState<string>('DAILY');

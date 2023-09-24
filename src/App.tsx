@@ -17,12 +17,16 @@ import TermsOfService from 'pages/Signup/TermsOfService';
 import SignupSuccess from 'pages/Signup/SignupSuccess';
 import { RecoilRoot } from 'recoil';
 import Answer from 'pages/Answer';
+import { Onboarding } from 'pages/Onboarding';
 
 function App() {
   return (
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
+          {/* OnboardingPage */}
+          <Route path="/onBoarding" element={<Onboarding />} />
+
           {/* MainPage */}
           <Route path="/" element={<Main />} />
           <Route path="/post/:idx" element={<PostDetail />} />
