@@ -124,7 +124,14 @@ export const Onboarding = () => {
             <Typo.h5>{currentSlide === 4 ? '시작' : '다음'}</Typo.h5>
           </StyledButton>
         </StyledLink>
-        <Typo.b3 color={Palette.Gray5}>바로 로그인하기</Typo.b3>
+        <StyledLink to="/signup">
+          <Typo.b3
+            color={Palette.Gray5}
+            style={{ textDecoration: 'underline' }}
+          >
+            바로 로그인하기
+          </Typo.b3>
+        </StyledLink>
       </TextContainer>
     </Container>
   );
