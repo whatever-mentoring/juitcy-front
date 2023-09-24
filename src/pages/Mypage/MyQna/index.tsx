@@ -28,6 +28,8 @@ export const MyQna = () => {
   const [myQnaCount, setMyQnaCount] = useState<number>();
   const [page, setPage] = useState<number>(2);
 
+  console.log(myQnaData);
+
   const { ref, inView } = useInView();
 
   if (userType === 'Juni') {
@@ -40,12 +42,6 @@ export const MyQna = () => {
 
   useEffect(() => {
     myPageApi.GET_MYPAGE_QNA(1, userType, nowTab).then((res) => {
-      setMyQnaData(res?.data?.result?.content);
-      setMyQnaCount(res?.data?.result?.totalElements);
-    });
-  }, []);
-  useEffect(() => {
-    myPageApi.GET_MYPAGE_QNA(page, userType, nowTab).then((res) => {
       setMyQnaData(res?.data?.result?.content);
       setMyQnaCount(res?.data?.result?.totalElements);
     });
