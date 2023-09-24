@@ -30,7 +30,7 @@ const Ask = () => {
               </Typo.b4>
             </InnerContents>
 
-            <Row justifyContent="center" style={{ zIndex: '100000000000' }}>
+            <Row justifyContent="center">
               <LongBtn to="/ask/write">시작하기</LongBtn>
             </Row>
           </InnerContainer>
@@ -57,7 +57,7 @@ const InnerContents = styled(Column)`
   padding: 37px 0px;
 `;
 const BackImg = styled.div`
-  background-image: url('/img/askpage-img.svg');
+  background-image: url('/img/pageImgs/askpage-img.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

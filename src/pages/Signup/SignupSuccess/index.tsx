@@ -5,6 +5,8 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 
 const SignupSuccess = () => {
+  const userType = window.localStorage.getItem('userType');
+
   return (
     <EntireContainer>
       <InnerContainer>
@@ -15,6 +17,14 @@ const SignupSuccess = () => {
             만나서 반가워요!
           </Typo.h2>
         </Column>
+        <Img>
+          {userType === 'Juni' ? (
+            <img src="/img/pageImgs/signup-success-juni.svg" />
+          ) : (
+            <img src="/img/pageImgs/signup-success-cyni.svg" />
+          )}
+        </Img>
+
         <LongBtn to="/">확인</LongBtn>
       </InnerContainer>
     </EntireContainer>
@@ -29,4 +39,9 @@ const InnerContainer = styled(Column)`
   justify-content: space-between;
 
   padding-top: 60px;
+`;
+const Img = styled(Column)`
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
