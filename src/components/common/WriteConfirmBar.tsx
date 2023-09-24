@@ -6,8 +6,8 @@ import Typo from 'styles/Typo';
 import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { writeState } from 'recoil/atom';
-import { postQuestionApi } from 'network/question';
-import { postAnswerApi } from 'network/answerApi';
+import { postQuestionApi } from 'network/apis/question';
+import { postAnswerApi } from 'network/apis/answerApi';
 
 const WriteConfirmBar = ({ postIdx }: { postIdx?: number }) => {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ const WriteConfirmBar = ({ postIdx }: { postIdx?: number }) => {
 
   return (
     <Container>
-       <BtnDib
+      <BtnDib
         color={Palette.Gray05}
         borderClr={Palette.Gray2}
         onClick={onClickCancel}

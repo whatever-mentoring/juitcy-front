@@ -1,4 +1,4 @@
-import { publicInstance } from './config';
+import { publicInstance } from '../config';
 
 export const postQuestionApi = async ({
   title,
