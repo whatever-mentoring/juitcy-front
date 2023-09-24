@@ -2,7 +2,7 @@ import { Column, EntireContainer, Row } from 'assets/common';
 import { LongBtn } from 'components/common/Button';
 import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
-import { CTAText } from 'components/Main/CallToAction';
+import { CTATextJuni } from 'components/Main/CallToAction';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -18,9 +18,8 @@ const Ask = () => {
         padding="0"
       >
         <BackImg>
-          {' '}
           <InnerContainer justifyContent="space-between">
-            <CTAText />
+            <CTATextJuni />
             <InnerContents>
               <Row>
                 <Typo.b4 color={Palette.Main}>3개의 답변이 등록</Typo.b4>

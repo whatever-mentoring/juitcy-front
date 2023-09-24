@@ -4,7 +4,10 @@ import { Header } from 'components/common/Header';
 import Homebar from 'components/common/Homebar';
 import CardSlider, { MakeCardSlider } from '../../components/common/CardSlider';
 import { Palette } from 'styles/Palette';
-import CallToAction from 'components/Main/CallToAction';
+import CallToAction, {
+  CallToActionCyni,
+  CallToActionJuni,
+} from 'components/Main/CallToAction';
 import { useEffect, useState } from 'react';
 import { getPostsApi } from 'network/apis/postsApi';
 import { postType } from 'types';
@@ -15,6 +18,7 @@ const Main = () => {
   const [seletedCtg, setSelectedCtg] = useState<string>('');
   const { ref, inView } = useInView();
   const [page, setPage] = useState(0);
+  const userType = window.localStorage.getItem('userType');
 
   const fetchNewPosts = async () => {
     try {
@@ -57,7 +61,7 @@ const Main = () => {
             <div className="padding-container">
               <CategoryBar ctgAll={true} setSelectedCtg={setSelectedCtg} />
             </div>
-            <CallToAction />
+            {userType === 'Juni' ? <CallToActionJuni /> : <CallToActionCyni />}
           </Column>
           <div className="padding-container">
             <Column gap={26}>
