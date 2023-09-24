@@ -1,12 +1,11 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Column, StyledLink } from 'assets/common';
+import { Column, Img, StyledLink } from 'assets/common';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import Slider, { Settings } from 'react-slick';
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 interface cardComponentsInterface {
   img: string;
@@ -55,6 +54,8 @@ export const Onboarding = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
     }
+    if (currentSlide === 2) setCurrentSlide(3);
+    else if (currentSlide === 3) setCurrentSlide(4);
   };
 
   const settings: Settings = {
@@ -71,7 +72,8 @@ export const Onboarding = () => {
 
   return (
     <Container>
-      <WithCard>
+      {/* 카드 슬라이드있는 온보딩 */}
+      <WithCard index={currentSlide}>
         <Column gap={15}>
           <Typo.h2>쥬니어와 시니어를 잇다</Typo.h2>
           <div className="img-container">
@@ -95,10 +97,31 @@ export const Onboarding = () => {
           </StyledSlider>
         </div>
       </WithCard>
+      {/* 카드슬라이드 없는 온보딩 */}
+      <WithoutCard index={currentSlide}>
+        <div className="main1">
+          <div className="main-img-container">
+            <Img src="/img/Onboarding/main1.svg" />
+          </div>
+        </div>
+        <div className="main2">
+          <div className="main2-container">
+            <div style={{ textAlign: 'center' }}>
+              <Typo.h3>
+                존재만으로 서로의 삶에 온기를 더하는 세대 공감 문답 커뮤니티,
+                쥬잇씨
+              </Typo.h3>
+            </div>
+            <div className="main-img-container">
+              <Img src="/img/Onboarding/main2.svg" />
+            </div>
+          </div>
+        </div>
+      </WithoutCard>
       <TextContainer>
-        <StyledLink to={currentSlide === 2 ? '/onBoarding.without' : ''}>
+        <StyledLink to={currentSlide === 4 ? '/signup' : ''}>
           <StyledButton onClick={handleNextSlide}>
-            <Typo.h5>다음</Typo.h5>
+            <Typo.h5>{currentSlide === 4 ? '시작' : '다음'}</Typo.h5>
           </StyledButton>
         </StyledLink>
         <Typo.b3 color={Palette.Gray5}>바로 로그인하기</Typo.b3>
@@ -110,7 +133,6 @@ export const Onboarding = () => {
 const Container = styled.div`
   width: 100%;
   padding: 79px 30px 42px 30px;
-  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -161,12 +183,36 @@ const TextContainer = styled.div`
   gap: 20px;
 
   //카드 텍스트
-  .emmvmN {
+  .bevrNG {
     text-decoration-color: ${Palette.Gray5};
     text-decoration: underline;
   }
 `;
 
-const WithCard = styled.div`
-  display: block;
+const WithCard = styled.div<{ index?: number }>`
+  display: ${({ index }) => (index === 3 || index === 4 ? 'none' : 'block')};
+  height: 510px;
+`;
+const WithoutCard = styled.div<{ index?: number }>`
+  display: ${({ index }) =>
+    index === 0 || index === 1 || index === 2 ? 'none' : 'block'};
+  height: 510px;
+
+  .main-img-container {
+    height: 80%;
+    width: 80%;
+  }
+  .main1 {
+    display: ${({ index }) => (index !== 3 ? 'none' : 'block')};
+  }
+  .main2 {
+    display: ${({ index }) => (index !== 4 ? 'none' : 'block')};
+  }
+  .main2-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 50px 0 0 0;
+  }
 `;

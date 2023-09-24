@@ -85,3 +85,8 @@ export const StyledLink = styled(Link)<{ color?: string }>`
   text-decoration: none;
   color: ${({ color }) => (color ? color : Palette.Black)};
 `;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
+`;
