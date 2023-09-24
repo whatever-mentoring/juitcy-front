@@ -31,8 +31,7 @@ const Oauth = () => {
         //회원가입/로그인 구분
         if (res?.data.result.isNewUser) {
           window.location.href = '/signup/terms';
-        }
-        {
+        } else {
           window.location.href = '/';
         }
       });
