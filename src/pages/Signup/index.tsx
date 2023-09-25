@@ -1,4 +1,4 @@
-import { Column, EntireContainer, Row } from 'assets/common';
+import { Column, EntireContainer, Img, Row } from 'assets/common';
 import Typo from 'styles/Typo';
 import styled from 'styled-components';
 import { SignupBtn } from 'components/common/Button';
@@ -11,26 +11,24 @@ const Signup = () => {
   const authURI = `https://nid.naver.com/oauth2.0/authorize?client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&response_type=code&state=${STATE_STRING}`;
 
   return (
-    <EntireContainer>
-      <InnerContainer justifyContent="space-between">
-        <Column gap={11} alignItems="flex-start">
-          <Row>
-            <Typo.h2 color={Palette.Orange}>쥬니어</Typo.h2>
-            <Typo.h2>와 &nbsp;</Typo.h2>
-            <Typo.h2 color={Palette.Blue}>시니어</Typo.h2>
-            <Typo.h2>를 잇다</Typo.h2>
-          </Row>
-          <LogoText src="/img/logo-text-cyni.svg"></LogoText>
-        </Column>
-        <InnerContents>
-          <img src="img/pageImgs/signuppage-img.svg"></img>
-        </InnerContents>
-
-        <Row justifyContent="center">
-          <SignupBtn to={authURI}>네이버로 시작하기</SignupBtn>
+    <InnerContainer justifyContent="space-between">
+      <Column gap={11} alignItems="flex-start">
+        <Row>
+          <Typo.h2 color={Palette.Orange}>쥬니어</Typo.h2>
+          <Typo.h2>와 &nbsp;</Typo.h2>
+          <Typo.h2 color={Palette.Blue}>시니어</Typo.h2>
+          <Typo.h2>를 잇다</Typo.h2>
         </Row>
-      </InnerContainer>
-    </EntireContainer>
+        <LogoText src="/img/logo-text-cyni.svg"></LogoText>
+      </Column>
+      <InnerContents>
+        <Img src="img/pageImgs/signuppage-img.svg" />
+      </InnerContents>
+
+      <Row justifyContent="center">
+        <SignupBtn to={authURI}>네이버로 시작하기</SignupBtn>
+      </Row>
+    </InnerContainer>
   );
 };
 
@@ -41,10 +39,9 @@ const LogoText = styled.img`
 `;
 const InnerContainer = styled(Column)`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   justify-content: space-between;
-
-  padding-top: 60px;
+  padding: 60px 30px;
 `;
 const InnerContents = styled(Column)`
   width: 100%;
