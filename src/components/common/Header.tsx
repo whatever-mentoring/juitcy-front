@@ -27,8 +27,12 @@ export const Header = ({
 
   const handleBack = () => {
     const currentURI = location.pathname;
-    if (currentURI === '/ask/write' || currentURI.match(/^\/answer\/\d+$/)) {
+    if (currentURI === '/ask/write') {
       alert('작성을 취소하시겠습니까?');
+      navigate('/ask');
+    } else if (currentURI.match(/^\/answer\/\d+$/)) {
+      alert('작성을 취소하시겠습니까?');
+      navigate('/answer');
     } else {
       navigate(-1);
     }
