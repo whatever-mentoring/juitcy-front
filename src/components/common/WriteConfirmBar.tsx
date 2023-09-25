@@ -17,29 +17,34 @@ const WriteConfirmBar = ({ postIdx }: { postIdx?: number }) => {
 
   //onClick
   const onClickWrite = () => {
-    let message, destination: string, api: any;
+    let message, destination: string, api: any, successMsg: string;
 
     if (currentURI === '/ask/write') {
       message = '질문을 등록하시겠습니까?';
       destination = '/ask';
       api = postQuestionApi({ title, category, content });
+      successMsg = '질문이 등록되었습니다.';
     } else {
       message = '답변을 등록하시겠습니까?';
       destination = '/answer';
       api = postIdx ? postAnswerApi({ postIdx, answer: content }) : '';
+      successMsg = '답변이 등록되었습니다.';
     }
 
     const result = window.confirm(message);
     if (result) {
-      if (title && title.length < 10) {
-        alert('제목을 10자 이상 입력해주세요.');
+      if (title && title.length < 5) {
+        alert('제목을 5자 이상 입력해주세요.');
       } else if (content.length < 10) {
         alert('내용을 10자 이상 입력해주세요.');
       } else {
         const postApi = async () => {
           try {
             let res = await api;
-            res.isSuccess && navigate(destination);
+            if (res.isSuccess) {
+              alert(successMsg);
+              navigate(destination);
+            }
           } catch (err) {}
         };
 

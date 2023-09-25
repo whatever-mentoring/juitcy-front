@@ -18,28 +18,37 @@ const CommentInputBox = ({ idx }: { idx: number }) => {
   const [text, setText] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
-    setText(newText);
+    //최대 글자 500자
+    if (newText.length > 500) {
+      setText(text);
+    } else {
+      setText(newText);
+    }
   };
   const handleClickSend = async () => {
     //수정하기 버튼을 누른 경우, 댓글 수정 기능을 수행하도록 변함
-    if (editState.editClicked) {
-      const [content, commentIdx] = [text, editState.commentIdx];
-      let res = await editCommentApi({ content, commentIdx });
-
-      if (res.isSuccess) {
-        alert('댓글이 수정되었습니다.');
-        //새로고침
-        resetEditComment(); //recoil atom 리셋
-        window.location.reload();
-      }
+    if (text.length < 2) {
+      alert('내용을 2자 이상 입력해주세요.');
     } else {
-      const [content, postIdx] = [text, idx];
-      let res = await postCommentApi({ content, postIdx });
+      if (editState.editClicked) {
+        const [content, commentIdx] = [text, editState.commentIdx];
+        let res = await editCommentApi({ content, commentIdx });
 
-      if (res.isSuccess) {
-        alert('댓글이 등록되었습니다.');
-        //새로고침
-        window.location.reload();
+        if (res.isSuccess) {
+          alert('댓글이 수정되었습니다.');
+          //새로고침
+          resetEditComment(); //recoil atom 리셋
+          window.location.reload();
+        }
+      } else {
+        const [content, postIdx] = [text, idx];
+        let res = await postCommentApi({ content, postIdx });
+
+        if (res.isSuccess) {
+          alert('댓글이 등록되었습니다.');
+          //새로고침
+          window.location.reload();
+        }
       }
     }
   };
