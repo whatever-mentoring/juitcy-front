@@ -60,7 +60,7 @@ const TypingLimit = ({ textLenght }: { textLenght: number }) => {
         <Typo.s1 color={Palette.Gray4}>
           3개의 답변이 등록되거나 3일이 지난 후,
         </Typo.s1>
-        <Typo.s1 color={Palette.Gray4}>자동으로 쥬시글에 등록됩니다·</Typo.s1>
+        <Typo.s1 color={Palette.Gray4}>자동으로 쥬시글에 등록됩니다.</Typo.s1>
       </Column>
     </Column>
   );

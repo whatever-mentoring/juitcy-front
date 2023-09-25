@@ -35,7 +35,7 @@ export const Onboarding = () => {
   };
 
   return (
-    <EntireContainer padding={'0'}>
+    <EntireContainer padding={'0'} homebar={false} style={{ height: '100%' }}>
       <Container>
         {/* 카드 슬라이드있는 온보딩 */}
         <WithCard index={currentSlide}>
@@ -91,7 +91,7 @@ export const Onboarding = () => {
                 </Typo.h2>
                 <StyledText>쥬잇씨</StyledText>
               </div>
-              <MainImgContainer margin={50}>
+              <MainImgContainer margin={30}>
                 <Img src="/img/Onboarding/main2.svg" />
               </MainImgContainer>
             </MainContainer>
@@ -122,7 +122,7 @@ export const Onboarding = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 79px 30px 0px 30px;
+  padding: 79px 30px 15px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -133,7 +133,7 @@ const Container = styled.div`
   }
   .slider-container {
     height: 100%;
-    padding: 75px 30px 0 30px;
+    padding: 15px 30px 0 30px;
   }
 `;
 const StyledButton = styled.div`
@@ -150,7 +150,7 @@ const StyledSlider = styled(Slider)`
   height: fit-contents;
 
   .slick-dots {
-    bottom: -40px;
+    bottom: -15px;
   }
 `;
 
@@ -159,6 +159,7 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 45px;
 
   //카드 텍스트
   .bevrNG {
@@ -169,13 +170,12 @@ const TextContainer = styled.div`
 
 const WithCard = styled.div<{ index?: number }>`
   display: ${({ index }) => (index === 3 || index === 4 ? 'none' : 'block')};
-  height: 510px;
+  height: 100%;
 `;
 const WithoutCard = styled.div<{ index?: number }>`
   display: ${({ index }) =>
     index === 0 || index === 1 || index === 2 ? 'none' : 'block'};
-  height: 510px;
-  padding-top: 27px;
+  height: 100%;
 
   .main1 {
     display: ${({ index }) => (index !== 3 ? 'none' : 'block')};
@@ -186,7 +186,7 @@ const WithoutCard = styled.div<{ index?: number }>`
   }
 `;
 const MainImgContainer = styled.div<{ margin?: number }>`
-  padding:20px;
+  padding:10px;
   margin: ${({ margin }) => (margin ? margin : 10)}px;
 }
 `;
