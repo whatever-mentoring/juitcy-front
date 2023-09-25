@@ -64,7 +64,7 @@ export const Mypage = () => {
               <Typo.h4> &nbsp; 님</Typo.h4>
             </UnderLine>
           </Column>
-          <img src={`/img/${icon}.svg`} />
+          <img src={process.env.PUBLIC_URL + `/img/${icon}.svg`} />
         </Row>
         <div className="mypage-submenu-container">
           <div className="mypage-submenu-subcontainer">
