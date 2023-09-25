@@ -52,7 +52,6 @@ export const AnsCard = ({ content }: cardProps) => {
         <Typo.b2 color={Palette.Main}>익명의 시니</Typo.b2>
       </Tag>
       <ScrollBox>{content}</ScrollBox>
-      <Date>2023.09.11</Date>
     </Container>
   );
 };
@@ -99,7 +98,6 @@ export const QDetailCard = () => {
         <Typo.h2>{question.title}</Typo.h2>
       </Row>
       <Typo.s1>{question.content}</Typo.s1>
-      <Date>2023.09.11</Date>
     </QDContainer>
   );
 };
