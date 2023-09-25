@@ -43,10 +43,13 @@ export const SearchBar = ({
   useEffect(() => {
     const query = searchParams.get('query');
     if (searchParams.has('query')) {
+      if (query === null) navigate(`/search?query=${encodeURIComponent(text)}`);
       toggleSearched();
     }
     if (query !== null && query !== text) {
+      if (text !== null) navigate(`/search?query=${query}`);
       setSearchText(query);
+      console.log(query, text);
     }
   }, []);
 
