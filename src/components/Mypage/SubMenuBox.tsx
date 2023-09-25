@@ -1,4 +1,4 @@
-import { Row } from 'assets/common';
+import { Img, Row } from 'assets/common';
 import { styled } from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -24,9 +24,13 @@ export const SubMenuBox = ({
         style={{ width: '100%' }}
       >
         <Row gap={19}>
-          <img
-            src={process.env.PUBLIC_URL + `/img/MypageSubmenuIcons/${icon}.svg`}
-          ></img>
+          <ImgContainer>
+            <Img
+              src={
+                process.env.PUBLIC_URL + `/img/MypageSubmenuIcons/${icon}.svg`
+              }
+            />
+          </ImgContainer>
           <Typo.b1>{children}</Typo.b1>
         </Row>
         <Row gap={8}>
@@ -53,4 +57,12 @@ export const Container = styled.div<{ borderRadius?: string }>`
   border-radius: 10px;
   padding: 25px 15px;
   background: ${Palette.White};
+`;
+
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
 `;
