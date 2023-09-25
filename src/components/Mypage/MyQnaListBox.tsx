@@ -21,7 +21,10 @@ const MyQnaListBox = (
   const userType = window.localStorage.getItem('userType');
 
   return (
-    <StyledLink to={count !== 3 ? '' : `/post/${postIdx}`}>
+    <StyledLink
+      to={count !== 3 ? '' : `/post/${postIdx}`}
+      onClick={() => count !== 3 && alert('아직 답변이 모자라요!')}
+    >
       <MyPageBoxContainer height="72px" ref={ref}>
         <CountStick ansCount={count} />
         <SubContainer>
