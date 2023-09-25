@@ -98,7 +98,9 @@ export const Mypage = () => {
                 to={menu.link}
                 key={index}
                 margin={menu.margin}
-                onClick={() => index === 1 && Logout()}
+                onClick={() =>
+                  index === 1 ? Logout() : alert('뉴스레터는 아직 준비중이예요')
+                }
               >
                 <SubMenuBox count={-1} icon={menu.icon}>
                   {menu.menu}
