@@ -12,7 +12,7 @@ import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
 import { questionType } from 'types';
 import { Ref, forwardRef } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { questionState } from 'store/recoil/atom';
 
 interface cardProps {
@@ -98,7 +98,6 @@ export const QDetailCard = () => {
         <Typo.h2>{question.title}</Typo.h2>
       </Row>
       <Typo.s1>{question.content}</Typo.s1>
-      <Date>2023.09.11</Date>
     </QDContainer>
   );
 };

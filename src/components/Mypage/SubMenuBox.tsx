@@ -24,7 +24,9 @@ export const SubMenuBox = ({
         style={{ width: '100%' }}
       >
         <Row gap={19}>
-          <img src={`/img/MypageSubmenuIcons/${icon}.svg`}></img>
+          <img
+            src={process.env.PUBLIC_URL + `/img/MypageSubmenuIcons/${icon}.svg`}
+          ></img>
           <Typo.b1>{children}</Typo.b1>
         </Row>
         <Row gap={8}>

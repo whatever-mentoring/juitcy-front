@@ -64,7 +64,7 @@ export const Mypage = () => {
               <Typo.h4> &nbsp; 님</Typo.h4>
             </UnderLine>
           </Column>
-          <Img src={`/img/${icon}.svg`} />
+          <img src={process.env.PUBLIC_URL + `/img/${icon}.svg`} />
         </Row>
         <div className="mypage-submenu-container">
           <div className="mypage-submenu-subcontainer">
@@ -98,7 +98,9 @@ export const Mypage = () => {
                 to={menu.link}
                 key={index}
                 margin={menu.margin}
-                onClick={() => index === 1 && Logout()}
+                onClick={() =>
+                  index === 1 ? Logout() : alert('뉴스레터는 아직 준비중이에요')
+                }
               >
                 <SubMenuBox count={-1} icon={menu.icon}>
                   {menu.menu}
