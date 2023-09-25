@@ -40,6 +40,11 @@ const SignupSuccess = () => {
 
 export default SignupSuccess;
 
+const Container = styled(EntireContainer)`
+  width: 100%;
+  height: 100dvh;
+  padding: 60px 30px 79px 30px;
+`;
 const InnerContainer = styled(Column)`
   width: 100%;
   height: 100%;
@@ -47,7 +52,6 @@ const InnerContainer = styled(Column)`
 `;
 const ImgWrapper = styled(Column)`
   width: 100%;
-  height: 320px;
   justify-content: center;
   align-items: center;
 `;
