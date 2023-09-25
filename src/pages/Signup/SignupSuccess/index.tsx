@@ -14,7 +14,11 @@ const SignupSuccess = () => {
           <Typo.h1>회원가입 완료</Typo.h1>
           <Typo.h2 color={Palette.Gray4}>
             쥬잇씨 가입이 완료되었습니다. <br />
-            만나서 반가워요!
+          </Typo.h2>
+          <Typo.h2 color={Palette.Gray4}>
+            {userType === 'Juni'
+              ? '지금 바로 질문을 등록해보세요!'
+              : '주니어들의 고민을 확인하러 가볼까요?'}
           </Typo.h2>
         </Column>
         <Img>
