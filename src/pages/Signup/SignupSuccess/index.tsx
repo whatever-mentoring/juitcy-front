@@ -8,7 +8,7 @@ const SignupSuccess = () => {
   const userType = window.localStorage.getItem('userType');
 
   return (
-    <EntireContainer>
+    <Container>
       <InnerContainer>
         <Column gap={11}>
           <Typo.h1>회원가입 완료</Typo.h1>
@@ -21,31 +21,37 @@ const SignupSuccess = () => {
               : '주니어들의 고민을 확인하러 가볼까요?'}
           </Typo.h2>
         </Column>
-        <Img>
+        <ImgWrapper>
           {userType === 'Juni' ? (
-            <img src="/img/pageImgs/signup-success-juni.svg" />
+            <Img src="/img/pageImgs/signup-success-juni.svg" />
           ) : (
-            <img src="/img/pageImgs/signup-success-cyni.svg" />
+            <Img src="/img/pageImgs/signup-success-cyni.svg" />
           )}
-        </Img>
-
+        </ImgWrapper>
         <LongBtn to="/">확인</LongBtn>
       </InnerContainer>
-    </EntireContainer>
+    </Container>
   );
 };
 
 export default SignupSuccess;
 
+const Container = styled(EntireContainer)`
+  width: 100%;
+  height: 100dvh;
+  padding: 60px 30px 79px 30px;
+`;
 const InnerContainer = styled(Column)`
   width: 100%;
   height: 100%;
   justify-content: space-between;
-
-  padding-top: 60px;
 `;
-const Img = styled(Column)`
+const ImgWrapper = styled(Column)`
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
+`;
+const Img = styled.img`
+  width: 250px;
 `;
