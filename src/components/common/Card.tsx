@@ -12,7 +12,7 @@ import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
 import { questionType } from 'types';
 import { Ref, forwardRef } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { questionState } from 'store/recoil/atom';
 
 interface cardProps {
@@ -49,7 +49,7 @@ export const AnsCard = ({ content }: cardProps) => {
   return (
     <Container height={317} color={Palette.Main15} gap={14}>
       <Tag tagType={'answer'}>
-        <Typo.b2 color={Palette.Main}>익명의 시니어</Typo.b2>
+        <Typo.b2 color={Palette.Main}>익명의 시니</Typo.b2>
       </Tag>
       <ScrollBox>{content}</ScrollBox>
       <Date>2023.09.11</Date>
