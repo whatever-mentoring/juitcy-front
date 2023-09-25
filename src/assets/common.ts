@@ -90,3 +90,11 @@ export const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
+
+export const ImgContainer = styled.div<{ width?: number; height?: number }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${({ width }) => (width ? width : 25)}px;
+  height: ${({ height }) => (height ? height : 25)}px;
+`;

@@ -1,6 +1,8 @@
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import {
+  Img,
+  ImgContainer,
   MyPageBoxContainer,
   Row,
   StyledLink,
@@ -18,6 +20,10 @@ interface ScrapBoxInterface {
   commentCount: number;
   scrapCount: number;
 }
+interface CountSectionInterface {
+  icon: string;
+  count: number;
+}
 
 const ScrapListBox = (
   {
@@ -31,6 +37,10 @@ const ScrapListBox = (
   }: ScrapBoxInterface,
   ref: Ref<HTMLDivElement>,
 ) => {
+  const CountSection: CountSectionInterface[] = [
+    { icon: 'comment', count: commentCount },
+    { icon: 'scrap', count: scrapCount },
+  ];
   return (
     <StyledLink to={`/post/${postIdx}`}>
       <MyPageBoxContainer padding="14px 15px" ref={ref}>
@@ -39,14 +49,20 @@ const ScrapListBox = (
           <Typo.b1>{title}</Typo.b1>
           <Typo.b3 color={Palette.Gray4}>{children}</Typo.b3>
           <Row gap={7}>
-            <Row gap={4}>
-              <img src="/img/comment.svg" />
-              <Typo.s2 color={Palette.Gray4}>{commentCount}</Typo.s2>
-            </Row>
-            <Row gap={4}>
-              <img src="/img/scrap.svg" />
-              <Typo.s2 color={Palette.Gray4}>{scrapCount}</Typo.s2>
-            </Row>
+            {CountSection.map(
+              (section: CountSectionInterface, index: number) => (
+                <Row
+                  gap={4}
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  key={index}
+                >
+                  <ImgContainer width={10} height={10}>
+                    <Img src={`/img/${section.icon}.svg`} />
+                  </ImgContainer>
+                  <Typo.s2 color={Palette.Gray4}>{section.count}</Typo.s2>
+                </Row>
+              ),
+            )}
             <Typo.s2 color={Palette.Gray4}>{date}</Typo.s2>
           </Row>
         </TextContainer>
