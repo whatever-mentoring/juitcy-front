@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import back from 'assets/icons/back.svg';
 import searchButton from 'assets/icons/search-button.svg';
 import { Palette } from 'styles/Palette';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 interface searchBarProps {
   text: string;
@@ -12,16 +13,22 @@ interface searchBarProps {
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar = ({
+export const SearchBar = ({
   text,
   setText,
   setIsSearched,
   setSearchText,
 }: searchBarProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   const toggleSearched = () => {
     setIsSearched(true);
     setSearchText(text);
+
+    // 검색어와 함께 URL에 쿼리 매개변수를 추가
+    navigate(`/search?query=${encodeURIComponent(text)}`);
   };
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -33,9 +40,27 @@ const SearchBar = ({
     setText(newText);
   };
 
+  useEffect(() => {
+    const query = searchParams.get('query');
+    if (searchParams.has('query')) {
+      toggleSearched();
+    }
+    if (query !== null && query !== text) {
+      setSearchText(query);
+    }
+  }, []);
+
+  // 컴포넌트가 처음 로드될 때, URL의 쿼리 매개변수에서 검색어를 읽어옴
+  useEffect(() => {
+    const query = searchParams.get('query');
+    if (query) {
+      setText(decodeURIComponent(query));
+    }
+  }, [location.search]);
+
   return (
     <Container>
-      <img src={back} onClick={() => navigate(-1)} />
+      <img src={back} onClick={() => navigate('/')} />
       <SearchInputWrapper>
         <SearchInput
           type="text"
@@ -49,8 +74,6 @@ const SearchBar = ({
     </Container>
   );
 };
-
-export default SearchBar;
 
 const Container = styled(Row)`
   width: 100%;

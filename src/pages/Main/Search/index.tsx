@@ -1,5 +1,5 @@
 import { Column, EntireContainer } from 'assets/common';
-import SearchBar from 'components/Search/SearchBar';
+import { SearchBar } from 'components/Search/SearchBar';
 import SearchResult from 'components/Search/SearchResult';
 import { useState } from 'react';
 

@@ -29,14 +29,14 @@ export const Header = ({
     const currentURI = location.pathname;
     if (currentURI === '/ask/write' || currentURI.match(/^\/answer\/\d+$/)) {
       alert('작성을 취소하시겠습니까?');
+    } else {
+      navigate(-1);
     }
-
-    navigate(-1);
   };
 
   return (
     <Container borderBottom={borderBottom} background={background}>
-      <img src={btn === 'back' && back} onClick={handleBack}></img>
+      <img src={btn === 'back' && back} onClick={handleBack} />
       <Typo.h2 color={color}>{children}</Typo.h2>
       <StyledLink to="/search">
         <img src={btn === 'search' && search}></img>
