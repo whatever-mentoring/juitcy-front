@@ -9,9 +9,11 @@ import { postType } from 'types';
 const ScrapButton = ({
   postIdx,
   post,
+  setIsScrap,
 }: {
   postIdx: number;
   post: postType;
+  setIsScrap: React.Dispatch<React.SetStateAction<boolean | undefined>>;
 }) => {
   const [isScraped, setIsScraped] = useState<boolean>();
   const userType = window.localStorage.getItem('userType');
@@ -29,6 +31,9 @@ const ScrapButton = ({
       setIsScraped(post.isScrap);
     }
   }, []);
+  useEffect(() => {
+    setIsScrap(isScraped);
+  }, [isScraped]);
 
   return (
     <ScrapImg

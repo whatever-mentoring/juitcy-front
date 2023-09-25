@@ -15,21 +15,25 @@ const PostDetail = () => {
   const { idx } = useParams();
   const idxNum = idx ? parseInt(idx) : null;
   const [postdetail, setPostdetail] = useState<postType | null>(null);
+  const [isScrap, setIsScrap] = useState<boolean | undefined>(); //스크랩 버튼을 누를 경우 api를 다시 호출한다.
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (idxNum !== null) {
-          const res = await postsDetailApi(idxNum);
-          setPostdetail(res);
-        }
-      } catch (err) {
-        console.log(err);
+  const fetchData = async () => {
+    try {
+      if (idxNum !== null) {
+        const res = await postsDetailApi(idxNum);
+        setPostdetail(res);
       }
-    };
-
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
     fetchData();
+    setIsScrap(postdetail?.isScrap);
   }, [idxNum]);
+  useEffect(() => {
+    fetchData();
+  }, [isScrap]);
   return (
     <Column>
       <Header btn={'back'} borderBottom={true}>
@@ -42,7 +46,11 @@ const PostDetail = () => {
             <Row justifyContent="space-between">
               <CommentScrapInfo post={postdetail}></CommentScrapInfo>
               {idxNum && (
-                <ScrapButton postIdx={idxNum} post={postdetail}></ScrapButton>
+                <ScrapButton
+                  postIdx={idxNum}
+                  post={postdetail}
+                  setIsScrap={setIsScrap}
+                ></ScrapButton>
               )}
             </Row>
             {postdetail.commentList !== undefined && (
