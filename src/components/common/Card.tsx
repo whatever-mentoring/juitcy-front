@@ -12,7 +12,7 @@ import { ShortBtn } from './Button';
 import { CategoryLabel } from 'components/Category/CategoryLabel';
 import { questionType } from 'types';
 import { Ref, forwardRef } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { questionState } from 'store/recoil/atom';
 
 interface cardProps {
@@ -67,13 +67,6 @@ export const AnsButtonCard = forwardRef(
         height={270}
         ref={ref}
         justifyContent="space-between"
-        onClick={() => {
-          //질문 내용을 저장 후 클릭시 이어지는 상세 페이지에서 사용
-          setWriteState({
-            title: question.title,
-            content: question.content,
-          });
-        }}
       >
         <InnerBox gap={10}>
           <Tag tagType={'question'}>
@@ -88,9 +81,7 @@ export const AnsButtonCard = forwardRef(
   },
 );
 
-export const QDetailCard = () => {
-  const question = useRecoilValue(questionState);
-
+export const QDetailCard = ({ question }: { question: questionType }) => {
   return (
     <QDContainer color={Palette.Sub.blue} gap={20}>
       <Row gap={10}>
