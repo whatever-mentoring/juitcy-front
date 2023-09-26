@@ -28,7 +28,7 @@ export const getQuestionApi = async ({
   page,
 }: {
   category: string;
-  page: number;
+  page: number | null;
 }) => {
   try {
     let res = await publicInstance.get('/questions', {
