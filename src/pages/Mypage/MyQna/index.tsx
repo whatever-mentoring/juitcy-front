@@ -28,8 +28,6 @@ export const MyQna = () => {
   const [myQnaCount, setMyQnaCount] = useState<number>();
   const [page, setPage] = useState<number>(2);
 
-  console.log(myQnaData);
-
   const { ref, inView } = useInView();
 
   if (userType === 'Juni') {
