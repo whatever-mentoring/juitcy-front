@@ -9,10 +9,14 @@ import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
 import { useSetRecoilState } from 'recoil';
 import { writeState } from 'store/recoil/atom';
+import { useNavigate } from 'react-router';
 
 const WriteQuestion = () => {
   const [selectedCtg, setSelectedCtg] = useState<string>('DAILY');
   const setWriteState = useSetRecoilState(writeState);
+  const userType = localStorage.getItem('userType');
+  const navigate = useNavigate();
+
   //카테고리 저장
   useEffect(() => {
     setWriteState((prevState) => ({
@@ -21,31 +25,45 @@ const WriteQuestion = () => {
     }));
   }, [selectedCtg]);
 
+  useEffect(() => {
+    if (userType !== 'Juni') {
+      alert('쥬니 회원만 접근할 수 있는 페이지입니다.');
+      navigate(-1);
+    }
+  }, []);
+
   return (
-    <Column>
-      <Header borderBottom={false} btn={'back'}>
-        질문하기
-      </Header>
-      <EntireContainer
-        homebar={false}
-        style={{ height: 'calc(100dvh - 119px)' }}
-      >
-        <Column gap={20} alignItems="flex-start">
-          <Typo.s2>제목(최대 50자)</Typo.s2>
-          <Title />
-          <CtgWrapper>
-            <Typo.s2>카테고리</Typo.s2>
-            <CategoryBar.ctgs ctgAll={false} setSelectedCtg={setSelectedCtg} />
-          </CtgWrapper>
-          <Typo.s2>내용</Typo.s2>
-          <WriteInputBox
-            minHeight={430}
-            placeholder="익명의 시니어님에게 고민을 털어 놓아보세요."
-          />
+    <>
+      {userType === 'Juni' && (
+        <Column>
+          <Header borderBottom={false} btn={'back'}>
+            질문하기
+          </Header>
+          <EntireContainer
+            homebar={false}
+            style={{ height: 'calc(100dvh - 119px)' }}
+          >
+            <Column gap={20} alignItems="flex-start">
+              <Typo.s2>제목(최대 50자)</Typo.s2>
+              <Title />
+              <CtgWrapper>
+                <Typo.s2>카테고리</Typo.s2>
+                <CategoryBar.ctgs
+                  ctgAll={false}
+                  setSelectedCtg={setSelectedCtg}
+                />
+              </CtgWrapper>
+              <Typo.s2>내용</Typo.s2>
+              <WriteInputBox
+                minHeight={430}
+                placeholder="익명의 시니어님에게 고민을 털어 놓아보세요."
+              />
+            </Column>
+          </EntireContainer>
+          <WriteConfirmBar />
         </Column>
-      </EntireContainer>
-      <WriteConfirmBar />
-    </Column>
+      )}
+    </>
   );
 };
 

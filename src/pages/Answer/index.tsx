@@ -9,13 +9,22 @@ import { useInView } from 'react-intersection-observer';
 import { getQuestionApi } from 'network/apis/question';
 import { AnsButtonCard } from 'components/common/Card';
 import { Palette } from 'styles/Palette';
+import { useNavigate } from 'react-router';
 
 const Answer = () => {
   const [selectedCtg, setSelectedCtg] = useState<string>('');
   const [questions, setQuestions] = useState<questionType[]>();
   const { ref, inView } = useInView();
   const [page, setPage] = useState(0);
+  const userType = localStorage.getItem('userType');
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (userType !== 'Cyni') {
+      alert('시니 회원만 접근할 수 있는 페이지입니다.');
+      navigate(-1);
+    }
+  }, []);
   const fetchNewQs = async () => {
     try {
       let res = await getQuestionApi({ category: selectedCtg, page });
@@ -52,29 +61,36 @@ const Answer = () => {
   }, [inView]);
 
   return (
-    <Column>
-      <Header borderBottom={true}>답변하기</Header>
-      <EntireContainer homebar={true} background={Palette.Gray05}>
-        <div style={{ padding: '10px 0' }}>
-          <Notice />
-          <CategoryBar.container>
-            <CategoryBar.ctgs ctgAll={true} setSelectedCtg={setSelectedCtg} />
-          </CategoryBar.container>
-        </div>
-        <Column gap={18} alignItems="center">
-          {questions?.map((question, index) => {
-            return (
-              <AnsButtonCard
-                key={question.postIdx}
-                question={question}
-                ref={index === questions.length - 1 ? ref : undefined}
-              ></AnsButtonCard>
-            );
-          })}
+    <>
+      {userType === 'Cyni' && (
+        <Column>
+          <Header borderBottom={true}>답변하기</Header>
+          <EntireContainer homebar={true} background={Palette.Gray05}>
+            <div style={{ padding: '10px 0' }}>
+              <Notice />
+              <CategoryBar.container>
+                <CategoryBar.ctgs
+                  ctgAll={true}
+                  setSelectedCtg={setSelectedCtg}
+                />
+              </CategoryBar.container>
+            </div>
+            <Column gap={18} alignItems="center">
+              {questions?.map((question, index) => {
+                return (
+                  <AnsButtonCard
+                    key={question.postIdx}
+                    question={question}
+                    ref={index === questions.length - 1 ? ref : undefined}
+                  ></AnsButtonCard>
+                );
+              })}
+            </Column>
+          </EntireContainer>
+          <Homebar />
         </Column>
-      </EntireContainer>
-      <Homebar />
-    </Column>
+      )}
+    </>
   );
 };
 
