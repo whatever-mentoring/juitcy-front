@@ -1,5 +1,4 @@
 import { Row } from 'assets/common';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Palette } from 'styles/Palette';
 import Typo from 'styles/Typo';
@@ -8,84 +7,132 @@ import { useRecoilValue } from 'recoil';
 import { writeState } from 'store/recoil/atom';
 import { postQuestionApi } from 'network/apis/question';
 import { postAnswerApi } from 'network/apis/answerApi';
+import { useEffect, useState } from 'react';
+import Modal from './Modal';
 
 const WriteConfirmBar = ({ postIdx }: { postIdx?: number }) => {
-  const navigate = useNavigate();
   const location = useLocation();
   const currentURI = location.pathname;
   const { title, category, content } = useRecoilValue(writeState);
+  const [modalInfo, setModalInfo] = useState({
+    message: '',
+    destination: '',
+    type: '',
+  });
 
-  //onClick
-  const onClickWrite = () => {
-    let message, destination: string, api: any, successMsg: string;
-    const questionApi = async () => {
-      try {
-        let res = await postQuestionApi({ title, category, content });
-        if (res.isSuccess) {
-          alert(successMsg);
-          navigate(destination);
-        }
-      } catch (err) {}
-    };
-    const answerApi = async () => {
-      try {
-        let res = await postAnswerApi({
-          postIdx: postIdx ? postIdx : -1,
-          answer: content,
+  const [yesClicked, SetYesClicked] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const toggleModal = () => {
+    setIsModalOpen(true);
+  };
+
+  //api
+  const questionApi = async () => {
+    try {
+      let res = await postQuestionApi({ title, category, content });
+      if (res.isSuccess) {
+        setModalInfo({
+          ...modalInfo,
+          message: '질문이 등록되었습니다.',
+          destination: '/ask',
+          type: 'alert',
         });
-        if (res.isSuccess) {
-          alert(successMsg);
-          navigate(destination);
-        }
-      } catch (err) {}
-    };
-    if (currentURI === '/ask/write') {
-      message = '질문을 등록하시겠습니까?';
-      destination = '/ask';
-      successMsg = '질문이 등록되었습니다.';
-    } else {
-      message = '답변을 등록하시겠습니까?';
-      destination = '/answer';
-      successMsg = '답변이 등록되었습니다.';
-    }
+        toggleModal();
+      }
+    } catch (err) {}
+  };
+  const answerApi = async () => {
+    try {
+      let res = await postAnswerApi({
+        postIdx: postIdx ? postIdx : -1,
+        answer: content,
+      });
+      if (res.isSuccess) {
+        setModalInfo({
+          ...modalInfo,
+          message: '답변이 등록되었습니다.',
+          destination: '/answer',
+          type: 'alert',
+        });
+        toggleModal();
+      }
+    } catch (err) {}
+  };
 
-    const result = window.confirm(message);
-    if (result) {
+  //modal info 설정
+  useEffect(() => {
+    if (currentURI === '/ask/write') {
+      setModalInfo({
+        ...modalInfo,
+        message: '질문을 등록하시겠습니까?',
+        destination: '/ask',
+        type: 'confirm',
+      });
+    } else {
+      setModalInfo({
+        ...modalInfo,
+        message: '답변을 등록하시겠습니까?',
+        destination: '/answer',
+        type: 'confirm',
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (yesClicked) {
       if (title && title.length < 5) {
         alert('제목을 5자 이상 입력해주세요.');
+        SetYesClicked(false);
       } else if (content.length < 10) {
         alert('내용을 10자 이상 입력해주세요.');
+        SetYesClicked(false);
       } else {
         currentURI === '/ask/write' ? questionApi() : answerApi();
       }
     }
-  };
-  const onClickCancel = () => {
-    const message = '작성을 취소하시겠습니까?';
-    const destination = currentURI === '/ask/write' ? '/ask' : '/answer';
+  }, [yesClicked]);
 
-    const result = window.confirm(message);
-    if (result) {
-      navigate(destination);
-    }
+  //onClick
+  const onClickWrite = () => {
+    toggleModal();
+  };
+
+  const onClickCancel = () => {
+    const destination = currentURI === '/ask/write' ? '/ask' : '/answer';
+    setModalInfo({
+      ...modalInfo,
+      message: '작성을 취소하시겠습니까?',
+      destination: destination,
+      type: 'alert',
+    });
+    toggleModal();
   };
 
   return (
     <Container>
-      <BtnDib
+      <BtnDiv
         color={Palette.Gray05}
         borderClr={Palette.Gray2}
         onClick={onClickCancel}
       >
         <Typo.h2 color={Palette.Gray4}>취소</Typo.h2>
-      </BtnDib>
-      <BtnDib
+      </BtnDiv>
+      <BtnDiv
         color={Palette.Main}
         borderClr={Palette.Main}
         onClick={onClickWrite}
       >
         <Typo.h2 color={Palette.White}>작성완료</Typo.h2>
-      </BtnDib>
+      </BtnDiv>
+      {isModalOpen && (
+        <Modal
+          setIsModalOpen={setIsModalOpen}
+          text={modalInfo.message}
+          type={modalInfo.type}
+          destination={modalInfo.destination}
+          SetYesClicked={SetYesClicked}
+        />
+      )}
     </Container>
   );
 };
@@ -96,7 +143,7 @@ const Container = styled(Row)`
   width: 100%;
   height: 59px;
 `;
-const BtnDib = styled(Row)<{ color: string; borderClr: string }>`
+const BtnDiv = styled(Row)<{ color: string; borderClr: string }>`
   width: 50%;
   justify-content: center;
   align-items: center;

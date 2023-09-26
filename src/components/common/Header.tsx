@@ -6,6 +6,8 @@ import search from '@assets/icons/search.svg';
 import back from '@assets/icons/back.svg';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from './Modal';
 
 interface headerProps {
   btn?: string;
@@ -24,15 +26,24 @@ export const Header = ({
 }: headerProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [modalInfo, setModalInfo] = useState({
+    message: '',
+    destination: '',
+    type: '',
+  });
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleBack = () => {
     const currentURI = location.pathname;
-    if (currentURI === '/ask/write') {
-      alert('작성을 취소하시겠습니까?');
-      navigate('/ask');
-    } else if (currentURI.match(/^\/answer\/\d+$/)) {
-      alert('작성을 취소하시겠습니까?');
-      navigate('/answer');
+    if (currentURI === '/ask/write' || currentURI.match(/^\/answer\/\d+$/)) {
+      const destination = currentURI === '/ask/write' ? '/ask' : '/answer';
+      setModalInfo({
+        ...modalInfo,
+        message: '작성을 취소하시겠습니까?',
+        destination: destination,
+        type: 'alert',
+      });
+      setIsModalOpen(true);
     } else {
       navigate(-1);
     }
@@ -45,6 +56,14 @@ export const Header = ({
       <StyledLink to="/search">
         <img src={btn === 'search' && search}></img>
       </StyledLink>
+      {isModalOpen && (
+        <Modal
+          setIsModalOpen={setIsModalOpen}
+          text={modalInfo.message}
+          type={modalInfo.type}
+          destination={modalInfo.destination}
+        />
+      )}
     </Container>
   );
 };
