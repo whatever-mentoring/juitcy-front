@@ -26,9 +26,17 @@ const SignupSuccess = () => {
           </Column>
           <ImgWrapper>
             {userType === 'Juni' ? (
-              <Img src="/img/pageImgs/signup-success-juni.svg" />
+              <Img
+                width={205}
+                height={311}
+                src="/img/pageImgs/signup-success-juni.svg"
+              />
             ) : (
-              <Img src="/img/pageImgs/signup-success-cyni.svg" />
+              <Img
+                width={250}
+                height={338}
+                src="/img/pageImgs/signup-success-cyni.svg"
+              />
             )}
           </ImgWrapper>
           <LongBtn to="/">확인</LongBtn>
@@ -40,11 +48,6 @@ const SignupSuccess = () => {
 
 export default SignupSuccess;
 
-const Container = styled(EntireContainer)`
-  width: 100%;
-  height: 100dvh;
-  padding: 60px 30px 79px 30px;
-`;
 const InnerContainer = styled(Column)`
   width: 100%;
   height: 100%;
@@ -55,6 +58,7 @@ const ImgWrapper = styled(Column)`
   justify-content: center;
   align-items: center;
 `;
-const Img = styled.img`
-  width: 250px;
+const Img = styled.img<{ width: number; height: number }>`
+  width: ${(width) => `${width}px`};
+  height: ${(height) => `${height}px`};
 `;

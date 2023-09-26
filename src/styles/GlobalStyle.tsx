@@ -9,6 +9,11 @@ export const GlobalStyle = createGlobalStyle`
     padding:0;
     box-sizing: border-box;
 
+    img{
+        max-width:100%;
+        height:auto;
+    }
+
     @font-face {
         font-family: 'PretendardBold';
         src: local('PretendardBold'), url(${PretendardBold}) format('woff');
