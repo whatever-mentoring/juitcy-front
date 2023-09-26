@@ -40,7 +40,7 @@ const PostDetail = () => {
         {' '}
       </Header>
       <EntireContainer color={Palette.Gray05} background={Palette.Gray05}>
-        {postdetail !== null ? (
+        {postdetail !== null && (
           <Column gap={23}>
             <CardSlider cards={MakeCardSlider(postdetail)} />
             <Row justifyContent="space-between">
@@ -57,8 +57,6 @@ const PostDetail = () => {
               <CommentsBox comments={postdetail.commentList}></CommentsBox>
             )}
           </Column>
-        ) : (
-          <div>loading...</div>
         )}
       </EntireContainer>
 
