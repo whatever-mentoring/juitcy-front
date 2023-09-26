@@ -61,12 +61,16 @@ publicInstance.interceptors.response.use(
         } catch (err) {
           // refresh token이 유효하지 않은 경우
           // 로그아웃
+          alert(
+            '⚠️ 보안을 위해 사용자 정보가 만료되었습니다. 다시 로그인해 주세요.',
+          );
           localStorage.clear();
           window.location.href = '/signup';
         }
       } else {
         //access token, refresh token이 없는 경우 (로그인되지 않은 상태에서의 접근)
         // 로그아웃
+        alert('로그인이 필요한 페이지입니다.');
         localStorage.clear();
         window.location.href = '/signup';
       }
